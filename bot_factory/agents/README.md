@@ -33,3 +33,14 @@ agent = create_agent_spec(
 )
 print(agent.to_dict())
 ```
+
+## Proveedor Gemini inicial
+
+- Adaptador: `GeminiProvider` en `providers/gemini.py`.
+- SDK oficial: `google-genai`.
+- Configuración: `GEMINI_API_KEY` y `GEMINI_MODEL` mediante variables de entorno o secretos del despliegue.
+- Modelo predeterminado: `gemini-2.5-flash-lite`, sujeto a disponibilidad y cuotas de Google.
+- El panel incluye una prueba de conversación para agentes configurados con proveedor `google`.
+- La API key no se almacena en el registro del agente, Streamlit ni GitHub.
+- El nivel gratuito tiene límites y condiciones de privacidad diferentes al nivel de pago. No enviar datos confidenciales de clientes al nivel gratuito.
+- Integración pendiente de validación real con una clave configurada en un entorno local o despliegue.
