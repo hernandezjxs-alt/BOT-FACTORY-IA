@@ -101,6 +101,7 @@ hr {{ border-color: {border}; }}
   .ai-stage { max-width: 100%; overflow: hidden; }
   .metric-card { min-height: 116px; }
   [data-testid="stHorizontalBlock"] { flex-wrap: wrap !important; gap: .75rem !important; }
+  [data-testid="stHorizontalBlock"] > [data-testid="column"] { flex: 1 1 100% !important; min-width: 100% !important; width: 100% !important; }
   [data-testid="stDataFrame"], [data-testid="stTable"] { max-width: 100%; overflow-x: auto; }
   [data-testid="stForm"] { padding: .15rem; }
   div.stButton > button, div.stFormSubmitButton > button { width: 100%; }
