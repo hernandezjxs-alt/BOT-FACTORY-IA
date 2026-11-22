@@ -267,3 +267,16 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [ ] Probar visualmente la nueva página en Streamlit Community Cloud.
 - [ ] Ejecutar pruebas automatizadas y validar dependencias.
 - Nota: el formulario no envía correos ni guarda información permanentemente; la página no habilita cobros.
+
+
+## 2026-11-22 — Identidad de marca y página de acceso de usuario
+- [x] Se agregó una cabecera superior con símbolo moderno geométrico y gradiente violeta/cian.
+- [x] Se incorporó el nombre BOT FACTORY AI y el descriptor INTELLIGENT AUTOMATION PLATFORM.
+- [x] Se añadió "Acceso de usuario" al menú de navegación.
+- [x] Se diseñó la pantalla de acceso con pestañas para iniciar sesión y crear cuenta.
+- [x] Se añadieron campos de correo y contraseña, confirmación de contraseña y validación básica del formulario de registro.
+- [x] Se dejó explícito que el formulario es una interfaz de demostración y no autentica ni crea usuarios todavía.
+- [ ] Conectar Supabase Auth para registro, inicio/cierre de sesión, recuperación de contraseña y sesiones seguras.
+- [ ] Crear perfiles, organizaciones, membresías y políticas RLS antes de habilitar usuarios reales.
+- [ ] Probar el encabezado y la página de acceso en Streamlit Community Cloud desde Android.
+- Commit app.py: 4f7b552479f8ed94bf85bc19d169d8e51dfb1a60.
