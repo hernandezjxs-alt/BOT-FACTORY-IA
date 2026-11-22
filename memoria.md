@@ -122,3 +122,12 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Propietario: hernandezjxs-alt
 - Rama principal: main
 - Visibilidad: pública
+
+## Despliegue en la nube (2026-11-22)
+- Plataforma seleccionada para el primer panel web: Streamlit Community Cloud, con despliegue desde el repositorio GitHub.
+- Archivo de entrada: app.py en la raíz; dependencias: requirements.txt.
+- Las credenciales en Streamlit Cloud se guardan en App settings / Secrets como TOML: GEMINI_API_KEY = "..." y GEMINI_MODEL = "gemini-2.5-flash-lite".
+- app.py lee la clave desde st.secrets con fallback a variable de entorno para ejecución local.
+- El repositorio es público; no almacenar secretos en GitHub, issues, commits ni archivos versionados.
+- Estado: preparación del código/documentación completada; el usuario debe iniciar sesión en Streamlit Community Cloud, autorizar GitHub y crear el despliegue desde el móvil. El despliegue y la prueba real de Gemini aún no están confirmados.
+- Limitación: el MVP conserva bots/agentes en st.session_state; los registros no son persistentes y el panel no es todavía un servicio multiusuario listo para clientes.
