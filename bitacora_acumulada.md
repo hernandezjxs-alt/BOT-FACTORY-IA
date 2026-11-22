@@ -305,3 +305,14 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [ ] Probar en Streamlit Community Cloud desde un Android real y en navegador de escritorio.
 - [ ] Ajustar cualquier desbordamiento o diferencia visual detectada mediante capturas.
 - Nota: los cambios de CSS no sustituyen las pruebas reales de navegador ni garantizan por sí solos el comportamiento de cada widget Streamlit.
+
+
+## 2026-11-22 — Reparación del error de inicio en Streamlit
+- [x] Se recibió el error: SyntaxError en app.py, línea 94, f-string expecting a valid expression after '{'.
+- [x] Se revisó el archivo real en la rama main y se identificó que los bloques CSS responsive globales usaban llaves simples dentro de st.markdown(f"""...""").
+- [x] Se escaparon las llaves de los bloques CSS responsive para que Python las trate como texto literal.
+- [x] Se publicó la corrección en GitHub.
+- Commit app.py: 3b3011fa046f6388f145536f382a0f8e08545013.
+- [x] Se actualizó memoria.md con el diagnóstico y la solución.
+- [ ] Esperar/revisar el reinicio de Streamlit Cloud y confirmar que la aplicación abra.
+- [ ] Si aparece otro error, revisar el nuevo traceback completo y corregirlo.
