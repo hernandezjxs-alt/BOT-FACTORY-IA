@@ -293,3 +293,14 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [ ] Verificar el aspecto real en Streamlit Community Cloud desde Android y escritorio.
 - [ ] Ajustar contraste/escala en modo claro y revisar comportamiento de animaciones en navegadores móviles.
 - Commit app.py: d3310a7c38b1ed8739d92c0743dcdd0f95436b3e.
+
+
+## 2026-11-22 — Ajustes globales de diseño responsive
+- [x] Se estableció como requisito transversal la compatibilidad visual y funcional con móvil, tablet y escritorio.
+- [x] La barra lateral ahora usa estado automático para facilitar la navegación en pantallas pequeñas.
+- [x] Se agregaron reglas globales para márgenes, marca, tipografía, tarjetas, formularios, botones y contenedores de datos.
+- [x] Se reforzó el escalado del hero y la esfera IA en teléfonos estrechos.
+- [x] Se añadió soporte para prefers-reduced-motion y desactivación de animaciones decorativas cuando el sistema lo solicita.
+- [ ] Probar en Streamlit Community Cloud desde un Android real y en navegador de escritorio.
+- [ ] Ajustar cualquier desbordamiento o diferencia visual detectada mediante capturas.
+- Nota: los cambios de CSS no sustituyen las pruebas reales de navegador ni garantizan por sí solos el comportamiento de cada widget Streamlit.
