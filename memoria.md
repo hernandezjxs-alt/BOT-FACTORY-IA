@@ -19,15 +19,15 @@ Desarrollar una empresa de creación e implementación de bots para clientes, co
 - Supabase como plataforma de datos, autenticación y persistencia cuando corresponda.
 - Redis para colas, caché o coordinación cuando sea necesario.
 - Workers independientes para ejecutar tareas en segundo plano.
-- Diseñar una arquitectura multimodelo que permita integrar modelos de IA, considerando Claude (el usuario dispone de Claude Pro) y otros proveedores mediante adaptadores.
+- Arquitectura multimodelo mediante adaptadores; considerar Claude y otros proveedores.
 - GitHub es el repositorio oficial y control de versiones.
 
-## Arquitectura inicial propuesta
+## Arquitectura
 1. Aplicación Streamlit: panel administrativo y experiencia de configuración.
-2. Núcleo BOT FACTORY: registro de clientes, proyectos, bots, flujos, permisos y configuraciones.
-3. Capa de conectores: Telegram, correo y WhatsApp, desacoplados entre sí.
+2. Núcleo BOT FACTORY: clientes, proyectos, bots, flujos, permisos y configuraciones.
+3. Capa de conectores: Telegram, correo y WhatsApp, desacoplados.
 4. Capa de IA: selección de proveedor/modelo, prompts, herramientas y políticas.
-5. Persistencia: Supabase.
+5. Persistencia: Supabase (PostgreSQL, Auth, Storage y RLS).
 6. Procesamiento asíncrono: Redis + workers, incorporados según necesidad.
 7. Observabilidad: logs, estados de ejecución, errores y auditoría.
 
@@ -41,46 +41,42 @@ Desarrollar una empresa de creación e implementación de bots para clientes, co
 - Mantener documentación actualizada y cambios versionados.
 
 ## Seguridad crítica
-Este repositorio es público. Nunca subir tokens de Telegram, credenciales SMTP, claves de WhatsApp, claves de Supabase, API keys de modelos, contraseñas ni datos reales de clientes. Si alguna credencial se expone, revocarla y generar otra.
+El repositorio es público. Nunca subir tokens de Telegram, credenciales SMTP, claves de WhatsApp, claves de Supabase, API keys de modelos, contraseñas ni datos reales de clientes. Si alguna credencial se expone, revocarla y generar otra.
 
-## Alcance de construcción por etapas
-### Etapa 1 — Fundaciones
-- Estructura Python modular.
-- Documentación y configuración segura.
-- Aplicación Streamlit inicial.
-- Modelo de datos y configuración base.
+## Estado de implementación
+### Fundaciones
+- [x] Estructura Python inicial.
+- [x] Aplicación Streamlit inicial.
+- [x] .gitignore y .env.example sin secretos.
+- [x] Archivos de continuidad en la raíz.
 
-### Etapa 2 — Primer canal funcional
-- Integración inicial con Telegram.
-- Registro de eventos, manejo de errores y pruebas.
+### Telegram Bot Factory — MVP 0.1
+- [x] Conector Telegram independiente.
+- [x] Comandos /start, /help y /status.
+- [x] Worker Python independiente del panel Streamlit.
+- [x] Token leído desde TELEGRAM_BOT_TOKEN en entorno local.
+- [x] Instrucciones de creación con @BotFather.
+- [ ] Instalar dependencias y ejecutar pruebas locales.
+- [ ] Conectar token real en entorno local (nunca compartirlo).
+- [ ] Probar conversación real con el bot.
 
-### Etapa 3 — Correo
-- Conector de correo entrante/saliente.
-- Plantillas, clasificación y automatizaciones.
-
-### Etapa 4 — WhatsApp
-- Integración mediante API/proveedor oficial.
-- Gestión de consentimiento, plantillas y estados.
-
-### Etapa 5 — IA y automatizaciones
-- Enrutamiento multimodelo.
-- Flujos reutilizables, herramientas y workers.
-- Métricas, límites por cliente y panel de administración.
-
-### Etapa 6 — Oferta comercial
-- Paquetes de implementación y mantenimiento.
-- Onboarding de clientes, soporte, documentación y precios.
-- Pilotos controlados antes de producción.
+## Etapas siguientes
+1. Validar el MVP Telegram localmente.
+2. Integrar registro multiempresa y credenciales cifradas/secret manager.
+3. Construir panel Streamlit para alta, configuración y monitoreo de bots.
+4. Incorporar Supabase Auth, PostgreSQL y políticas RLS.
+5. Agregar pruebas, logs, métricas y despliegue del worker.
+6. Desarrollar conectores de correo y WhatsApp mediante APIs/proveedores oficiales.
+7. Integrar agentes y proveedores de IA multimodelo.
+8. Definir paquetes comerciales, onboarding y mantenimiento.
 
 ## Archivos de continuidad obligatorios
 - memoria.md: decisiones, arquitectura, requisitos y contexto vigente.
 - bitacora_acumulada.md: registro cronológico de avances, cambios y pendientes.
+Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 
-Ambos archivos deben actualizarse en cada sesión de trabajo y mantenerse en la raíz del repositorio.
-
-## Estado inicial
-- Repositorio: https://github.com/hernandezjxs-alt/BOT-FACTORY-IA
+## Repositorio
+- URL: https://github.com/hernandezjxs-alt/BOT-FACTORY-IA
+- Propietario: hernandezjxs-alt
 - Rama principal: main
 - Visibilidad: pública
-- Contenido inicial conocido: README.md
-- Próximo objetivo: crear la estructura inicial del proyecto y validar que la integración GitHub tenga permisos de escritura.
