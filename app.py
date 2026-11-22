@@ -39,6 +39,15 @@ st.markdown(f"""
 .block-container {{ padding-top: 2rem; padding-bottom: 3rem; max-width: 1500px; }}
 h1,h2,h3,h4,p,span,label {{ color: {fg}; }}
 small,.muted {{ color: {muted}; }}
+.brandbar {{ display:flex; align-items:center; gap:.85rem; padding:.35rem .15rem 1.15rem; }}
+.brandmark {{ width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:15px; color:#fff; font-size:1.75rem; font-weight:900; background:linear-gradient(135deg,#6258e8,#24c6d7); box-shadow:0 8px 24px rgba(99,91,219,.28); }}
+.brandname {{ font-size:1.15rem; font-weight:900; letter-spacing:.045em; line-height:1.15; }}
+.brandtag {{ color:{muted}; font-size:.66rem; letter-spacing:.15em; font-weight:750; margin-top:.2rem; }}
+.brand-spacer {{ flex:1; }}
+.brand-pill {{ border:1px solid {border}; color:{muted}; border-radius:999px; padding:.42rem .72rem; font-size:.68rem; font-weight:750; letter-spacing:.08em; }}
+.login-shell {{ max-width:620px; margin:1.2rem auto; }}
+.login-title {{ text-align:center; font-size:1.8rem; font-weight:850; margin-bottom:.2rem; }}
+.login-subtitle {{ text-align:center; color:{muted}; margin-bottom:1.2rem; }}
 .hero {{ padding: 1.7rem 1.9rem; border: 1px solid {border}; border-radius: 22px;
 background: linear-gradient(120deg, {'#1b2850' if dark else '#e8eaff'}, {'#162d43' if dark else '#e5f6f5'}); margin-bottom: 1.2rem; }}
 .hero-kicker {{ color: {accent}; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }}
@@ -84,7 +93,7 @@ with st.sidebar:
     st.markdown("## 🤖 BOT FACTORY")
     st.caption("AI · AUTOMATION PLATFORM")
     st.divider()
-    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "💼  Planes y servicios", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
+    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🔐  Acceso de usuario", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "💼  Planes y servicios", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
     st.divider()
     st.markdown("**Apariencia**")
     st.radio("Tema", ["Oscuro", "Claro"], key="theme_choice", horizontal=True, label_visibility="collapsed")
@@ -103,9 +112,39 @@ telegram_count = sum(1 for bot in st.session_state.bot_registry if bot.get("chan
 email_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Correo")
 whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "WhatsApp")
 
-st.markdown('<div class="hero"><div class="hero-kicker">PLATAFORMA DE AUTOMATIZACIÓN INTELIGENTE</div><h1>Construye. Conecta. Automatiza.</h1><p>Un centro de control para diseñar y administrar bots y agentes IA en todos tus canales.</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="brandbar"><div class="brandmark">✦</div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div><div class="hero"><div class="hero-kicker">PLATAFORMA DE AUTOMATIZACIÓN INTELIGENTE</div><h1>Construye. Conecta. Automatiza.</h1><p>Un centro de control para diseñar y administrar bots y agentes IA en todos tus canales.</p></div>', unsafe_allow_html=True)
 
-if page.startswith("⌂"):
+if page.startswith("🔐"):
+    st.markdown('<div class="login-shell">', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.markdown('<div class="login-title">Bienvenido a tu espacio</div><div class="login-subtitle">Accede a tus bots, agentes y automatizaciones.</div>', unsafe_allow_html=True)
+        login_tab, signup_tab = st.tabs(["Iniciar sesión", "Crear cuenta"])
+        with login_tab:
+            with st.form("user_login_form"):
+                login_email = st.text_input("Correo electrónico", placeholder="usuario@empresa.com")
+                login_password = st.text_input("Contraseña", type="password", placeholder="Ingresa tu contraseña")
+                login_submit = st.form_submit_button("Entrar a BOT FACTORY AI", type="primary", use_container_width=True)
+            if login_submit:
+                st.info("La pantalla de acceso está diseñada. La validación de credenciales y las sesiones seguras se activarán al conectar Supabase Auth.")
+            st.caption("¿Olvidaste tu contraseña? La recuperación se habilitará con Supabase Auth.")
+        with signup_tab:
+            with st.form("user_signup_form"):
+                signup_name = st.text_input("Nombre")
+                signup_email = st.text_input("Correo electrónico", placeholder="usuario@empresa.com")
+                signup_password = st.text_input("Crear contraseña", type="password")
+                signup_confirm = st.text_input("Confirmar contraseña", type="password")
+                signup_submit = st.form_submit_button("Crear mi cuenta", type="primary", use_container_width=True)
+            if signup_submit:
+                if not signup_name.strip() or not signup_email.strip() or not signup_password:
+                    st.error("Completa todos los campos.")
+                elif signup_password != signup_confirm:
+                    st.error("Las contraseñas no coinciden.")
+                else:
+                    st.info("El formulario está preparado visualmente. El registro real y el almacenamiento seguro se habilitarán con Supabase Auth.")
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.caption("BOT FACTORY AI · Acceso de usuario · Vista de demostración; todavía no autentica ni crea cuentas.")
+
+elif page.startswith("⌂"):
     st.markdown("### Panel de control")
     st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
     cols = st.columns(4)
