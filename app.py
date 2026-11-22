@@ -84,7 +84,7 @@ with st.sidebar:
     st.markdown("## 🤖 BOT FACTORY")
     st.caption("AI · AUTOMATION PLATFORM")
     st.divider()
-    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
+    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "💼  Planes y servicios", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
     st.divider()
     st.markdown("**Apariencia**")
     st.radio("Tema", ["Oscuro", "Claro"], key="theme_choice", horizontal=True, label_visibility="collapsed")
@@ -254,6 +254,65 @@ elif page.startswith("🧩"):
                 st.markdown(f"### {icon} {title}")
                 st.write(detail)
                 st.caption("Plantilla conceptual · automatización pendiente de conexión")
+
+elif page.startswith("💼"):
+    section_heading("Planes y servicios", "Elige autoservicio SaaS o solicita una implementación personalizada con BOT FACTORY Studio.")
+    st.info("Planes piloto de referencia en CLP. Son precios de prueba para validar con clientes; todavía no hay cobro, suscripciones ni límites automatizados.")
+    plan_cols = st.columns(4)
+    plans = [
+        ("Starter", "$14.990", "1 bot · 1 canal", "Para profesionales y microempresas"),
+        ("Pro", "$39.990", "Hasta 3 bots · 2 canales", "Para pymes"),
+        ("Business", "$99.990", "Hasta 10 bots · varios usuarios", "Para equipos en crecimiento"),
+        ("Enterprise", "A cotizar", "Volumen e integraciones", "Para operaciones empresariales"),
+    ]
+    for col, (plan_name, price, scope, audience) in zip(plan_cols, plans):
+        with col:
+            with st.container(border=True):
+                st.markdown(f"### {plan_name}")
+                st.markdown(f"## {price}")
+                st.caption("CLP / mes · precio piloto" if price != "A cotizar" else "Propuesta personalizada")
+                st.write(scope)
+                st.caption(audience)
+    st.caption("Los costos externos de IA, WhatsApp, correo y proveedores pueden cobrarse aparte. No se ofrece uso ilimitado. Los precios finales se definirán tras medir costos reales.")
+    st.divider()
+    section_heading("BOT FACTORY Studio", "Desarrollo a medida para empresas que necesitan algo más que una plantilla.")
+    studio_cols = st.columns(2)
+    with studio_cols[0]:
+        st.markdown("**Servicios disponibles en el catálogo**")
+        st.markdown("- Diagnóstico y diseño de procesos")
+        st.markdown("- Bots y agentes personalizados")
+        st.markdown("- Integración con CRM, ERP y APIs")
+        st.markdown("- Capacitación y documentación")
+        st.markdown("- Soporte y mantenimiento")
+    with studio_cols[1]:
+        st.markdown("**Solicitar una evaluación**")
+        with st.form("studio_request_form", clear_on_submit=True):
+            contact_name = st.text_input("Nombre de contacto")
+            company_name = st.text_input("Empresa")
+            contact_email = st.text_input("Correo de contacto")
+            project_channel = st.multiselect("Canales de interés", ["Telegram", "WhatsApp", "Correo electrónico"])
+            project_need = st.text_area("¿Qué proceso quieres automatizar?", height=110)
+            request_sent = st.form_submit_button("Registrar solicitud de evaluación", type="primary", use_container_width=True)
+        if request_sent:
+            if not contact_name.strip() or not contact_email.strip() or not project_need.strip():
+                st.error("Completa nombre, correo y descripción del proyecto.")
+            else:
+                st.session_state.setdefault("studio_requests", [])
+                st.session_state.studio_requests.append({
+                    "contact": contact_name.strip(),
+                    "company": company_name.strip(),
+                    "email": contact_email.strip(),
+                    "channels": project_channel,
+                    "need": project_need.strip(),
+                    "status": "Solicitud registrada en esta sesión",
+                })
+                st.success("Solicitud guardada temporalmente en esta sesión de demostración. Todavía no se envía por correo ni se persiste en una base de datos.")
+    if st.session_state.get("studio_requests"):
+        with st.expander("Solicitudes de demostración de esta sesión"):
+            for request in st.session_state.studio_requests:
+                st.write(f"**{request['contact']}** · {request['company'] or 'Sin empresa'} · {request['email']}")
+                st.caption(f"Canales: {', '.join(request['channels']) or 'Por definir'} · {request['status']}")
+                st.write(request["need"])
 
 elif page.startswith("🛡️"):
     section_heading("Administración", "Centro de control de la plataforma.")
