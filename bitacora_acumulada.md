@@ -316,3 +316,11 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [x] Se actualizó memoria.md con el diagnóstico y la solución.
 - [ ] Esperar/revisar el reinicio de Streamlit Cloud y confirmar que la aplicación abra.
 - [ ] Si aparece otro error, revisar el nuevo traceback completo y corregirlo.
+
+
+## 2026-11-22 — Refinamiento visual de tarjetas y núcleo IA
+- [x] Se cambiaron las tarjetas de métricas de degradados multicolores a fondos sólidos, conservando la paleta individual violeta, cian, verde y naranja.
+- [x] Se sustituyó el asterisco del centro de la esfera IA por un icono de globo 🌐.
+- [x] Se actualizó memoria.md.
+- Commit app.py: 9b736ad9479bbdc30b2ff24a4c8596b97f71158a.
+- [ ] Revisar el resultado en Streamlit Cloud desde móvil y escritorio.
