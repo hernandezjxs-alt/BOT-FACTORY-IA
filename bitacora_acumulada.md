@@ -211,3 +211,11 @@ La aplicación debe tener una apariencia moderna y profesional, con tarjetas, bo
 
 ### Commit
 - app.py rediseñado: 229fe0c213df7729808c5827bbcd529841ec4e43.
+
+
+## 2026-11-22 — Tarjetas con colores resaltados y efectos dinámicos
+- [x] Se asignaron gradientes distintos a las métricas: violeta para bots, celeste para agentes IA, verde para Telegram y naranja para canales.
+- [x] Se agregaron sombras, formas decorativas, alto contraste y transición hover con elevación.
+- [x] Se añadieron efectos sutiles de interacción a los contenedores con borde.
+- [x] Cambio publicado en app.py, commit 1dde3bb8f4e16e45e7267e7a26badbfe1cb2fee3.
+- [ ] Validar visualización final desde Streamlit Cloud y ajustar según pantalla Android.
