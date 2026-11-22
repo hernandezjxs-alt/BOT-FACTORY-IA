@@ -4,11 +4,14 @@ Los registros de esta versión viven en session_state. No se guardan tokens,
 API keys ni datos persistentes. Las llamadas a modelos aún no están habilitadas.
 """
 from datetime import datetime, timezone
+import os
 
 import streamlit as st
 from dotenv import load_dotenv
 
 from bot_factory.agents import create_agent_spec
+from bot_factory.agents.models import AgentSpec
+from bot_factory.agents.providers.gemini import GeminiProvider
 
 load_dotenv()
 st.set_page_config(page_title="BOT FACTORY AI", page_icon="🤖", layout="wide")
@@ -32,7 +35,7 @@ with st.sidebar:
     st.divider()
     st.markdown("**Motor IA**")
     st.write("🧠 Definición de agentes disponible")
-    st.write("⏳ Proveedores IA aún no conectados")
+    st.write("🟢 Gemini configurable (requiere API key gratuita)")
 
 total_bots = len(st.session_state.bot_registry)
 total_agents = len(st.session_state.agent_registry)
@@ -113,8 +116,8 @@ with tab_agents:
     st.subheader("Agent Factory Engine")
     st.write("Define la identidad, instrucciones, proveedor previsto y canal de cada agente.")
     st.info(
-        "Esta versión crea definiciones de agentes, pero todavía no conversa con modelos. "
-        "Los adaptadores reales, memoria persistente y herramientas se conectarán en fases posteriores."
+        "Los agentes se pueden definir y probar con Gemini cuando exista una API key en el entorno. "
+        "La persistencia, memoria conversacional y herramientas ejecutables siguen pendientes."
     )
     with st.form("create_agent_form", clear_on_submit=True):
         agent_name = st.text_input("Nombre del agente", placeholder="Ej. Agente de atención al cliente")
@@ -169,6 +172,38 @@ with tab_agents:
             with st.expander("Ver configuración"):
                 st.json(agent)
 
+
+    st.divider()
+    st.subheader("Prueba de conversación con Gemini")
+    gemini_key_ready = bool(os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY", ""))
+    st.caption("Proveedor inicial sin costo por tokens dentro de las cuotas gratuitas de Google. El uso gratuito tiene límites.")
+    st.write("Estado de Gemini: " + ("API key detectada" if gemini_key_ready else "Falta configurar GEMINI_API_KEY"))
+    if not gemini_key_ready:
+        st.info("Crea una clave gratuita en Google AI Studio y configúrala como GEMINI_API_KEY en el archivo .env local o en los secretos del despliegue. Nunca la pegues aquí ni la subas a GitHub.")
+        st.markdown("[Abrir Google AI Studio](https://aistudio.google.com/app/apikey)")
+    elif not st.session_state.agent_registry:
+        st.info("Primero crea un agente con proveedor google.")
+    else:
+        google_agents = [a for a in st.session_state.agent_registry if a.get("provider") == "google"]
+        if not google_agents:
+            st.info("Crea una definición de agente y selecciona google como proveedor.")
+        else:
+            selected_agent_name = st.selectbox("Agente para probar", options=[a["name"] for a in google_agents], key="gemini_test_agent")
+            selected_agent = next(a for a in google_agents if a["name"] == selected_agent_name)
+            test_message = st.text_area("Mensaje de prueba", key="gemini_test_message", placeholder="Hola, ¿en qué puedes ayudarme?")
+            if st.button("Enviar prueba a Gemini", type="primary", key="run_gemini_test"):
+                if not test_message.strip():
+                    st.warning("Escribe un mensaje para probar.")
+                else:
+                    try:
+                        agent_spec = AgentSpec(name=selected_agent["name"], role=selected_agent["role"], instructions=selected_agent["instructions"], provider="google", model=selected_agent.get("model") or os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"), channel=selected_agent.get("channel", "none"), tools=tuple(selected_agent.get("tools", [])), tenant_id=selected_agent.get("tenant_id", "local-demo"))
+                        with st.spinner("Consultando Gemini..."):
+                            answer = GeminiProvider().generate(agent_spec, test_message.strip())
+                        st.markdown("**Respuesta de Gemini**")
+                        st.write(answer)
+                    except Exception as exc:
+                        st.error(f"No se pudo completar la prueba: {exc}")
+
     st.warning(
         "Claude Pro no incluye automáticamente acceso a la API de Anthropic. "
         "Para conectar Claude por API se requiere habilitar API/billing y guardar la clave "
@@ -199,7 +234,8 @@ with tab_roadmap:
         "- [x] Modelos y validación de definiciones de agentes IA\n"
         "- [x] Contrato base para adaptadores de proveedores\n"
         "- [ ] Persistencia Supabase multiempresa y autenticación\n"
-        "- [ ] Conectar Anthropic, OpenAI y Google mediante API\n"
+        "- [x] Adaptador inicial Gemini API y prueba desde Streamlit (pendiente de validar con clave real)\n"
+        "- [ ] Conectar Anthropic y OpenAI mediante API\n"
         "- [ ] Memoria conversacional y herramientas ejecutables con permisos\n"
         "- [ ] Supervisor de workers y monitoreo real\n"
         "- [ ] Conectores de correo y WhatsApp\n"
