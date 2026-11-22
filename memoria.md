@@ -183,3 +183,14 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - El formulario valida campos básicos y coincidencia de contraseñas en el prototipo, pero NO autentica, registra cuentas ni guarda contraseñas.
 - La autenticación, recuperación de contraseña, registro seguro, sesiones y roles reales quedan pendientes de Supabase Auth + RLS. La pantalla lo comunica expresamente para no simular seguridad.
 - Commit app.py: 4f7b552479f8ed94bf85bc19d169d8e51dfb1a60.
+
+## Rediseño de pantalla inicial con identidad visual dinámica (2026-11-22)
+- Se reemplazó el encabezado/hero genérico por una portada de producto con identidad propia.
+- La portada usa fondo profundo con gradiente, cuadrícula tecnológica sutil, iluminación radial y composición en dos columnas.
+- Se creó un núcleo visual IA tridimensional mediante CSS, anillos orbitales y animación flotante.
+- Se añadieron nodos flotantes para Telegram, correo y WhatsApp, con etiquetas de canales.
+- Se incorporaron titular comercial, descripción de propuesta de valor, chips de capacidades y secuencia Diseña/Conecta/Automatiza.
+- Se incluyeron reglas responsive para reorganizar y escalar la composición en pantallas móviles.
+- Se conserva el dashboard de métricas debajo de la nueva portada.
+- Commit app.py: d3310a7c38b1ed8739d92c0743dcdd0f95436b3e.
+- Pendiente: revisar el render real en Streamlit Cloud, especialmente Android y modo claro; ajustar detalles si el CSS del host limita alguna animación.
