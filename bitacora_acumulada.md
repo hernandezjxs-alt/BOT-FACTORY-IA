@@ -158,3 +158,33 @@ Se actualizó memoria.md con el estado real del motor de agentes y se conserva t
 2. Instalar requirements.txt y ejecutar Streamlit.
 3. Crear un agente con proveedor google y ejecutar la prueba de conversación.
 4. Añadir límites de uso, registro de consumo y persistencia multiempresa antes de ofrecerlo a clientes.
+
+## 2026-11-22 — Preparación del despliegue móvil en Streamlit Community Cloud
+
+### Contexto
+El usuario confirmó que dispone de acceso a GitHub desde Android y desea administrar BOT FACTORY AI desde el teléfono, sin configurar un computador local.
+
+### Revisión del repositorio
+- [x] Confirmado repositorio hernandezjxs-alt/BOT-FACTORY-IA, rama main y permisos de administración.
+- [x] Confirmado app.py en raíz y requirements.txt con Streamlit y google-genai.
+- [x] Confirmado .gitignore excluye .env y .streamlit/secrets.toml.
+- [x] Detectado que el panel consultaba únicamente os.getenv para la API key, lo que no es suficiente para leer secretos de Streamlit Cloud.
+
+### Cambios de preparación
+- [x] app.py actualizado para leer GEMINI_API_KEY y GEMINI_MODEL desde st.secrets, con fallback a variables de entorno para ejecución local.
+- [x] Prueba Gemini usa la clave inyectada desde el gestor de secretos y no muestra su valor.
+- [x] memoria.md corregido para eliminar secuencias de salto de línea malformadas y registrar el despliegue cloud.
+- [x] Se agregó guía de despliegue móvil (DEPLOYMENT_STREAMLIT.md).
+
+### Pasos pendientes del usuario
+1. Revocar la API key de Gemini que compartió anteriormente y generar una nueva.
+2. Abrir Streamlit Community Cloud e iniciar sesión con GitHub.
+3. Autorizar acceso al repositorio público BOT-FACTORY-IA.
+4. Crear la app usando rama main y archivo app.py.
+5. En Advanced settings / Secrets, configurar la nueva clave (nunca compartirla en el chat).
+6. Esperar el despliegue, abrir la URL generada y probar un agente Gemini.
+
+### Estado y límites
+- Código y guía preparados en GitHub; no se ha creado todavía una app en Streamlit Cloud ni se ha validado el runtime.
+- Streamlit Community Cloud ofrece hosting gratuito según sus condiciones vigentes, pero no equivale a un SLA de producción.
+- El registro de bots/agentes sigue siendo temporal en session_state. Antes de atender clientes reales se requiere Supabase Auth/RLS, persistencia, aislamiento multiempresa y políticas de privacidad.
