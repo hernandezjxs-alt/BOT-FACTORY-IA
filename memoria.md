@@ -60,6 +60,16 @@ La versión actual del panel no solicita ni persiste tokens. Los registros del p
 - Las credenciales de proveedores no forman parte de AgentSpec y deberán resolverse desde variables de entorno o secret manager.
 - Claude Pro no equivale a acceso API de Anthropic; la integración API requiere habilitación y credenciales/API billing independientes.
 
+## Decisión de costos y proveedor inicial (2026-11-22)
+- El usuario indica que actualmente no hay presupuesto para APIs de pago.
+- Google Gemini será el proveedor inicial recomendado, usando el nivel gratuito de Gemini API mientras las cuotas y condiciones lo permitan.
+- La selección de proveedor/modelo debe permanecer configurable por agente; no acoplar bots ni canales a un único proveedor.
+- Variables: GEMINI_API_KEY y GEMINI_MODEL. La clave solo se configura en .env local/secretos del despliegue, nunca en formularios ni GitHub.
+- Modelo predeterminado propuesto: gemini-2.5-flash-lite; se puede cambiar mediante GEMINI_MODEL si Google mantiene disponibilidad.
+- El nivel gratuito tiene límites y Google indica que el contenido puede usarse para mejorar sus productos. No utilizarlo con información confidencial de clientes; revisar condiciones antes de uso comercial.
+- Se incorpora adaptador Gemini inicial y prueba manual desde Streamlit; todavía no se ha validado con API key real.
+- Proveedores futuros: OpenAI, Anthropic, DeepSeek, GLM y Ollama, manteniendo el contrato común ModelProvider.
+
 ## Estado de implementación
 
 ### Fundaciones
