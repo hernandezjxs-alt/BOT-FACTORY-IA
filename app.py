@@ -174,7 +174,14 @@ with tab_agents:
 
     st.divider()
     st.subheader("Prueba de conversación con Gemini")
-    gemini_key_ready = bool(os.getenv("GEMINI_API_KEY"))
+    try:
+        gemini_api_key = st.secrets.get("GEMINI_API_KEY", "")
+        gemini_model = st.secrets.get("GEMINI_MODEL", os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"))
+    except Exception:
+        gemini_api_key = os.getenv("GEMINI_API_KEY", "")
+        gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+    gemini_api_key = gemini_api_key or os.getenv("GEMINI_API_KEY", "")
+    gemini_key_ready = bool(gemini_api_key)
     st.caption("Proveedor inicial sin costo por tokens dentro de las cuotas gratuitas de Google. El uso gratuito tiene límites.")
     st.write("Estado de Gemini: " + ("API key detectada" if gemini_key_ready else "Falta configurar GEMINI_API_KEY"))
     if not gemini_key_ready:
@@ -195,9 +202,9 @@ with tab_agents:
                     st.warning("Escribe un mensaje para probar.")
                 else:
                     try:
-                        agent_spec = AgentSpec(name=selected_agent["name"], role=selected_agent["role"], instructions=selected_agent["instructions"], provider="google", model=selected_agent.get("model") or os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"), channel=selected_agent.get("channel", "none"), tools=tuple(selected_agent.get("tools", [])), tenant_id=selected_agent.get("tenant_id", "local-demo"))
+                        agent_spec = AgentSpec(name=selected_agent["name"], role=selected_agent["role"], instructions=selected_agent["instructions"], provider="google", model=selected_agent.get("model") or gemini_model, channel=selected_agent.get("channel", "none"), tools=tuple(selected_agent.get("tools", [])), tenant_id=selected_agent.get("tenant_id", "local-demo"))
                         with st.spinner("Consultando Gemini..."):
-                            answer = GeminiProvider().generate(agent_spec, test_message.strip())
+                            answer = GeminiProvider(api_key=gemini_api_key, model=gemini_model).generate(agent_spec, test_message.strip())
                         st.markdown("**Respuesta de Gemini**")
                         st.write(answer)
                     except Exception as exc:
