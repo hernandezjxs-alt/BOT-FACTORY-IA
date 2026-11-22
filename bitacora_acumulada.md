@@ -91,3 +91,39 @@ Telegram requiere que el bot sea creado inicialmente mediante @BotFather; la API
 
 ### Continuidad
 Se actualizó memoria.md para reflejar la decisión del usuario, el alcance real del panel y las limitaciones actuales. Se conserva íntegro el historial previo de esta bitácora.
+
+
+## 2026-11-22 — Agent Factory Engine: primera implementación
+
+### Objetivo
+Incorporar agentes IA como componentes propios de BOT FACTORY AI, separados de los bots/canales de mensajería.
+
+### Avances publicados
+- [x] Se creó bot_factory/agents/models.py con AgentSpec y validaciones.
+- [x] Se creó bot_factory/agents/registry.py para construir definiciones validadas.
+- [x] Se creó la interfaz ModelProvider para desacoplar los proveedores de IA.
+- [x] Se agregó PlaceholderProvider que informa explícitamente cuando un proveedor aún no está conectado.
+- [x] Se documentó el paquete en bot_factory/agents/README.md.
+- [x] Se amplió app.py con la pestaña Agent Factory.
+- [x] El panel permite definir nombre, rol, instrucciones, proveedor previsto, modelo, canal, tenant y herramientas previstas.
+- [x] El dashboard muestra el número y listado de agentes definidos.
+
+### Alcance y límites actuales
+- Los agentes son definiciones de configuración, no agentes autónomos en ejecución.
+- Los registros se conservan únicamente en session_state de Streamlit y se pierden al finalizar la sesión.
+- No hay llamadas reales a Claude, OpenAI o Gemini.
+- Las herramientas seleccionables son etiquetas descriptivas; todavía no ejecutan acciones.
+- No hay memoria conversacional persistente, autenticación, aislamiento RLS ni gestor de secretos.
+- No introducir API keys ni tokens en formularios, código o GitHub.
+- Claude Pro no concede por sí solo acceso a la API de Anthropic; la API requiere habilitación y credenciales independientes.
+
+### Próxima etapa técnica
+1. Añadir pruebas unitarias al modelo AgentSpec y su validación.
+2. Crear adaptador real del primer proveedor elegido, leyendo credenciales solo desde entorno seguro.
+3. Persistir agentes y organizaciones en Supabase con RLS.
+4. Implementar memoria conversacional por agente y tenant.
+5. Diseñar herramientas con lista permitida, confirmación humana para acciones sensibles, límites y auditoría.
+6. Vincular agentes a bots/canales una vez exista persistencia y configuración segura.
+
+### Continuidad
+Se actualizó memoria.md con el estado real del motor de agentes y se conserva todo el historial anterior.
