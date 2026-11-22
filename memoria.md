@@ -165,3 +165,12 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Roadmap: MVP y validación privada; SaaS seguro con Supabase; conectores de correo y WhatsApp; comercialización tras validar costos; escala con integraciones y agencias.
 - Documento de producto: business_model.md.
 - Estado: diseño comercial y funcional documentado; no implica que cobros, autenticación, WhatsApp, correo, persistencia o planes estén implementados.
+
+
+## Página comercial del prototipo (2026-11-22)
+- Se añadió al menú Streamlit la sección "Planes y servicios".
+- Incluye tarjetas Starter, Pro, Business y Enterprise con precios piloto indicativos en CLP y alcance conceptual.
+- Incluye catálogo BOT FACTORY Studio y formulario de solicitud de evaluación.
+- Las solicitudes se guardan únicamente en st.session_state durante la sesión; no se envían ni persisten. No existe todavía facturación, suscripción ni cobro.
+- Los precios se muestran como hipótesis comerciales sujetas a validación, no como tarifas definitivas.
+- Commit app.py: adab38b006bd7c5eb32f40ba24cdeefe25a3ba89.
