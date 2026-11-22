@@ -48,11 +48,33 @@ small,.muted {{ color: {muted}; }}
 .login-shell {{ max-width:620px; margin:1.2rem auto; }}
 .login-title {{ text-align:center; font-size:1.8rem; font-weight:850; margin-bottom:.2rem; }}
 .login-subtitle {{ text-align:center; color:{muted}; margin-bottom:1.2rem; }}
-.hero {{ padding: 1.7rem 1.9rem; border: 1px solid {border}; border-radius: 22px;
-background: linear-gradient(120deg, {'#1b2850' if dark else '#e8eaff'}, {'#162d43' if dark else '#e5f6f5'}); margin-bottom: 1.2rem; }}
-.hero-kicker {{ color: {accent}; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }}
-.hero h1 {{ font-size: clamp(2rem,4vw,3rem); margin: .35rem 0; font-weight: 850; }}
-.hero p {{ color: {muted}; margin: 0; }}
+.landing {{ position:relative; overflow:hidden; min-height:470px; padding:clamp(1.5rem,4vw,3.5rem); border:1px solid rgba(139,124,255,.28); border-radius:30px; background:radial-gradient(circle at 78% 48%, rgba(88,74,210,.26), transparent 32%), radial-gradient(circle at 10% 100%, rgba(20,190,190,.13), transparent 36%), linear-gradient(125deg, #0b1022 0%, #121b37 55%, #101d32 100%); box-shadow:0 24px 70px rgba(18,25,55,.22); margin: .3rem 0 1.3rem; }}
+.landing:before {{ content:""; position:absolute; inset:0; opacity:.2; background-image:linear-gradient(rgba(160,174,220,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(160,174,220,.12) 1px,transparent 1px); background-size:34px 34px; mask-image:linear-gradient(90deg,black,transparent 95%); pointer-events:none; }}
+.landing-grid {{ position:relative; z-index:2; display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:1rem; min-height:390px; }}
+.landing-copy {{ max-width:620px; }}
+.landing-eyebrow {{ display:inline-flex; align-items:center; gap:.55rem; border:1px solid rgba(130,117,255,.38); border-radius:999px; padding:.48rem .8rem; color:#c5c0ff; font-size:.7rem; font-weight:800; letter-spacing:.13em; background:rgba(99,91,219,.12); }}
+.live-dot {{ width:7px; height:7px; border-radius:50%; background:#4ce0b1; box-shadow:0 0 12px #4ce0b1; }}
+.landing-title {{ color:#f7f8ff; font-size:clamp(2.5rem,5vw,4.6rem); font-weight:900; line-height:.99; letter-spacing:-.055em; margin:1.25rem 0 1rem; }}
+.landing-title span {{ background:linear-gradient(90deg,#a69bff,#52d6e8 75%); -webkit-background-clip:text; background-clip:text; color:transparent; }}
+.landing-desc {{ color:#b5c1db; font-size:1.02rem; line-height:1.7; max-width:520px; }}
+.landing-chips {{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.5rem; }}
+.landing-chip {{ color:#dce5ff; border:1px solid rgba(172,187,226,.2); background:rgba(255,255,255,.055); border-radius:12px; padding:.55rem .75rem; font-size:.78rem; }}
+.ai-stage {{ min-height:340px; position:relative; display:flex; align-items:center; justify-content:center; }}
+.ai-core {{ position:relative; width:190px; height:190px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:radial-gradient(circle at 35% 30%,#a99dff 0%,#6658e8 28%,#282a71 65%,#141c3d 100%); box-shadow:0 0 45px rgba(120,105,255,.45), inset -12px -14px 30px rgba(4,10,35,.5), inset 8px 8px 22px rgba(255,255,255,.24); animation:coreFloat 5s ease-in-out infinite; z-index:2; }}
+.ai-core:before {{ content:""; position:absolute; inset:-17px; border:1px solid rgba(154,146,255,.55); border-radius:50%; box-shadow:0 0 25px rgba(116,103,255,.2); }}
+.ai-core:after {{ content:""; position:absolute; inset:-43px; border:1px dashed rgba(89,210,226,.48); border-radius:50%; animation:orbitSpin 24s linear infinite; }}
+.core-symbol {{ color:white; font-size:4.2rem; text-shadow:0 5px 22px rgba(255,255,255,.35); }}
+.orbit {{ position:absolute; width:300px; height:300px; border:1px solid rgba(112,203,225,.24); border-radius:50%; transform:rotate(-24deg) scaleY(.43); }}
+.orbit.two {{ width:390px; height:390px; border-color:rgba(151,130,255,.28); transform:rotate(52deg) scaleY(.42); }}
+.orbit-node {{ position:absolute; z-index:3; display:flex; align-items:center; gap:.5rem; padding:.65rem .85rem; border:1px solid rgba(180,194,230,.22); border-radius:15px; color:#edf2ff; background:rgba(18,29,57,.82); backdrop-filter:blur(12px); box-shadow:0 10px 30px rgba(0,0,0,.24); font-size:.8rem; font-weight:750; animation:nodeFloat 5s ease-in-out infinite; }}
+.orbit-node b {{ font-size:1.15rem; }}
+.node-telegram {{ top:12%; right:4%; }} .node-email {{ bottom:13%; right:0%; animation-delay:-1.8s; }} .node-whatsapp {{ bottom:4%; left:1%; animation-delay:-3.2s; }}
+@keyframes coreFloat {{ 0%,100% {{ transform:translateY(0) scale(1); }} 50% {{ transform:translateY(-10px) scale(1.025); }} }}
+@keyframes nodeFloat {{ 0%,100% {{ translate:0 0; }} 50% {{ translate:0 -9px; }} }}
+@keyframes orbitSpin {{ to {{ transform:rotate(336deg); }} }}
+.landing-foot {{ position:relative; z-index:2; display:flex; flex-wrap:wrap; gap:1.3rem; border-top:1px solid rgba(180,194,230,.16); padding-top:1rem; margin-top:1.2rem; color:#aab8d6; font-size:.76rem; }}
+.landing-foot strong {{ color:#e9edff; }}
+@media(max-width:760px) {{ .landing {{ min-height:unset; padding:1.4rem; }} .landing-grid {{ grid-template-columns:1fr; gap:0; }} .landing-copy {{ text-align:center; margin:auto; }} .landing-eyebrow {{ margin:auto; }} .landing-title {{ font-size:2.65rem; }} .landing-desc {{ font-size:.92rem; margin:auto; }} .landing-chips {{ justify-content:center; }} .ai-stage {{ min-height:290px; transform:scale(.82); margin:-.1rem 0; }} .landing-foot {{ justify-content:center; text-align:center; }} .brand-pill {{ display:none; }} }}
 .metric-card {{ position:relative; overflow:hidden; background:linear-gradient(135deg,var(--card-a),var(--card-b)); border:1px solid var(--card-border); border-radius:20px; padding:1.05rem 1.15rem; min-height:132px; box-shadow:0 8px 24px rgba(15,23,42,.12); transition:transform .22s ease,box-shadow .22s ease,filter .22s ease; }}
 .metric-card:before {{ content:""; position:absolute; width:115px; height:115px; border-radius:50%; right:-28px; top:-42px; background:rgba(255,255,255,.13); }}
 .metric-card:hover {{ transform:translateY(-5px); box-shadow:0 15px 32px rgba(15,23,42,.22); filter:saturate(1.14); }}
@@ -112,7 +134,7 @@ telegram_count = sum(1 for bot in st.session_state.bot_registry if bot.get("chan
 email_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Correo")
 whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "WhatsApp")
 
-st.markdown('<div class="brandbar"><div class="brandmark">✦</div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div><div class="hero"><div class="hero-kicker">PLATAFORMA DE AUTOMATIZACIÓN INTELIGENTE</div><h1>Construye. Conecta. Automatiza.</h1><p>Un centro de control para diseñar y administrar bots y agentes IA en todos tus canales.</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="brandbar"><div class="brandmark">✦</div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
 
 if page.startswith("🔐"):
     st.markdown('<div class="login-shell">', unsafe_allow_html=True)
@@ -145,7 +167,8 @@ if page.startswith("🔐"):
     st.caption("BOT FACTORY AI · Acceso de usuario · Vista de demostración; todavía no autentica ni crea cuentas.")
 
 elif page.startswith("⌂"):
-    st.markdown("### Panel de control")
+    st.markdown('<section class="landing"><div class="landing-grid"><div class="landing-copy"><div class="landing-eyebrow"><i class="live-dot"></i> TU CENTRO DE AUTOMATIZACIÓN IA</div><div class="landing-title">Dale vida a tus ideas.<br><span>Automatiza el futuro.</span></div><div class="landing-desc">Diseña bots y agentes inteligentes que conectan conversaciones, procesos y clientes desde una sola plataforma.</div><div class="landing-chips"><span class="landing-chip">✦ Agentes IA</span><span class="landing-chip">↗ Flujos inteligentes</span><span class="landing-chip">⌘ Multi-canal</span></div></div><div class="ai-stage"><div class="orbit"></div><div class="orbit two"></div><div class="ai-core"><div class="core-symbol">✳</div></div><div class="orbit-node node-telegram"><b>✈️</b> Telegram</div><div class="orbit-node node-email"><b>✉️</b> Email</div><div class="orbit-node node-whatsapp"><b>◉</b> WhatsApp</div></div></div><div class="landing-foot"><span><strong>01</strong> · Diseña</span><span><strong>02</strong> · Conecta</span><span><strong>03</strong> · Automatiza</span><span>Una fábrica. Infinitas posibilidades.</span></div></section>', unsafe_allow_html=True)
+    st.markdown("### Tu centro de operaciones")
     st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
     cols = st.columns(4)
     with cols[0]: metric_card("Bots registrados", total_bots, "🤖", "En tu espacio de trabajo", "violet")
