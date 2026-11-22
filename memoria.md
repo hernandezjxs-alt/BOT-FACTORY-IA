@@ -212,3 +212,10 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se corrigieron las llaves de los bloques CSS responsive globales (760 px, 520 px y prefers-reduced-motion) duplicándolas como {{ y }}, para que Python las interprete como texto CSS literal.
 - Commit de corrección: 3b3011fa046f6388f145536f382a0f8e08545013.
 - Pendiente: confirmar que Streamlit Cloud reinicie correctamente y revisar si aparece un segundo error de ejecución. La corrección de sintaxis no equivale todavía a una validación integral de la aplicación.
+
+
+## Ajuste visual solicitado — tarjetas y símbolo central (2026-11-22)
+- Las tarjetas de métricas mantienen su identidad por color (violeta, cian, verde y naranja), pero cada una usa ahora un fondo de color sólido en lugar de un degradado multicolor.
+- Se reemplazó el asterisco/símbolo ✳ del núcleo visual de la portada por el globo 🌐 para reforzar la identidad global de BOT FACTORY AI.
+- Commit app.py: 9b736ad9479bbdc30b2ff24a4c8596b97f71158a.
+- Pendiente: comprobar visualmente los cambios en Streamlit Cloud.
