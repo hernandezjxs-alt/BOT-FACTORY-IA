@@ -58,3 +58,36 @@ El código del MVP fue escrito en GitHub. Aún no se ha ejecutado en un equipo l
 
 ### Regla permanente
 Actualizar memoria.md cuando cambien decisiones o requisitos. Agregar entradas fechadas a bitacora_acumulada.md sin borrar entradas anteriores.
+
+
+## 2026-11-22 — Decisión de administración automática y panel Streamlit
+
+### Decisión confirmada por el usuario
+Se elige la modalidad de creación automatizada/guiada de bots y administración centralizada desde Streamlit. El objetivo es que BOT FACTORY AI sea la plataforma operativa de una empresa que implemente y mantenga bots para múltiples clientes.
+
+### Avance 3 — Panel de gestión MVP
+- [x] Se amplió app.py con dashboard y métricas iniciales.
+- [x] Se agregó formulario para registrar fichas de bots con nombre, canal, cliente y descripción.
+- [x] Se agregó catálogo inicial de plantillas para Telegram, correo y WhatsApp.
+- [x] Se agregó guía de onboarding para Telegram y roadmap de implementación.
+- [x] Los registros se mantienen solo en la sesión Streamlit; todavía no hay persistencia permanente.
+- [x] El panel no solicita ni almacena tokens ni secretos.
+
+### Aclaración técnica importante
+Telegram requiere que el bot sea creado inicialmente mediante @BotFather; la API de Telegram no permite que una aplicación de terceros cree bots directamente. La automatización de BOT FACTORY AI cubrirá el flujo guiado, registro, configuración posterior, despliegue y administración, sin intentar eludir esa limitación.
+
+### Estado y límites de validación
+- El cambio de app.py fue publicado en GitHub.
+- No se ha ejecutado el panel localmente ni se ha validado en un despliegue.
+- El registro actual es temporal y no soporta todavía multiusuario o multiempresa.
+- El worker Telegram previo tampoco ha sido probado con credenciales reales.
+
+### Próximos pasos
+1. Validar localmente Streamlit y el worker Telegram.
+2. Implementar esquema Supabase, autenticación y RLS multiempresa.
+3. Diseñar almacenamiento seguro de secretos antes de incorporar tokens de clientes.
+4. Implementar supervisor de workers y monitoreo real.
+5. Continuar con correo y WhatsApp mediante integraciones oficiales.
+
+### Continuidad
+Se actualizó memoria.md para reflejar la decisión del usuario, el alcance real del panel y las limitaciones actuales. Se conserva íntegro el historial previo de esta bitácora.
