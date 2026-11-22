@@ -194,3 +194,13 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se conserva el dashboard de métricas debajo de la nueva portada.
 - Commit app.py: d3310a7c38b1ed8739d92c0743dcdd0f95436b3e.
 - Pendiente: revisar el render real en Streamlit Cloud, especialmente Android y modo claro; ajustar detalles si el CSS del host limita alguna animación.
+
+## Requisito transversal: experiencia responsive móvil y web (2026-11-22)
+- La aplicación debe ofrecer una experiencia cuidada en Android/iPhone, tablet y escritorio; no basta con reducir la vista de escritorio.
+- En móvil: navegación lateral automática/colapsable, márgenes compactos, jerarquía tipográfica adaptada, hero reorganizado en una columna, elementos visuales escalados, tarjetas legibles y formularios/botones cómodos para interacción táctil.
+- En escritorio: conservar el uso del ancho disponible, composición en columnas y panel lateral.
+- Tablas y áreas de datos deben evitar desbordar el viewport; cuando sea necesario, permitir desplazamiento horizontal dentro del componente.
+- Respetar la preferencia del sistema de movimiento reducido desactivando animaciones decorativas.
+- Se añadieron media queries globales para 760 px y 520 px, además de prefers-reduced-motion; la portada ya tenía reglas responsive propias.
+- Se ajustó initial_sidebar_state de Streamlit a auto para favorecer la experiencia móvil.
+- Estado: cambios CSS publicados en el repositorio; aún falta comprobar el render real en Streamlit Community Cloud desde Android y escritorio. No se declara validación visual hasta recibir/verificar ambas vistas.
