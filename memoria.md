@@ -141,3 +141,10 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Los datos siguen almacenándose en st.session_state y pueden perderse al terminar la sesión. No presentar el MVP como multiusuario/productivo.
 - Commit del rediseño visual de app.py: 229fe0c213df7729808c5827bbcd529841ec4e43.
 - Pendiente: ejecutar y revisar el render en Streamlit Community Cloud, ajustar detalles visuales según pantalla real, y posteriormente implementar persistencia y seguridad.
+
+
+## Tarjetas visuales dinámicas y resaltadas (2026-11-22)
+- Solicitud adicional: las tarjetas deben tener colores resaltados y efectos dinámicos.
+- Se actualizaron las cuatro tarjetas principales del dashboard con gradientes diferenciados (violeta, celeste, verde y naranja), tipografía de alto contraste, sombras, elementos decorativos y animación hover de elevación/saturación.
+- Se añadieron transiciones sutiles a contenedores con borde para reforzar la interacción visual.
+- Commit app.py: 1dde3bb8f4e16e45e7267e7a26badbfe1cb2fee3.
