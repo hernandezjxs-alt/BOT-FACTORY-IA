@@ -148,3 +148,20 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se actualizaron las cuatro tarjetas principales del dashboard con gradientes diferenciados (violeta, celeste, verde y naranja), tipografía de alto contraste, sombras, elementos decorativos y animación hover de elevación/saturación.
 - Se añadieron transiciones sutiles a contenedores con borde para reforzar la interacción visual.
 - Commit app.py: 1dde3bb8f4e16e45e7267e7a26badbfe1cb2fee3.
+
+
+## Modelo de negocio híbrido SaaS + Studio (2026-11-22)
+- Decisión confirmada por el usuario: BOT FACTORY AI operará con ambos modelos.
+- SaaS: clientes se registran, crean bots/agentes desde plantillas, conectan canales y administran uso desde un panel con planes y límites.
+- Studio: servicios profesionales de diagnóstico, diseño, desarrollo personalizado, integraciones, capacitación, soporte y mantenimiento.
+- Ambas líneas compartirán núcleo, conectores, motor IA y aislamiento multiempresa; los proyectos Studio podrán administrarse desde espacios de trabajo SaaS.
+- Segmentos: profesionales/microempresas, pymes, empresas y, en fase posterior, agencias.
+- Se definieron soluciones iniciales: atención, ventas, correo inteligente, notificaciones, operaciones y asistentes internos.
+- Se documentaron cuatro planes piloto (Starter, Pro, Business, Enterprise). Precios en CLP incluidos en business_model.md son hipótesis para validar, no tarifas oficiales ni precios de mercado verificados. No cobrar hasta calcular costos de infraestructura, IA, mensajería, soporte e impuestos.
+- Se definieron roles objetivo: Platform Owner/Admin, Organization Owner/Admin, Operator y Viewer. El selector actual de rol sigue siendo solo demostrativo; autorización real requiere Supabase Auth + membresías + RLS.
+- Se definió flujo del cliente desde demo/registro hasta conexión segura, pruebas, publicación y seguimiento.
+- Se definieron entidades objetivo: organizations, memberships, subscriptions, plans, bots, agents, channel_connections, conversations, messages, usage_events, deployments, audit_events y support_tickets.
+- Seguridad: aislamiento por organización, mínimo privilegio, secretos fuera del repositorio, consentimiento de canal, auditoría y aprobación humana para acciones sensibles.
+- Roadmap: MVP y validación privada; SaaS seguro con Supabase; conectores de correo y WhatsApp; comercialización tras validar costos; escala con integraciones y agencias.
+- Documento de producto: business_model.md.
+- Estado: diseño comercial y funcional documentado; no implica que cobros, autenticación, WhatsApp, correo, persistencia o planes estén implementados.
