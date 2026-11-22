@@ -12,33 +12,49 @@ Crear una empresa/plataforma de desarrollo de bots y automatizaciones para Teleg
 - Propietario: hernandezjxs-alt
 - Rama: main
 - Visibilidad: pública.
-- Se requiere mantener toda la documentación de continuidad versionada en GitHub.
+- Se requiere mantener documentación de continuidad versionada en GitHub.
 
-### Decisiones técnicas registradas
+### Decisiones técnicas
 - Python como lenguaje principal.
 - Streamlit para la interfaz y panel de control; no FastAPI.
 - Supabase para datos y autenticación.
 - Redis y workers independientes para tareas asíncronas, según necesidad.
-- Arquitectura modular y conectores separados para Telegram, correo y WhatsApp.
-- Arquitectura multimodelo; considerar Claude Pro y otros proveedores mediante adaptadores.
+- Arquitectura modular y conectores separados por canal.
+- Arquitectura multimodelo mediante adaptadores, considerando Claude y otros proveedores.
 
-### Avance de esta sesión
-- Se creó `memoria.md` en la raíz del repositorio.
-- Se creó este archivo `bitacora_acumulada.md` en la raíz del repositorio.
-- Ambos archivos quedan establecidos como respaldos obligatorios y acumulativos.
+### Avance 1 — Fundaciones
+- [x] Se creó memoria.md.
+- [x] Se creó bitacora_acumulada.md.
+- [x] Se agregó .gitignore.
+- [x] Se agregó .env.example sin secretos.
+- [x] Se agregó requirements.txt.
+- [x] Se creó app.py con interfaz Streamlit inicial.
+- [x] Se creó el paquete bot_factory.
+
+### Avance 2 — Telegram Bot Factory MVP 0.1
+- [x] Se creó bot_factory/connectors/telegram/.
+- [x] Se implementaron handlers para /start, /help y /status.
+- [x] Se creó el constructor de la aplicación Telegram.
+- [x] Se creó run_telegram_bot.py como worker independiente.
+- [x] Se documentó cómo crear el bot con @BotFather.
+- [x] Se agregó python-telegram-bot a requirements.txt.
+- [x] Se agregó LOG_LEVEL y TELEGRAM_BOT_TOKEN a .env.example.
+- [x] El token se lee desde variable de entorno; no se incluye ningún token real en Git.
 
 ### Seguridad
-El repositorio es público. No publicar tokens, contraseñas, API keys, credenciales, datos personales ni archivos .env. Usar variables de entorno y mantener un .env.example con valores ficticios.
+El repositorio es público. No publicar tokens, contraseñas, API keys, credenciales, datos personales ni archivos .env. Si un token se expone, revocarlo y generar uno nuevo desde el proveedor.
+
+### Estado real
+El código del MVP fue escrito en GitHub. Aún no se ha ejecutado en un equipo local ni se ha probado con un token real de Telegram; por tanto, no declarar el bot operativo en producción.
 
 ### Pendientes inmediatos
-1. Crear la estructura inicial de carpetas y módulos Python.
-2. Incorporar README con descripción, instalación y configuración segura.
-3. Añadir .gitignore y .env.example sin secretos.
-4. Crear una primera aplicación Streamlit ejecutable.
-5. Definir el esquema inicial de Supabase y la estrategia de autenticación.
-6. Implementar y probar primero el conector de Telegram.
-7. Diseñar después los conectores de correo y WhatsApp con APIs/proveedores autorizados.
-8. Definir pruebas, logs, manejo de errores y separación de clientes.
+1. Instalar dependencias localmente con pip install -r requirements.txt.
+2. Crear el bot con @BotFather y guardar el token en .env local.
+3. Ejecutar python run_telegram_bot.py.
+4. Probar /start, /help y /status desde Telegram.
+5. Incorporar pruebas automatizadas.
+6. Construir la interfaz Streamlit para administrar y monitorear bots.
+7. Diseñar persistencia multiempresa y almacenamiento seguro de credenciales en Supabase.
 
-### Regla para próximas sesiones
-Actualizar memoria.md cuando cambien decisiones o requisitos. Agregar una nueva entrada fechada a bitacora_acumulada.md en cada sesión, sin borrar entradas anteriores.
+### Regla permanente
+Actualizar memoria.md cuando cambien decisiones o requisitos. Agregar entradas fechadas a bitacora_acumulada.md sin borrar entradas anteriores.
