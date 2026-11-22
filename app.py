@@ -1,10 +1,9 @@
-"""Panel Streamlit de BOT FACTORY AI: bots + definiciones de agentes IA.
-
-Los registros de esta versión viven en session_state. Gemini puede probarse si GEMINI_API_KEY está configurada en el entorno; aún no hay persistencia ni operación de bots conectada al modelo.
+"""Panel visual moderno de BOT FACTORY AI.
+MVP: los registros siguen siendo temporales en la sesión Streamlit.
+Los selectores de rol/tema son demostrativos; no sustituyen autenticación ni permisos reales.
 """
 from datetime import datetime, timezone
 import os
-
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -13,167 +12,187 @@ from bot_factory.agents.models import AgentSpec
 from bot_factory.agents.providers.gemini import GeminiProvider
 
 load_dotenv()
-st.set_page_config(page_title="BOT FACTORY AI", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="BOT FACTORY AI", page_icon="🤖", layout="wide", initial_sidebar_state="expanded")
 
 for key, default in (("bot_registry", []), ("agent_registry", [])):
     if key not in st.session_state:
         st.session_state[key] = default
+if "theme_choice" not in st.session_state:
+    st.session_state.theme_choice = "Oscuro"
+if "role_preview" not in st.session_state:
+    st.session_state.role_preview = "Administrador"
 
-st.title("🤖 BOT FACTORY AI")
-st.caption("Fábrica modular de bots, agentes inteligentes y automatizaciones empresariales.")
+dark = st.session_state.theme_choice == "Oscuro"
+bg = "#0b1020" if dark else "#f4f7fb"
+panel = "#141d31" if dark else "#ffffff"
+panel2 = "#1b2942" if dark else "#edf2f9"
+fg = "#edf3ff" if dark else "#172033"
+muted = "#9aa9c2" if dark else "#667085"
+border = "#293750" if dark else "#e3e9f2"
+accent = "#8b7cff"
+st.markdown(f"""
+<style>
+:root {{ color-scheme: {'dark' if dark else 'light'}; }}
+.stApp {{ background: {bg}; color: {fg}; }}
+[data-testid="stHeader"] {{ background: transparent; }}
+[data-testid="stSidebar"] {{ background: {panel}; border-right: 1px solid {border}; }}
+.block-container {{ padding-top: 2rem; padding-bottom: 3rem; max-width: 1500px; }}
+h1,h2,h3,h4,p,span,label {{ color: {fg}; }}
+small,.muted {{ color: {muted}; }}
+.hero {{ padding: 1.7rem 1.9rem; border: 1px solid {border}; border-radius: 22px;
+background: linear-gradient(120deg, {'#1b2850' if dark else '#e8eaff'}, {'#162d43' if dark else '#e5f6f5'}); margin-bottom: 1.2rem; }}
+.hero-kicker {{ color: {accent}; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }}
+.hero h1 {{ font-size: clamp(2rem,4vw,3rem); margin: .35rem 0; font-weight: 850; }}
+.hero p {{ color: {muted}; margin: 0; }}
+.metric-card {{ background: {panel}; border: 1px solid {border}; border-radius: 18px; padding: 1rem 1.1rem; min-height: 118px; }}
+.metric-label {{ color: {muted}; font-size: .85rem; }}
+.metric-value {{ color: {fg}; font-size: 2rem; font-weight: 800; margin-top: .3rem; }}
+.metric-icon {{ font-size: 1.3rem; }}
+.section-card {{ background: {panel}; border: 1px solid {border}; border-radius: 18px; padding: 1.1rem 1.2rem; margin-bottom: .8rem; }}
+div.stButton > button, div.stFormSubmitButton > button {{ border-radius: 12px; min-height: 2.7rem; font-weight: 700; }}
+div[data-testid="stTabs"] button {{ border-radius: 10px; }}
+[data-testid="stMetric"] {{ background: {panel}; border: 1px solid {border}; padding: 1rem; border-radius: 16px; }}
+hr {{ border-color: {border}; }}
+</style>
+""", unsafe_allow_html=True)
+
+def metric_card(label, value, icon, note):
+    st.markdown(f'<div class="metric-card"><div class="metric-icon">{icon}</div><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="metric-label">{note}</div></div>', unsafe_allow_html=True)
+
+def section_heading(title, subtitle=None):
+    st.subheader(title)
+    if subtitle:
+        st.caption(subtitle)
 
 with st.sidebar:
-    st.header("Centro de control")
-    st.success("Panel MVP disponible")
-    st.caption("Los registros son temporales durante esta sesión.")
+    st.markdown("## 🤖 BOT FACTORY")
+    st.caption("AI · AUTOMATION PLATFORM")
     st.divider()
-    st.markdown("**Canales**")
-    st.write("🟢 Telegram · Worker MVP")
-    st.write("🟡 Correo · Próxima integración")
-    st.write("🟡 WhatsApp · Próxima integración")
+    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
     st.divider()
-    st.markdown("**Motor IA**")
-    st.write("🧠 Definición de agentes disponible")
-    st.write("🟢 Gemini configurable (requiere API key gratuita)")
+    st.markdown("**Apariencia**")
+    st.radio("Tema", ["Oscuro", "Claro"], key="theme_choice", horizontal=True, label_visibility="collapsed")
+    st.markdown("**Vista de perfil (demo)**")
+    st.selectbox("Rol de vista", ["Administrador", "Usuario"], key="role_preview", label_visibility="collapsed")
+    st.caption("El perfil es solo visual. El control real de acceso se implementará con Supabase Auth y RLS.")
+    st.divider()
+    st.markdown("🟢 Telegram · MVP de conector")
+    st.markdown("🟡 Correo · En desarrollo")
+    st.markdown("🟡 WhatsApp · En desarrollo")
+    st.caption("BOT FACTORY AI · MVP")
 
 total_bots = len(st.session_state.bot_registry)
 total_agents = len(st.session_state.agent_registry)
-telegram_count = sum(1 for bot in st.session_state.bot_registry if bot["channel"] == "Telegram")
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("Bots registrados", total_bots)
-c2.metric("Agentes definidos", total_agents)
-c3.metric("Bots Telegram", telegram_count)
-c4.metric("Canales objetivo", 3)
+telegram_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Telegram")
+email_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Correo")
+whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "WhatsApp")
 
-tab_dashboard, tab_bots, tab_agents, tab_catalog, tab_roadmap = st.tabs(
-    ["📊 Resumen", "🤖 Bots", "🧠 Agent Factory", "🧩 Plantillas", "🗺️ Roadmap"]
-)
+st.markdown('<div class="hero"><div class="hero-kicker">PLATAFORMA DE AUTOMATIZACIÓN INTELIGENTE</div><h1>Construye. Conecta. Automatiza.</h1><p>Un centro de control para diseñar y administrar bots y agentes IA en todos tus canales.</p></div>', unsafe_allow_html=True)
 
-with tab_dashboard:
-    st.subheader("Centro de operaciones")
-    left, right = st.columns(2)
+if page.startswith("⌂"):
+    st.markdown("### Panel de control")
+    st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
+    cols = st.columns(4)
+    with cols[0]: metric_card("Bots registrados", total_bots, "🤖", "En tu espacio de trabajo")
+    with cols[1]: metric_card("Agentes IA", total_agents, "🧠", "Definiciones creadas")
+    with cols[2]: metric_card("Telegram", telegram_count, "✈️", "Bots asociados")
+    with cols[3]: metric_card("Canales", 3, "🔗", "Telegram · Correo · WhatsApp")
+    st.write("")
+    left, right = st.columns([1.2, 1])
     with left:
-        st.markdown("### Bots")
-        if st.session_state.bot_registry:
-            for bot in st.session_state.bot_registry:
-                st.write(f"**{bot['name']}** · {bot['channel']} · {bot['status']}")
-        else:
-            st.info("Todavía no hay bots registrados.")
+        with st.container(border=True):
+            section_heading("Actividad de tu espacio", "Resumen de los elementos creados")
+            if not st.session_state.bot_registry and not st.session_state.agent_registry:
+                st.info("Tu espacio está listo. Crea tu primer bot o agente para comenzar.")
+            for bot in st.session_state.bot_registry[-5:]:
+                st.markdown(f"**🤖 {bot['name']}** · {bot['channel']}  ")
+                st.caption(f"{bot['status']} · {bot['client'] or 'Espacio interno'}")
+            for agent in st.session_state.agent_registry[-5:]:
+                st.markdown(f"**🧠 {agent['name']}** · {agent['provider']}")
+                st.caption(f"{agent['status']} · {agent['channel']}")
     with right:
-        st.markdown("### Agentes IA")
-        if st.session_state.agent_registry:
-            for agent in st.session_state.agent_registry:
-                st.write(f"**{agent['name']}** · {agent['provider']} · {agent['status']}")
-        else:
-            st.info("Todavía no hay agentes definidos.")
-    st.caption("Los estados son de registro/configuración; no representan procesos activos ni inferencias reales.")
+        with st.container(border=True):
+            section_heading("Conectores", "Estado real del desarrollo")
+            st.markdown("🟢 **Telegram**")
+            st.caption("Worker MVP creado; falta validar con token real.")
+            st.markdown("🟡 **Correo electrónico**")
+            st.caption("Conector pendiente de implementación.")
+            st.markdown("🟡 **WhatsApp**")
+            st.caption("Integración oficial pendiente.")
+        with st.container(border=True):
+            section_heading("Motor de inteligencia artificial")
+            st.markdown("✨ **Google Gemini**")
+            st.caption("Adaptador implementado. Requiere configurar el secreto para probarlo.")
 
-with tab_bots:
-    st.subheader("Registro y administración de bots")
-    with st.form("create_bot_form", clear_on_submit=True):
-        name = st.text_input("Nombre del bot", placeholder="Ej. Asistente de ventas")
-        channel = st.selectbox("Canal", ["Telegram", "Correo", "WhatsApp"])
-        client = st.text_input("Cliente / empresa", placeholder="Ej. Empresa Demo")
-        description = st.text_area("Descripción y objetivo")
-        submitted = st.form_submit_button("Registrar bot", type="primary")
+elif page.startswith("🤖"):
+    section_heading("Gestión de bots", "Registra y organiza las soluciones que implementaremos para tus clientes.")
+    with st.container(border=True):
+        with st.form("create_bot_form", clear_on_submit=True):
+            c1, c2 = st.columns(2)
+            with c1:
+                name = st.text_input("Nombre del bot", placeholder="Ej. Asistente de ventas")
+                channel = st.selectbox("Canal", ["Telegram", "Correo", "WhatsApp"])
+            with c2:
+                client = st.text_input("Cliente / empresa", placeholder="Ej. Empresa Demo")
+                description = st.text_area("Objetivo y descripción", placeholder="¿Qué tareas realizará?")
+            submitted = st.form_submit_button("＋ Registrar bot", type="primary", use_container_width=True)
     if submitted:
         if not name.strip():
             st.error("Ingresa un nombre para el bot.")
         else:
-            st.session_state.bot_registry.append({
-                "id": f"BOT-{len(st.session_state.bot_registry) + 1:04d}",
-                "name": name.strip(), "channel": channel, "client": client.strip(),
-                "description": description.strip(),
-                "status": "Pendiente de configuración",
-                "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-            })
-            st.success("Ficha de bot registrada en esta sesión.")
+            st.session_state.bot_registry.append({"id": f"BOT-{len(st.session_state.bot_registry)+1:04d}", "name": name.strip(), "channel": channel, "client": client.strip(), "description": description.strip(), "status": "Pendiente de configuración", "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")})
+            st.success("Ficha registrada en esta sesión.")
             st.rerun()
-
-    st.divider()
-    st.subheader("Bots registrados")
+    section_heading("Tus bots", f"{total_bots} registro(s)")
     if not st.session_state.bot_registry:
-        st.info("El registro está vacío.")
+        st.info("Todavía no tienes bots registrados.")
     for bot in st.session_state.bot_registry:
         with st.container(border=True):
-            st.markdown(f"**{bot['name']}** · {bot['channel']}")
-            st.caption(f"Cliente: {bot['client'] or 'Interno'} · Estado: {bot['status']}")
-            st.write(bot["description"] or "Sin descripción")
+            a,b = st.columns([3,1])
+            with a:
+                st.markdown(f"**🤖 {bot['name']}**")
+                st.caption(f"{bot['id']} · {bot['channel']} · {bot['client'] or 'Interno'}")
+                st.write(bot["description"] or "Sin descripción")
+            with b:
+                st.info(bot["status"])
 
-    st.divider()
-    st.subheader("Onboarding Telegram")
-    st.markdown(
-        "1. Abre [@BotFather](https://t.me/BotFather).\n"
-        "2. Ejecuta /newbot y completa nombre y username.\n"
-        "3. Guarda el token en .env de tu entorno privado.\n"
-        "4. Ejecuta python run_telegram_bot.py.\n"
-        "5. Envía /start al bot para validar la conexión."
-    )
-    st.warning("No pegues tokens en este panel ni en GitHub. La gestión segura de credenciales todavía no está implementada.")
-
-with tab_agents:
-    st.subheader("Agent Factory Engine")
-    st.write("Define la identidad, instrucciones, proveedor previsto y canal de cada agente.")
-    st.info(
-        "Los agentes se pueden definir y probar con Gemini cuando exista una API key en el entorno. "
-        "La persistencia, memoria conversacional y herramientas ejecutables siguen pendientes."
-    )
-    with st.form("create_agent_form", clear_on_submit=True):
-        agent_name = st.text_input("Nombre del agente", placeholder="Ej. Agente de atención al cliente")
-        role = st.text_input("Especialidad / rol", placeholder="Ej. Especialista de soporte nivel 1")
-        instructions = st.text_area(
-            "Instrucciones principales",
-            placeholder="Define objetivos, tono, límites, cuándo derivar a una persona y qué no debe hacer.",
-            height=160,
-        )
-        a1, a2 = st.columns(2)
-        with a1:
-            provider = st.selectbox("Proveedor IA previsto", ["anthropic", "openai", "google", "manual"])
-            model = st.text_input("Modelo (opcional)", placeholder="Nombre exacto del modelo")
-        with a2:
-            agent_channel = st.selectbox("Canal de publicación", ["none", "telegram", "email", "whatsapp"])
-            tenant = st.text_input("Cliente / tenant", value="local-demo")
-        tool_options = st.multiselect(
-            "Herramientas previstas (no ejecutables todavía)",
-            ["Consulta de base de conocimiento", "Búsqueda web", "Lectura de documentos",
-             "Crear tickets", "Enviar notificaciones", "Consultar CRM"],
-        )
-        create_agent = st.form_submit_button("Crear definición de agente", type="primary")
-
+elif page.startswith("🧠"):
+    section_heading("Agent Factory", "Diseña agentes inteligentes con identidad, instrucciones y proveedor configurable.")
+    with st.container(border=True):
+        with st.form("create_agent_form", clear_on_submit=True):
+            agent_name = st.text_input("Nombre del agente", placeholder="Ej. Agente de atención al cliente")
+            role = st.text_input("Especialidad / rol", placeholder="Ej. Especialista de soporte nivel 1")
+            instructions = st.text_area("Instrucciones principales", placeholder="Objetivos, tono, límites y cuándo derivar a una persona.", height=130)
+            a,b = st.columns(2)
+            with a:
+                provider = st.selectbox("Proveedor IA", ["google", "anthropic", "openai", "manual"])
+                model = st.text_input("Modelo (opcional)", placeholder="Nombre exacto del modelo")
+            with b:
+                agent_channel = st.selectbox("Canal", ["none", "telegram", "email", "whatsapp"])
+                tenant = st.text_input("Cliente / espacio", value="local-demo")
+            tool_options = st.multiselect("Herramientas previstas (no ejecutables todavía)", ["Base de conocimiento", "Búsqueda web", "Lectura de documentos", "Crear tickets", "Notificaciones", "CRM"])
+            create_agent = st.form_submit_button("＋ Crear agente IA", type="primary", use_container_width=True)
     if create_agent:
         try:
-            spec = create_agent_spec(
-                name=agent_name, role=role, instructions=instructions,
-                provider=provider, model=model, channel=agent_channel,
-                tools=tuple(tool_options), tenant_id=tenant or "local-demo",
-            )
+            spec = create_agent_spec(name=agent_name, role=role, instructions=instructions, provider=provider, model=model, channel=agent_channel, tools=tuple(tool_options), tenant_id=tenant or "local-demo")
             record = spec.to_dict()
-            record["id"] = f"AGT-{len(st.session_state.agent_registry) + 1:04d}"
-            record["status"] = "Definido · proveedor no conectado"
-            record["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+            record.update({"id": f"AGT-{len(st.session_state.agent_registry)+1:04d}", "status": "Definido · proveedor no conectado", "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")})
             st.session_state.agent_registry.append(record)
-            st.success("Agente definido correctamente en esta sesión.")
+            st.success("Agente definido en esta sesión.")
             st.rerun()
         except ValueError as exc:
             st.error(str(exc))
-
-    st.divider()
-    st.subheader("Agentes creados")
-    if not st.session_state.agent_registry:
-        st.info("Aún no hay agentes. Puedes crear el primero con el formulario.")
+    section_heading("Agentes creados", f"{total_agents} agente(s)")
     for agent in st.session_state.agent_registry:
         with st.container(border=True):
-            st.markdown(f"**{agent['name']}** · {agent['id']}")
-            st.caption(f"{agent['role']} · Proveedor: {agent['provider']} · Canal: {agent['channel']}")
+            st.markdown(f"**🧠 {agent['name']}** · {agent['id']}")
+            st.caption(f"{agent['role']} · {agent['provider']} · {agent['channel']}")
             st.write(agent["instructions"])
-            st.write("Herramientas previstas: " + (", ".join(agent["tools"]) if agent["tools"] else "Ninguna"))
-            st.caption(f"Tenant: {agent['tenant_id']} · {agent['status']}")
-            with st.expander("Ver configuración"):
+            with st.expander("Configuración"):
                 st.json(agent)
 
-
     st.divider()
-    st.subheader("Prueba de conversación con Gemini")
+    section_heading("Laboratorio Gemini", "Prueba el modelo con un agente configurado para Google.")
     try:
         gemini_api_key = st.secrets.get("GEMINI_API_KEY", "")
         gemini_model = st.secrets.get("GEMINI_MODEL", os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite"))
@@ -181,69 +200,82 @@ with tab_agents:
         gemini_api_key = os.getenv("GEMINI_API_KEY", "")
         gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
     gemini_api_key = gemini_api_key or os.getenv("GEMINI_API_KEY", "")
-    gemini_key_ready = bool(gemini_api_key)
-    st.caption("Proveedor inicial sin costo por tokens dentro de las cuotas gratuitas de Google. El uso gratuito tiene límites.")
-    st.write("Estado de Gemini: " + ("API key detectada" if gemini_key_ready else "Falta configurar GEMINI_API_KEY"))
-    if not gemini_key_ready:
-        st.info("Crea una clave gratuita en Google AI Studio y configúrala como GEMINI_API_KEY en el archivo .env local o en los secretos del despliegue. Nunca la pegues aquí ni la subas a GitHub.")
-        st.markdown("[Abrir Google AI Studio](https://aistudio.google.com/app/apikey)")
-    elif not st.session_state.agent_registry:
-        st.info("Primero crea un agente con proveedor google.")
+    if not gemini_api_key:
+        st.info("Configura GEMINI_API_KEY en App settings → Secrets para habilitar las pruebas.")
     else:
         google_agents = [a for a in st.session_state.agent_registry if a.get("provider") == "google"]
-        if not google_agents:
-            st.info("Crea una definición de agente y selecciona google como proveedor.")
-        else:
-            selected_agent_name = st.selectbox("Agente para probar", options=[a["name"] for a in google_agents], key="gemini_test_agent")
+        if google_agents:
+            selected_agent_name = st.selectbox("Agente", [a["name"] for a in google_agents], key="gemini_test_agent")
             selected_agent = next(a for a in google_agents if a["name"] == selected_agent_name)
-            test_message = st.text_area("Mensaje de prueba", key="gemini_test_message", placeholder="Hola, ¿en qué puedes ayudarme?")
-            if st.button("Enviar prueba a Gemini", type="primary", key="run_gemini_test"):
-                if not test_message.strip():
-                    st.warning("Escribe un mensaje para probar.")
-                else:
+            test_message = st.text_area("Mensaje de prueba", key="gemini_test_message")
+            if st.button("Enviar mensaje a Gemini", type="primary"):
+                if test_message.strip():
                     try:
                         agent_spec = AgentSpec(name=selected_agent["name"], role=selected_agent["role"], instructions=selected_agent["instructions"], provider="google", model=selected_agent.get("model") or gemini_model, channel=selected_agent.get("channel", "none"), tools=tuple(selected_agent.get("tools", [])), tenant_id=selected_agent.get("tenant_id", "local-demo"))
-                        with st.spinner("Consultando Gemini..."):
-                            answer = GeminiProvider(api_key=gemini_api_key, model=gemini_model).generate(agent_spec, test_message.strip())
-                        st.markdown("**Respuesta de Gemini**")
-                        st.write(answer)
+                        with st.spinner("Gemini está respondiendo..."):
+                            st.markdown(GeminiProvider(api_key=gemini_api_key, model=gemini_model).generate(agent_spec, test_message.strip()))
                     except Exception as exc:
                         st.error(f"No se pudo completar la prueba: {exc}")
+        else:
+            st.caption("Crea un agente con proveedor google para comenzar.")
 
-    st.warning(
-        "Claude Pro no incluye automáticamente acceso a la API de Anthropic. "
-        "Para conectar Claude por API se requiere habilitar API/billing y guardar la clave "
-        "en un gestor de secretos o variable de entorno, nunca en este formulario."
-    )
-
-with tab_catalog:
-    st.subheader("Plantillas iniciales")
-    templates = [
-        ("Agente comercial", "Califica consultas, prepara respuestas y deriva oportunidades."),
-        ("Agente de soporte", "Resuelve preguntas frecuentes y escala casos complejos."),
-        ("Agente administrativo", "Ayuda a clasificar documentos y organizar tareas."),
-        ("Telegram · Notificaciones", "Envía alertas operativas mediante un bot."),
-        ("Correo · Clasificador", "Organiza correos por categoría y prioridad."),
-        ("WhatsApp · Atención comercial", "Atiende consultas mediante integración oficial."),
-    ]
-    for title, detail in templates:
+elif page.startswith("📡"):
+    section_heading("Canales de comunicación", "Conectores para desplegar tus automatizaciones donde están tus usuarios.")
+    channel_data = [("✈️","Telegram","MVP creado","Worker independiente y comandos /start, /help y /status. Requiere token privado de BotFather y prueba real."),("✉️","Correo electrónico","En planificación","Diseño de recepción, clasificación, respuestas y notificaciones con APIs/SMTP seguro."),("💬","WhatsApp","En planificación","Integración mediante API oficial o proveedor autorizado, con plantillas y consentimiento.")]
+    for icon, title, status, desc in channel_data:
         with st.container(border=True):
-            st.markdown(f"**{title}**")
-            st.write(detail)
+            st.markdown(f"### {icon} {title}")
+            st.caption(status)
+            st.write(desc)
 
-with tab_roadmap:
-    st.subheader("Ruta de desarrollo")
-    st.markdown(
-        "- [x] Fundaciones Python y Streamlit\n"
-        "- [x] Worker Telegram MVP 0.1 (pendiente de prueba real)\n"
-        "- [x] Panel inicial de bots\n"
-        "- [x] Modelos y validación de definiciones de agentes IA\n"
-        "- [x] Contrato base para adaptadores de proveedores\n"
-        "- [ ] Persistencia Supabase multiempresa y autenticación\n"
-        "- [x] Adaptador inicial Gemini API y prueba desde Streamlit (pendiente de validar con clave real)\n"
-        "- [ ] Conectar Anthropic y OpenAI mediante API\n"
-        "- [ ] Memoria conversacional y herramientas ejecutables con permisos\n"
-        "- [ ] Supervisor de workers y monitoreo real\n"
-        "- [ ] Conectores de correo y WhatsApp\n"
-        "- [ ] Pruebas automatizadas y despliegue"
-    )
+elif page.startswith("🧩"):
+    section_heading("Biblioteca de plantillas", "Puntos de partida para acelerar cada implementación.")
+    templates = [("🛍️","Agente comercial","Califica consultas, responde preguntas y deriva oportunidades."),("🎧","Agente de soporte","Resuelve preguntas frecuentes y escala casos complejos."),("📁","Agente administrativo","Clasifica documentos y organiza tareas."),("🔔","Telegram · Alertas","Envía notificaciones operativas."),("📨","Correo · Clasificador","Organiza correos por categoría y prioridad."),("💬","WhatsApp · Atención","Atiende consultas mediante integración oficial.")]
+    cols = st.columns(2)
+    for i,(icon,title,detail) in enumerate(templates):
+        with cols[i%2]:
+            with st.container(border=True):
+                st.markdown(f"### {icon} {title}")
+                st.write(detail)
+                st.caption("Plantilla conceptual · automatización pendiente de conexión")
+
+elif page.startswith("🛡️"):
+    section_heading("Administración", "Centro de control de la plataforma.")
+    if st.session_state.role_preview != "Administrador":
+        st.warning("Esta vista está en modo Usuario. Cambia el selector de perfil en el menú lateral para ver la vista administrativa de demostración.")
+    else:
+        st.success("Vista de administrador (demostración visual; todavía no existe autenticación real).")
+        a,b,c = st.columns(3)
+        with a:
+            with st.container(border=True):
+                st.markdown("### 👥 Usuarios")
+                st.metric("Cuentas registradas", "—")
+                st.caption("Pendiente: Supabase Auth y roles.")
+        with b:
+            with st.container(border=True):
+                st.markdown("### 🏢 Clientes")
+                st.metric("Organizaciones", "—")
+                st.caption("Pendiente: multiempresa y RLS.")
+        with c:
+            with st.container(border=True):
+                st.markdown("### 🧾 Auditoría")
+                st.metric("Eventos", "—")
+                st.caption("Pendiente: trazabilidad persistente.")
+        st.warning("No uses esta vista como control de seguridad: el selector de rol solo cambia la presentación. Los permisos reales se implementarán con Supabase Auth + RLS.")
+
+else:
+    section_heading("Configuración", "Preferencias y estado técnico del espacio de trabajo.")
+    with st.container(border=True):
+        st.markdown("### 🎨 Apariencia")
+        st.write(f"Tema seleccionado: **{st.session_state.theme_choice}**")
+        st.caption("Puedes cambiarlo en cualquier momento desde el menú lateral.")
+    with st.container(border=True):
+        st.markdown("### 🔐 Seguridad y credenciales")
+        st.write("Las API keys y tokens deben configurarse en Secrets del despliegue, nunca en formularios ni en GitHub.")
+        st.caption("Variables actuales: GEMINI_API_KEY, GEMINI_MODEL.")
+    with st.container(border=True):
+        st.markdown("### ℹ️ Estado del MVP")
+        st.write("Los bots y agentes se guardan temporalmente en la sesión. Supabase, autenticación, correo y WhatsApp siguen pendientes.")
+
+st.divider()
+st.caption("BOT FACTORY AI · Plataforma modular de bots y agentes inteligentes · Versión visual MVP 0.2")
