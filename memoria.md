@@ -205,3 +205,10 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se añadieron media queries globales para 760 px y 520 px, además de prefers-reduced-motion; la portada ya tenía reglas responsive propias.
 - Se ajustó initial_sidebar_state de Streamlit a auto para favorecer la experiencia móvil.
 - Estado: cambios CSS publicados en el repositorio; aún falta comprobar el render real en Streamlit Community Cloud desde Android y escritorio. No se declara validación visual hasta recibir/verificar ambas vistas.
+
+
+## Corrección de arranque en Streamlit — 2026-11-22
+- Se diagnosticó un SyntaxError en app.py, línea 94: llaves CSS simples dentro de una cadena f-string.
+- Se corrigieron las llaves de los bloques CSS responsive globales (760 px, 520 px y prefers-reduced-motion) duplicándolas como {{ y }}, para que Python las interprete como texto CSS literal.
+- Commit de corrección: 3b3011fa046f6388f145536f382a0f8e08545013.
+- Pendiente: confirmar que Streamlit Cloud reinicie correctamente y revisar si aparece un segundo error de ejecución. La corrección de sintaxis no equivale todavía a una validación integral de la aplicación.
