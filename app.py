@@ -1,7 +1,6 @@
 """Panel Streamlit de BOT FACTORY AI: bots + definiciones de agentes IA.
 
-Los registros de esta versión viven en session_state. No se guardan tokens,
-API keys ni datos persistentes. Las llamadas a modelos aún no están habilitadas.
+Los registros de esta versión viven en session_state. Gemini puede probarse si GEMINI_API_KEY está configurada en el entorno; aún no hay persistencia ni operación de bots conectada al modelo.
 """
 from datetime import datetime, timezone
 import os
@@ -175,7 +174,7 @@ with tab_agents:
 
     st.divider()
     st.subheader("Prueba de conversación con Gemini")
-    gemini_key_ready = bool(os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY", ""))
+    gemini_key_ready = bool(os.getenv("GEMINI_API_KEY"))
     st.caption("Proveedor inicial sin costo por tokens dentro de las cuotas gratuitas de Google. El uso gratuito tiene límites.")
     st.write("Estado de Gemini: " + ("API key detectada" if gemini_key_ready else "Falta configurar GEMINI_API_KEY"))
     if not gemini_key_ready:
