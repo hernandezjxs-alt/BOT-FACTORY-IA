@@ -4,35 +4,41 @@
 Construir una plataforma/fábrica de bots y agentes de automatización para crear, configurar, operar y administrar soluciones conectadas a Telegram, correo electrónico y WhatsApp.
 
 ## Objetivo de negocio
-Desarrollar una empresa de creación e implementación de bots para clientes, con una plataforma reutilizable que permita ofrecer automatizaciones, asistentes y flujos personalizados.
+Desarrollar una empresa de creación e implementación de bots para clientes, con una plataforma reutilizable que permita ofrecer automatizaciones, asistentes, integraciones, implementación y mantenimiento.
+
+## Decisión de producto confirmada
+- Modalidad elegida: **crear bots mediante un flujo automatizado/guiado y administrarlos desde un panel central Streamlit**.
+- El panel debe permitir registrar bots, asociarlos a clientes, seleccionar canal, describir su objetivo, aplicar plantillas y monitorear su estado.
+- Aclaración Telegram: la creación inicial del bot y la emisión del token deben realizarse mediante @BotFather. La API oficial de Telegram no permite crear bots directamente desde nuestra aplicación. BOT FACTORY AI automatizará el onboarding posterior, configuración, despliegue y administración dentro de los límites oficiales.
+- No presentar como automatizadas capacidades que todavía no estén implementadas.
 
 ## Canales objetivo
 - Telegram: bots, comandos, notificaciones y conversaciones.
 - Correo electrónico: recepción, clasificación, respuestas y notificaciones; integrar proveedores mediante APIs y SMTP seguro cuando corresponda.
-- WhatsApp: integración mediante proveedores y APIs oficiales, respetando las políticas y permisos de cada plataforma.
+- WhatsApp: integración mediante proveedores y APIs oficiales, respetando las políticas, plantillas y permisos de cada plataforma.
 
 ## Decisiones técnicas vigentes
 - Lenguaje principal: Python.
 - Interfaz y panel de control: Streamlit.
 - No utilizar FastAPI como base del proyecto.
 - Arquitectura modular, con conectores independientes por canal.
-- Supabase como plataforma de datos, autenticación y persistencia cuando corresponda.
+- Supabase como plataforma de datos, autenticación y persistencia.
 - Redis para colas, caché o coordinación cuando sea necesario.
 - Workers independientes para ejecutar tareas en segundo plano.
-- Arquitectura multimodelo mediante adaptadores; considerar Claude y otros proveedores.
+- Arquitectura multimodelo mediante adaptadores; considerar Claude, OpenAI, Gemini y otros proveedores.
 - GitHub es el repositorio oficial y control de versiones.
 
 ## Arquitectura
-1. Aplicación Streamlit: panel administrativo y experiencia de configuración.
+1. Aplicación Streamlit: panel administrativo, registro, configuración y monitoreo.
 2. Núcleo BOT FACTORY: clientes, proyectos, bots, flujos, permisos y configuraciones.
 3. Capa de conectores: Telegram, correo y WhatsApp, desacoplados.
 4. Capa de IA: selección de proveedor/modelo, prompts, herramientas y políticas.
 5. Persistencia: Supabase (PostgreSQL, Auth, Storage y RLS).
-6. Procesamiento asíncrono: Redis + workers, incorporados según necesidad.
+6. Procesamiento asíncrono: Redis + workers.
 7. Observabilidad: logs, estados de ejecución, errores y auditoría.
 
 ## Principios
-- Multiempresa/multicliente: separar datos, credenciales y configuraciones por cliente.
+- Multiempresa/multicliente: separar datos, credenciales, configuraciones y permisos por cliente.
 - Seguridad por diseño: mínimo privilegio, validación de entradas y auditoría.
 - No almacenar secretos en el código ni en el repositorio.
 - Usar variables de entorno y un archivo .env local excluido de Git.
@@ -42,8 +48,10 @@ Desarrollar una empresa de creación e implementación de bots para clientes, co
 
 ## Seguridad crítica
 El repositorio es público. Nunca subir tokens de Telegram, credenciales SMTP, claves de WhatsApp, claves de Supabase, API keys de modelos, contraseñas ni datos reales de clientes. Si alguna credencial se expone, revocarla y generar otra.
+La versión actual del panel no solicita ni persiste tokens. Los registros del panel son temporales en la sesión Streamlit; no constituyen todavía una base de datos ni un sistema multiusuario.
 
 ## Estado de implementación
+
 ### Fundaciones
 - [x] Estructura Python inicial.
 - [x] Aplicación Streamlit inicial.
@@ -57,18 +65,32 @@ El repositorio es público. Nunca subir tokens de Telegram, credenciales SMTP, c
 - [x] Token leído desde TELEGRAM_BOT_TOKEN en entorno local.
 - [x] Instrucciones de creación con @BotFather.
 - [ ] Instalar dependencias y ejecutar pruebas locales.
-- [ ] Conectar token real en entorno local (nunca compartirlo).
+- [ ] Configurar token real solo en entorno privado.
 - [ ] Probar conversación real con el bot.
 
+### Panel de administración — MVP inicial
+- [x] Dashboard Streamlit con métricas básicas.
+- [x] Formulario para registrar fichas de bots.
+- [x] Asociación inicial de cliente, canal y descripción.
+- [x] Catálogo inicial de plantillas propuestas.
+- [x] Guía de onboarding para Telegram.
+- [x] Roadmap visible desde el panel.
+- [ ] Persistencia permanente con Supabase.
+- [ ] Autenticación de usuarios y roles.
+- [ ] Aislamiento multiempresa con políticas RLS.
+- [ ] Almacenamiento seguro de credenciales/secretos.
+- [ ] Control real de inicio, parada y estado de workers.
+- [ ] Registro de auditoría y pruebas automatizadas.
+
 ## Etapas siguientes
-1. Validar el MVP Telegram localmente.
-2. Integrar registro multiempresa y credenciales cifradas/secret manager.
-3. Construir panel Streamlit para alta, configuración y monitoreo de bots.
-4. Incorporar Supabase Auth, PostgreSQL y políticas RLS.
-5. Agregar pruebas, logs, métricas y despliegue del worker.
+1. Ejecutar y validar localmente el panel Streamlit y el worker Telegram.
+2. Diseñar esquema Supabase multiempresa: organizaciones, usuarios, bots, canales, credenciales referenciadas y eventos.
+3. Implementar Supabase Auth, PostgreSQL y RLS.
+4. Integrar un gestor de secretos seguro; nunca guardar tokens en texto plano ni en GitHub.
+5. Construir un supervisor de workers para iniciar, detener y monitorear instancias por bot.
 6. Desarrollar conectores de correo y WhatsApp mediante APIs/proveedores oficiales.
 7. Integrar agentes y proveedores de IA multimodelo.
-8. Definir paquetes comerciales, onboarding y mantenimiento.
+8. Definir paquetes comerciales, onboarding, soporte y mantenimiento.
 
 ## Archivos de continuidad obligatorios
 - memoria.md: decisiones, arquitectura, requisitos y contexto vigente.
