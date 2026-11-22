@@ -252,3 +252,18 @@ Los precios en CLP del documento son hipótesis para validar con pilotos, no tar
 7. Validar despliegue Streamlit y pruebas privadas de Telegram/Gemini.
 
 El diseño comercial está documentado; las funciones anteriores siguen pendientes y no se consideran implementadas.
+
+
+## 2026-11-22 — Primera pantalla comercial en Streamlit
+
+- [x] Se añadió "Planes y servicios" a la navegación.
+- [x] Se incorporaron tarjetas de planes Starter, Pro, Business y Enterprise con valores piloto indicativos.
+- [x] Se añadió el catálogo BOT FACTORY Studio.
+- [x] Se añadió formulario para solicitar evaluación de un proyecto personalizado.
+- [x] Las solicitudes quedan en memoria de sesión solo para demostración.
+- [ ] Conectar formulario a Supabase y notificación segura.
+- [ ] Validar precios con clientes piloto y costos variables.
+- [ ] Implementar suscripciones, límites y pagos después de validar el modelo.
+- [ ] Probar visualmente la nueva página en Streamlit Community Cloud.
+- [ ] Ejecutar pruebas automatizadas y validar dependencias.
+- Nota: el formulario no envía correos ni guarda información permanentemente; la página no habilita cobros.
