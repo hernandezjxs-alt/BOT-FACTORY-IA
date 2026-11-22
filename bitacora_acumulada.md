@@ -299,6 +299,7 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [x] Se estableció como requisito transversal la compatibilidad visual y funcional con móvil, tablet y escritorio.
 - [x] La barra lateral ahora usa estado automático para facilitar la navegación en pantallas pequeñas.
 - [x] Se agregaron reglas globales para márgenes, marca, tipografía, tarjetas, formularios, botones y contenedores de datos.
+- [x] En pantallas de 760 px o menos, las columnas se apilan al 100% para evitar contenido comprimido; en escritorio se mantiene el diseño por columnas.
 - [x] Se reforzó el escalado del hero y la esfera IA en teléfonos estrechos.
 - [x] Se añadió soporte para prefers-reduced-motion y desactivación de animaciones decorativas cuando el sistema lo solicita.
 - [ ] Probar en Streamlit Community Cloud desde un Android real y en navegador de escritorio.
