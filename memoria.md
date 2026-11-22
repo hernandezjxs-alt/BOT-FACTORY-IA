@@ -131,3 +131,13 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - El repositorio es público; no almacenar secretos en GitHub, issues, commits ni archivos versionados.
 - Estado: preparación del código/documentación completada; el usuario debe iniciar sesión en Streamlit Community Cloud, autorizar GitHub y crear el despliegue desde el móvil. El despliegue y la prueba real de Gemini aún no están confirmados.
 - Limitación: el MVP conserva bots/agentes en st.session_state; los registros no son persistentes y el panel no es todavía un servicio multiusuario listo para clientes.
+
+## Diseño visual de plataforma SaaS (2026-11-22)
+- Requisito confirmado: interfaz moderna, adaptable a móvil, con tarjetas, iconografía actual, botones claros y paleta tecnológica.
+- Se rediseñó app.py como dashboard SaaS con navegación lateral: Inicio, Bots, Agentes IA, Canales, Plantillas, Administración y Configuración.
+- Se añadió selector de tema claro/oscuro y selector de perfil de vista Administrador/Usuario para demostración.
+- El panel muestra tarjetas de métricas, secciones de actividad, estado de canales, formularios con jerarquía visual y una vista administrativa.
+- Importante: el selector de rol es solo demostrativo. No constituye autenticación ni autorización; no se deben considerar protegidas las vistas hasta implementar Supabase Auth, roles y RLS.
+- Los datos siguen almacenándose en st.session_state y pueden perderse al terminar la sesión. No presentar el MVP como multiusuario/productivo.
+- Commit del rediseño visual de app.py: 229fe0c213df7729808c5827bbcd529841ec4e43.
+- Pendiente: ejecutar y revisar el render en Streamlit Community Cloud, ajustar detalles visuales según pantalla real, y posteriormente implementar persistencia y seguridad.
