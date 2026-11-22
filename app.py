@@ -44,11 +44,15 @@ background: linear-gradient(120deg, {'#1b2850' if dark else '#e8eaff'}, {'#162d4
 .hero-kicker {{ color: {accent}; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }}
 .hero h1 {{ font-size: clamp(2rem,4vw,3rem); margin: .35rem 0; font-weight: 850; }}
 .hero p {{ color: {muted}; margin: 0; }}
-.metric-card {{ background: {panel}; border: 1px solid {border}; border-radius: 18px; padding: 1rem 1.1rem; min-height: 118px; }}
-.metric-label {{ color: {muted}; font-size: .85rem; }}
-.metric-value {{ color: {fg}; font-size: 2rem; font-weight: 800; margin-top: .3rem; }}
-.metric-icon {{ font-size: 1.3rem; }}
-.section-card {{ background: {panel}; border: 1px solid {border}; border-radius: 18px; padding: 1.1rem 1.2rem; margin-bottom: .8rem; }}
+.metric-card {{ position:relative; overflow:hidden; background:linear-gradient(135deg,var(--card-a),var(--card-b)); border:1px solid var(--card-border); border-radius:20px; padding:1.05rem 1.15rem; min-height:132px; box-shadow:0 8px 24px rgba(15,23,42,.12); transition:transform .22s ease,box-shadow .22s ease,filter .22s ease; }}
+.metric-card:before {{ content:""; position:absolute; width:115px; height:115px; border-radius:50%; right:-28px; top:-42px; background:rgba(255,255,255,.13); }}
+.metric-card:hover {{ transform:translateY(-5px); box-shadow:0 15px 32px rgba(15,23,42,.22); filter:saturate(1.14); }}
+.metric-label {{ color:var(--card-text); font-size:.85rem; font-weight:650; position:relative; }}
+.metric-value {{ color:var(--card-text); font-size:2.15rem; font-weight:850; margin-top:.3rem; position:relative; }}
+.metric-icon {{ font-size:1.5rem; position:relative; }}
+.section-card {{ background: {panel}; border:1px solid {border}; border-radius:18px; padding:1.1rem 1.2rem; margin-bottom:.8rem; }}
+[data-testid="stVerticalBlockBorderWrapper"] {{ border-radius:18px; transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease; }}
+[data-testid="stVerticalBlockBorderWrapper"]:hover {{ border-color:{accent}; box-shadow:0 8px 22px rgba(99,102,241,.10); }}
 div.stButton > button, div.stFormSubmitButton > button {{ border-radius: 12px; min-height: 2.7rem; font-weight: 700; }}
 div[data-testid="stTabs"] button {{ border-radius: 10px; }}
 [data-testid="stMetric"] {{ background: {panel}; border: 1px solid {border}; padding: 1rem; border-radius: 16px; }}
@@ -56,8 +60,20 @@ hr {{ border-color: {border}; }}
 </style>
 """, unsafe_allow_html=True)
 
-def metric_card(label, value, icon, note):
-    st.markdown(f'<div class="metric-card"><div class="metric-icon">{icon}</div><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="metric-label">{note}</div></div>', unsafe_allow_html=True)
+def metric_card(label, value, icon, note, palette):
+    palettes = {
+        "violet": ("#635bdb", "#9b6dff", "#ffffff", "rgba(255,255,255,.35)"),
+        "cyan": ("#087eaa", "#20c6d7", "#ffffff", "rgba(255,255,255,.35)"),
+        "green": ("#087f67", "#20b486", "#ffffff", "rgba(255,255,255,.35)"),
+        "orange": ("#c45b22", "#f59e0b", "#ffffff", "rgba(255,255,255,.35)"),
+    }
+    a, b, text_color, outline = palettes[palette]
+    st.markdown(
+        f'<div class="metric-card" style="--card-a:{a};--card-b:{b};--card-text:{text_color};--card-border:{outline}">'
+        f'<div class="metric-icon">{icon}</div><div class="metric-label">{label}</div>'
+        f'<div class="metric-value">{value}</div><div class="metric-label">{note}</div></div>',
+        unsafe_allow_html=True,
+    )
 
 def section_heading(title, subtitle=None):
     st.subheader(title)
@@ -93,10 +109,10 @@ if page.startswith("⌂"):
     st.markdown("### Panel de control")
     st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
     cols = st.columns(4)
-    with cols[0]: metric_card("Bots registrados", total_bots, "🤖", "En tu espacio de trabajo")
-    with cols[1]: metric_card("Agentes IA", total_agents, "🧠", "Definiciones creadas")
-    with cols[2]: metric_card("Telegram", telegram_count, "✈️", "Bots asociados")
-    with cols[3]: metric_card("Canales", 3, "🔗", "Telegram · Correo · WhatsApp")
+    with cols[0]: metric_card("Bots registrados", total_bots, "🤖", "En tu espacio de trabajo", "violet")
+    with cols[1]: metric_card("Agentes IA", total_agents, "🧠", "Definiciones creadas", "cyan")
+    with cols[2]: metric_card("Telegram", telegram_count, "✈️", "Bots asociados", "green")
+    with cols[3]: metric_card("Canales", 3, "🔗", "Telegram · Correo · WhatsApp", "orange")
     st.write("")
     left, right = st.columns([1.2, 1])
     with left:
