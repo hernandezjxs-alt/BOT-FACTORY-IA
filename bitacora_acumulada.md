@@ -219,3 +219,36 @@ La aplicación debe tener una apariencia moderna y profesional, con tarjetas, bo
 - [x] Se añadieron efectos sutiles de interacción a los contenedores con borde.
 - [x] Cambio publicado en app.py, commit 1dde3bb8f4e16e45e7267e7a26badbfe1cb2fee3.
 - [ ] Validar visualización final desde Streamlit Cloud y ajustar según pantalla Android.
+
+
+## 2026-11-22 — Decisión de modelo de negocio híbrido y diseño del producto
+
+### Decisión confirmada
+El usuario eligió **Ambos**: plataforma SaaS de autoservicio + servicios profesionales personalizados BOT FACTORY Studio.
+
+### Diseño funcional y comercial
+- [x] Se definieron dos líneas de negocio que comparten la misma plataforma.
+- [x] Se definieron segmentos: profesionales, microempresas, pymes, empresas y futura oferta para agencias.
+- [x] Se definió catálogo inicial: atención, ventas, correo inteligente, notificaciones, operaciones y asistentes internos.
+- [x] Se diseñó el recorrido del cliente desde demo/registro hasta conexión, pruebas, publicación y soporte.
+- [x] Se definieron roles objetivo de plataforma y organización.
+- [x] Se definieron entidades principales para el futuro esquema multiempresa.
+- [x] Se documentaron principios de seguridad, métricas y criterios para considerar un canal listo para producción.
+- [x] Se documentaron planes piloto Starter, Pro, Business y Enterprise.
+
+### Precios y cautelas
+Los precios en CLP del documento son hipótesis para validar con pilotos, no tarifas definitivas ni referencias de mercado. Antes de cobrar se deben calcular costos variables de IA, WhatsApp, correo, infraestructura, soporte e impuestos, y establecer cuotas y excedentes. No ofrecer uso ilimitado.
+
+### Documento creado
+- business_model.md: propuesta de valor, líneas comerciales, segmentos, catálogo, planes de prueba, servicios Studio, roles, arquitectura, seguridad, métricas y roadmap.
+
+### Pendientes de implementación
+1. Diseñar y crear el esquema Supabase multiempresa con RLS.
+2. Implementar autenticación, organizaciones y membresías.
+3. Persistir bots y agentes; eliminar dependencia exclusiva de session_state.
+4. Crear onboarding de cliente y flujo de solicitud de cotización Studio.
+5. Medir consumo y costos antes de habilitar suscripciones/pagos.
+6. Completar conectores oficiales de correo y WhatsApp.
+7. Validar despliegue Streamlit y pruebas privadas de Telegram/Gemini.
+
+El diseño comercial está documentado; las funciones anteriores siguen pendientes y no se consideran implementadas.
