@@ -280,3 +280,16 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [ ] Crear perfiles, organizaciones, membresías y políticas RLS antes de habilitar usuarios reales.
 - [ ] Probar el encabezado y la página de acceso en Streamlit Community Cloud desde Android.
 - Commit app.py: 4f7b552479f8ed94bf85bc19d169d8e51dfb1a60.
+
+## 2026-11-22 — Rediseño dinámico de la pantalla inicial
+- [x] Se eliminó la cabecera hero genérica de la portada.
+- [x] Se creó una composición de bienvenida con estética SaaS/AI propia de BOT FACTORY AI.
+- [x] Se añadió fondo tecnológico con cuadrícula, gradientes e iluminación ambiental.
+- [x] Se diseñó un núcleo IA con anillos orbitales, brillo y movimiento CSS.
+- [x] Se agregaron nodos flotantes Telegram, Email y WhatsApp.
+- [x] Se incorporó mensaje principal, propuesta de valor y etiquetas de capacidades.
+- [x] Se adaptó la composición para móvil mediante media queries.
+- [x] Se mantuvo el panel de operaciones y las tarjetas de indicadores debajo de la portada.
+- [ ] Verificar el aspecto real en Streamlit Community Cloud desde Android y escritorio.
+- [ ] Ajustar contraste/escala en modo claro y revisar comportamiento de animaciones en navegadores móviles.
+- Commit app.py: d3310a7c38b1ed8739d92c0743dcdd0f95436b3e.
