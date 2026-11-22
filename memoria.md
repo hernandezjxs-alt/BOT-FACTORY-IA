@@ -50,6 +50,16 @@ Desarrollar una empresa de creación e implementación de bots para clientes, co
 El repositorio es público. Nunca subir tokens de Telegram, credenciales SMTP, claves de WhatsApp, claves de Supabase, API keys de modelos, contraseñas ni datos reales de clientes. Si alguna credencial se expone, revocarla y generar otra.
 La versión actual del panel no solicita ni persiste tokens. Los registros del panel son temporales en la sesión Streamlit; no constituyen todavía una base de datos ni un sistema multiusuario.
 
+## Motor de agentes IA — Agent Factory Engine
+- Se incorporó el paquete bot_factory/agents con modelo AgentSpec, validación y constructor de definiciones.
+- Se incorporó contrato ModelProvider y PlaceholderProvider para separar la lógica del agente de cada proveedor.
+- El panel Streamlit permite definir agentes con nombre, rol, instrucciones, proveedor previsto, modelo, canal, tenant y herramientas previstas.
+- Proveedores contemplados: Anthropic/Claude, OpenAI y Google/Gemini.
+- Estado actual: se crean definiciones locales en la sesión Streamlit; no se ejecutan inferencias ni herramientas todavía.
+- Las herramientas seleccionables son metadatos declarativos, no permisos efectivos ni acciones ejecutables.
+- Las credenciales de proveedores no forman parte de AgentSpec y deberán resolverse desde variables de entorno o secret manager.
+- Claude Pro no equivale a acceso API de Anthropic; la integración API requiere habilitación y credenciales/API billing independientes.
+
 ## Estado de implementación
 
 ### Fundaciones
@@ -80,7 +90,7 @@ La versión actual del panel no solicita ni persiste tokens. Los registros del p
 - [ ] Aislamiento multiempresa con políticas RLS.
 - [ ] Almacenamiento seguro de credenciales/secretos.
 - [ ] Control real de inicio, parada y estado de workers.
-- [ ] Registro de auditoría y pruebas automatizadas.
+- [ ] Registro de auditoría y pruebas automatizadas.\n- [x] Paquete fundacional Agent Factory Engine (modelos, validación y contrato de proveedor).\n- [x] Interfaz Streamlit para definir y listar agentes IA.\n- [ ] Adaptadores reales Anthropic, OpenAI y Google.\n- [ ] Memoria conversacional persistente y ejecución segura de herramientas.
 
 ## Etapas siguientes
 1. Ejecutar y validar localmente el panel Streamlit y el worker Telegram.
@@ -89,7 +99,7 @@ La versión actual del panel no solicita ni persiste tokens. Los registros del p
 4. Integrar un gestor de secretos seguro; nunca guardar tokens en texto plano ni en GitHub.
 5. Construir un supervisor de workers para iniciar, detener y monitorear instancias por bot.
 6. Desarrollar conectores de correo y WhatsApp mediante APIs/proveedores oficiales.
-7. Integrar agentes y proveedores de IA multimodelo.
+7. Conectar adaptadores reales de IA, memoria conversacional y herramientas con permisos explícitos.
 8. Definir paquetes comerciales, onboarding, soporte y mantenimiento.
 
 ## Archivos de continuidad obligatorios
