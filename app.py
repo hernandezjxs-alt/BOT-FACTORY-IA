@@ -1,66 +1,78 @@
-"""Panel Streamlit de BOT FACTORY AI.
+"""Panel Streamlit de BOT FACTORY AI: bots + definiciones de agentes IA.
 
-El registro actual es temporal (sesión Streamlit). No guarda tokens ni secretos.
-La persistencia multiempresa se incorporará con Supabase y almacenamiento seguro.
+Los registros de esta versión viven en session_state. No se guardan tokens,
+API keys ni datos persistentes. Las llamadas a modelos aún no están habilitadas.
 """
 from datetime import datetime, timezone
 
 import streamlit as st
 from dotenv import load_dotenv
 
+from bot_factory.agents import create_agent_spec
+
 load_dotenv()
 st.set_page_config(page_title="BOT FACTORY AI", page_icon="🤖", layout="wide")
 
-if "bot_registry" not in st.session_state:
-    st.session_state.bot_registry = []
+for key, default in (("bot_registry", []), ("agent_registry", [])):
+    if key not in st.session_state:
+        st.session_state[key] = default
 
 st.title("🤖 BOT FACTORY AI")
-st.caption("Fábrica modular de bots, asistentes y automatizaciones para empresas.")
+st.caption("Fábrica modular de bots, agentes inteligentes y automatizaciones empresariales.")
 
 with st.sidebar:
     st.header("Centro de control")
-    st.success("Panel inicial disponible")
-    st.caption("Los registros se conservan solo durante esta sesión.")
+    st.success("Panel MVP disponible")
+    st.caption("Los registros son temporales durante esta sesión.")
     st.divider()
     st.markdown("**Canales**")
-    st.write("🟢 Telegram · MVP técnico")
+    st.write("🟢 Telegram · Worker MVP")
     st.write("🟡 Correo · Próxima integración")
     st.write("🟡 WhatsApp · Próxima integración")
+    st.divider()
+    st.markdown("**Motor IA**")
+    st.write("🧠 Definición de agentes disponible")
+    st.write("⏳ Proveedores IA aún no conectados")
 
-total = len(st.session_state.bot_registry)
+total_bots = len(st.session_state.bot_registry)
+total_agents = len(st.session_state.agent_registry)
 telegram_count = sum(1 for bot in st.session_state.bot_registry if bot["channel"] == "Telegram")
-col1, col2, col3 = st.columns(3)
-col1.metric("Bots registrados", total)
-col2.metric("Bots Telegram", telegram_count)
-col3.metric("Canales objetivo", 3)
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Bots registrados", total_bots)
+c2.metric("Agentes definidos", total_agents)
+c3.metric("Bots Telegram", telegram_count)
+c4.metric("Canales objetivo", 3)
 
-tab_dashboard, tab_create, tab_catalog, tab_roadmap = st.tabs(
-    ["📊 Resumen", "➕ Crear / registrar bot", "🧩 Plantillas", "🗺️ Roadmap"]
+tab_dashboard, tab_bots, tab_agents, tab_catalog, tab_roadmap = st.tabs(
+    ["📊 Resumen", "🤖 Bots", "🧠 Agent Factory", "🧩 Plantillas", "🗺️ Roadmap"]
 )
 
 with tab_dashboard:
-    st.subheader("Panel de administración")
-    if not st.session_state.bot_registry:
-        st.info("Todavía no hay bots registrados. Ve a «Crear / registrar bot» para comenzar.")
-    else:
-        for bot in st.session_state.bot_registry:
-            with st.container(border=True):
-                left, right = st.columns([3, 1])
-                left.markdown(f"**{bot['name']}** · {bot['channel']}")
-                left.caption(bot["description"] or "Sin descripción")
-                left.write(f"Estado: **{bot['status']}**")
-                right.caption(f"Cliente: {bot['client'] or 'Interno'}")
-                right.caption(f"Alta: {bot['created_at']}")
-    st.caption("La vista no representa todavía el estado de procesos desplegados.")
+    st.subheader("Centro de operaciones")
+    left, right = st.columns(2)
+    with left:
+        st.markdown("### Bots")
+        if st.session_state.bot_registry:
+            for bot in st.session_state.bot_registry:
+                st.write(f"**{bot['name']}** · {bot['channel']} · {bot['status']}")
+        else:
+            st.info("Todavía no hay bots registrados.")
+    with right:
+        st.markdown("### Agentes IA")
+        if st.session_state.agent_registry:
+            for agent in st.session_state.agent_registry:
+                st.write(f"**{agent['name']}** · {agent['provider']} · {agent['status']}")
+        else:
+            st.info("Todavía no hay agentes definidos.")
+    st.caption("Los estados son de registro/configuración; no representan procesos activos ni inferencias reales.")
 
-with tab_create:
-    st.subheader("Asistente de alta")
-    st.write("Registra la ficha del bot y prepara los siguientes pasos de configuración.")
+with tab_bots:
+    st.subheader("Registro y administración de bots")
     with st.form("create_bot_form", clear_on_submit=True):
         name = st.text_input("Nombre del bot", placeholder="Ej. Asistente de ventas")
         channel = st.selectbox("Canal", ["Telegram", "Correo", "WhatsApp"])
         client = st.text_input("Cliente / empresa", placeholder="Ej. Empresa Demo")
-        description = st.text_area("Descripción y objetivo", placeholder="¿Qué tarea realizará este bot?")
+        description = st.text_area("Descripción y objetivo")
         submitted = st.form_submit_button("Registrar bot", type="primary")
     if submitted:
         if not name.strip():
@@ -68,35 +80,108 @@ with tab_create:
         else:
             st.session_state.bot_registry.append({
                 "id": f"BOT-{len(st.session_state.bot_registry) + 1:04d}",
-                "name": name.strip(),
-                "channel": channel,
-                "client": client.strip(),
+                "name": name.strip(), "channel": channel, "client": client.strip(),
                 "description": description.strip(),
                 "status": "Pendiente de configuración",
                 "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
             })
-            st.success("Ficha registrada en esta sesión.")
+            st.success("Ficha de bot registrada en esta sesión.")
             st.rerun()
 
     st.divider()
-    st.subheader("Configuración inicial de Telegram")
+    st.subheader("Bots registrados")
+    if not st.session_state.bot_registry:
+        st.info("El registro está vacío.")
+    for bot in st.session_state.bot_registry:
+        with st.container(border=True):
+            st.markdown(f"**{bot['name']}** · {bot['channel']}")
+            st.caption(f"Cliente: {bot['client'] or 'Interno'} · Estado: {bot['status']}")
+            st.write(bot["description"] or "Sin descripción")
+
+    st.divider()
+    st.subheader("Onboarding Telegram")
     st.markdown(
         "1. Abre [@BotFather](https://t.me/BotFather).\n"
-        "2. Ejecuta /newbot y completa el nombre y username.\n"
-        "3. Guarda el token en el archivo .env de tu entorno privado.\n"
-        "4. Ejecuta python run_telegram_bot.py desde la carpeta del proyecto.\n"
+        "2. Ejecuta /newbot y completa nombre y username.\n"
+        "3. Guarda el token en .env de tu entorno privado.\n"
+        "4. Ejecuta python run_telegram_bot.py.\n"
         "5. Envía /start al bot para validar la conexión."
     )
+    st.warning("No pegues tokens en este panel ni en GitHub. La gestión segura de credenciales todavía no está implementada.")
+
+with tab_agents:
+    st.subheader("Agent Factory Engine")
+    st.write("Define la identidad, instrucciones, proveedor previsto y canal de cada agente.")
+    st.info(
+        "Esta versión crea definiciones de agentes, pero todavía no conversa con modelos. "
+        "Los adaptadores reales, memoria persistente y herramientas se conectarán en fases posteriores."
+    )
+    with st.form("create_agent_form", clear_on_submit=True):
+        agent_name = st.text_input("Nombre del agente", placeholder="Ej. Agente de atención al cliente")
+        role = st.text_input("Especialidad / rol", placeholder="Ej. Especialista de soporte nivel 1")
+        instructions = st.text_area(
+            "Instrucciones principales",
+            placeholder="Define objetivos, tono, límites, cuándo derivar a una persona y qué no debe hacer.",
+            height=160,
+        )
+        a1, a2 = st.columns(2)
+        with a1:
+            provider = st.selectbox("Proveedor IA previsto", ["anthropic", "openai", "google", "manual"])
+            model = st.text_input("Modelo (opcional)", placeholder="Nombre exacto del modelo")
+        with a2:
+            agent_channel = st.selectbox("Canal de publicación", ["none", "telegram", "email", "whatsapp"])
+            tenant = st.text_input("Cliente / tenant", value="local-demo")
+        tool_options = st.multiselect(
+            "Herramientas previstas (no ejecutables todavía)",
+            ["Consulta de base de conocimiento", "Búsqueda web", "Lectura de documentos",
+             "Crear tickets", "Enviar notificaciones", "Consultar CRM"],
+        )
+        create_agent = st.form_submit_button("Crear definición de agente", type="primary")
+
+    if create_agent:
+        try:
+            spec = create_agent_spec(
+                name=agent_name, role=role, instructions=instructions,
+                provider=provider, model=model, channel=agent_channel,
+                tools=tuple(tool_options), tenant_id=tenant or "local-demo",
+            )
+            record = spec.to_dict()
+            record["id"] = f"AGT-{len(st.session_state.agent_registry) + 1:04d}"
+            record["status"] = "Definido · proveedor no conectado"
+            record["created_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+            st.session_state.agent_registry.append(record)
+            st.success("Agente definido correctamente en esta sesión.")
+            st.rerun()
+        except ValueError as exc:
+            st.error(str(exc))
+
+    st.divider()
+    st.subheader("Agentes creados")
+    if not st.session_state.agent_registry:
+        st.info("Aún no hay agentes. Puedes crear el primero con el formulario.")
+    for agent in st.session_state.agent_registry:
+        with st.container(border=True):
+            st.markdown(f"**{agent['name']}** · {agent['id']}")
+            st.caption(f"{agent['role']} · Proveedor: {agent['provider']} · Canal: {agent['channel']}")
+            st.write(agent["instructions"])
+            st.write("Herramientas previstas: " + (", ".join(agent["tools"]) if agent["tools"] else "Ninguna"))
+            st.caption(f"Tenant: {agent['tenant_id']} · {agent['status']}")
+            with st.expander("Ver configuración"):
+                st.json(agent)
+
     st.warning(
-        "No pegues tokens en este panel ni en GitHub. Esta versión no recibe ni persiste "
-        "credenciales. La gestión segura de secretos se añadirá con Supabase/secret manager."
+        "Claude Pro no incluye automáticamente acceso a la API de Anthropic. "
+        "Para conectar Claude por API se requiere habilitar API/billing y guardar la clave "
+        "en un gestor de secretos o variable de entorno, nunca en este formulario."
     )
 
 with tab_catalog:
     st.subheader("Plantillas iniciales")
     templates = [
-        ("Telegram · Atención inicial", "Responde consultas frecuentes y deriva solicitudes."),
-        ("Telegram · Notificaciones", "Envía alertas operativas y avisos automatizados."),
+        ("Agente comercial", "Califica consultas, prepara respuestas y deriva oportunidades."),
+        ("Agente de soporte", "Resuelve preguntas frecuentes y escala casos complejos."),
+        ("Agente administrativo", "Ayuda a clasificar documentos y organizar tareas."),
+        ("Telegram · Notificaciones", "Envía alertas operativas mediante un bot."),
         ("Correo · Clasificador", "Organiza correos por categoría y prioridad."),
         ("WhatsApp · Atención comercial", "Atiende consultas mediante integración oficial."),
     ]
@@ -104,18 +189,19 @@ with tab_catalog:
         with st.container(border=True):
             st.markdown(f"**{title}**")
             st.write(detail)
-    st.caption("Son plantillas propuestas; los conectores de correo y WhatsApp aún no están implementados.")
 
 with tab_roadmap:
     st.subheader("Ruta de desarrollo")
     st.markdown(
         "- [x] Fundaciones Python y Streamlit\n"
-        "- [x] Worker Telegram MVP 0.1\n"
-        "- [x] Panel inicial de registro de bots\n"
-        "- [ ] Persistencia multiempresa con Supabase Auth y PostgreSQL/RLS\n"
-        "- [ ] Gestión segura de tokens y secretos\n"
-        "- [ ] Estados reales, inicio/parada y monitoreo de workers\n"
-        "- [ ] Conector de correo\n"
-        "- [ ] Conector oficial de WhatsApp\n"
-        "- [ ] Plantillas comerciales, planes y onboarding de clientes"
+        "- [x] Worker Telegram MVP 0.1 (pendiente de prueba real)\n"
+        "- [x] Panel inicial de bots\n"
+        "- [x] Modelos y validación de definiciones de agentes IA\n"
+        "- [x] Contrato base para adaptadores de proveedores\n"
+        "- [ ] Persistencia Supabase multiempresa y autenticación\n"
+        "- [ ] Conectar Anthropic, OpenAI y Google mediante API\n"
+        "- [ ] Memoria conversacional y herramientas ejecutables con permisos\n"
+        "- [ ] Supervisor de workers y monitoreo real\n"
+        "- [ ] Conectores de correo y WhatsApp\n"
+        "- [ ] Pruebas automatizadas y despliegue"
     )
