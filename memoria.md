@@ -199,6 +199,7 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - La aplicación debe ofrecer una experiencia cuidada en Android/iPhone, tablet y escritorio; no basta con reducir la vista de escritorio.
 - En móvil: navegación lateral automática/colapsable, márgenes compactos, jerarquía tipográfica adaptada, hero reorganizado en una columna, elementos visuales escalados, tarjetas legibles y formularios/botones cómodos para interacción táctil.
 - En escritorio: conservar el uso del ancho disponible, composición en columnas y panel lateral.
+- En anchos de 760 px o menos, las columnas de Streamlit se apilan al 100% para evitar tarjetas y formularios comprimidos; en escritorio se conserva la distribución por columnas.
 - Tablas y áreas de datos deben evitar desbordar el viewport; cuando sea necesario, permitir desplazamiento horizontal dentro del componente.
 - Respetar la preferencia del sistema de movimiento reducido desactivando animaciones decorativas.
 - Se añadieron media queries globales para 760 px y 520 px, además de prefers-reduced-motion; la portada ya tenía reglas responsive propias.
