@@ -127,3 +127,34 @@ Incorporar agentes IA como componentes propios de BOT FACTORY AI, separados de l
 
 ### Continuidad
 Se actualizó memoria.md con el estado real del motor de agentes y se conserva todo el historial anterior.
+
+
+## 2026-11-22 — Gemini configurable como proveedor inicial sin presupuesto
+
+### Decisión del usuario
+- Se utilizará Google Gemini como primera opción de IA debido a que actualmente no hay presupuesto para APIs de pago.
+- El proveedor y modelo deben ser configurables para poder cambiar en el futuro a GPT, DeepSeek, GLM, Claude u Ollama sin reconstruir bots ni canales.
+
+### Cambios preparados/publicados
+- [x] Adaptador inicial Gemini con SDK oficial google-genai.
+- [x] Lectura de GEMINI_API_KEY y GEMINI_MODEL desde entorno/secretos; no se exponen en formularios.
+- [x] Modelo predeterminado gemini-2.5-flash-lite, configurable mediante variable de entorno.
+- [x] Dependencia google-genai agregada a requirements.txt.
+- [x] Variables Gemini agregadas a .env.example sin credenciales.
+- [x] Panel Streamlit informa si detecta la clave y ofrece una prueba de conversación para agentes configurados con proveedor google.
+- [x] Documentación del adaptador y límites del nivel gratuito.
+
+### Costos, privacidad y límites
+- Google ofrece nivel gratuito con límites de uso para modelos elegibles. Las cuotas pueden variar y no equivalen a servicio ilimitado ni garantizado para producción.
+- Google indica que el contenido del nivel gratuito puede utilizarse para mejorar sus productos; no usarlo para información sensible o confidencial de clientes.
+- No se configuró facturación ni se añadió ninguna API key real.
+
+### Estado de validación
+- Código publicado, pendiente de instalar dependencias y probar con una API key real en entorno privado.
+- No afirmar que Gemini está operativo hasta completar esa prueba.
+
+### Próximos pasos
+1. Configurar una clave gratuita desde Google AI Studio en el .env local.
+2. Instalar requirements.txt y ejecutar Streamlit.
+3. Crear un agente con proveedor google y ejecutar la prueba de conversación.
+4. Añadir límites de uso, registro de consumo y persistencia multiempresa antes de ofrecerlo a clientes.
