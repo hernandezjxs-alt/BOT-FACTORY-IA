@@ -188,3 +188,26 @@ El usuario confirmó que dispone de acceso a GitHub desde Android y desea admini
 - Código y guía preparados en GitHub; no se ha creado todavía una app en Streamlit Cloud ni se ha validado el runtime.
 - Streamlit Community Cloud ofrece hosting gratuito según sus condiciones vigentes, pero no equivale a un SLA de producción.
 - El registro de bots/agentes sigue siendo temporal en session_state. Antes de atender clientes reales se requiere Supabase Auth/RLS, persistencia, aislamiento multiempresa y políticas de privacidad.
+
+## 2026-11-22 — Rediseño visual moderno de BOT FACTORY AI
+
+### Requisito del usuario
+La aplicación debe tener una apariencia moderna y profesional, con tarjetas, botón/área de administración, vistas de administrador y usuario, modo claro y oscuro, iconos modernos y colores actuales; debe funcionar desde el teléfono.
+
+### Cambios publicados
+- [x] Rediseño de app.py con estilo visual SaaS y paleta tecnológica.
+- [x] Navegación lateral por Inicio, Bots, Agentes IA, Canales, Plantillas, Administración y Configuración.
+- [x] Tarjetas de métricas y paneles de actividad/conectores.
+- [x] Selector de tema claro/oscuro.
+- [x] Selector de perfil Administrador/Usuario para previsualizar las vistas.
+- [x] Se conservaron los formularios de bots y agentes y el laboratorio Gemini.
+- [x] Se documentó que el selector de rol es demostrativo y no ofrece seguridad real.
+
+### Límites y pendientes
+- Los datos siguen en session_state; no hay persistencia Supabase.
+- No existe todavía login ni autorización real por rol. No usar el selector visual como mecanismo de seguridad.
+- La vista debe probarse en el despliegue Streamlit para validar el aspecto real en Android.
+- Próximo paso: desplegar la versión actualizada, configurar GEMINI_API_KEY en Secrets de Streamlit (sin compartirla) y comprobar la aplicación. Luego implementar Supabase Auth/RLS y persistencia multiempresa.
+
+### Commit
+- app.py rediseñado: 229fe0c213df7729808c5827bbcd529841ec4e43.
