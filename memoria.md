@@ -174,3 +174,12 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Las solicitudes se guardan únicamente en st.session_state durante la sesión; no se envían ni persisten. No existe todavía facturación, suscripción ni cobro.
 - Los precios se muestran como hipótesis comerciales sujetas a validación, no como tarifas definitivas.
 - Commit app.py: adab38b006bd7c5eb32f40ba24cdeefe25a3ba89.
+
+
+## Identidad de marca y acceso de usuario (2026-11-22)
+- Se añadió una cabecera superior de marca BOT FACTORY AI con símbolo geométrico moderno, gradiente violeta/cian y descriptor "INTELLIGENT AUTOMATION PLATFORM".
+- Se incorporó la opción "Acceso de usuario" a la navegación.
+- La página incluye pestañas de inicio de sesión y creación de cuenta, con campos de correo y contraseña y diseño responsive coherente con la marca.
+- El formulario valida campos básicos y coincidencia de contraseñas en el prototipo, pero NO autentica, registra cuentas ni guarda contraseñas.
+- La autenticación, recuperación de contraseña, registro seguro, sesiones y roles reales quedan pendientes de Supabase Auth + RLS. La pantalla lo comunica expresamente para no simular seguridad.
+- Commit app.py: 4f7b552479f8ed94bf85bc19d169d8e51dfb1a60.
