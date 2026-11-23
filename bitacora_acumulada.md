@@ -358,3 +358,12 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Commit app.py: 77c825ee27a788bd45f03a1dd9bc6cc0887899eb.
 - memoria.md actualizado en commit a4a2a22b3e2292f3171e88013d9926b379e5d96c.
 - Pendiente: recargar Streamlit Cloud y revisar captura en móvil; no se ha confirmado todavía el resultado visual del despliegue.
+
+
+## 2026-11-22 — Revisión de la identidad visual: azul eléctrico y tarjetas uniformes
+- El usuario rechazó la apariencia actual por no coincidir con la presentación conceptual y pidió explícitamente conservar el azul eléctrico, usar iconos reales/reconocibles y eliminar las tarjetas multicolores.
+- Se revisó app.py y se encontró que el color de acento seguía siendo violeta y que las cuatro tarjetas de métricas tenían fondos distintos (violeta, cian, verde y naranja).
+- Se modificó la paleta para dar protagonismo al azul eléctrico y cian, reducir el violeta a un acento secundario y unificar todas las tarjetas en azul sólido.
+- Se reforzó el fondo azul profundo de la portada y el núcleo hexagonal con iluminación cian/azul.
+- Los iconos de Telegram, WhatsApp y correo están implementados como SVG inline reconocibles; se requiere validación visual en Streamlit Cloud y captura Android para ajustar escala/visibilidad.
+- No afirmar que la interfaz ya coincide con la presentación hasta revisar el despliegue real.
