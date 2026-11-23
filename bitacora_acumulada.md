@@ -450,3 +450,15 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 ### 📌 Pendiente
 - Revisar visualmente el README en GitHub y ajustar detalles si el render final lo requiere.
 - Mantener esta convención visual en los Markdown que se creen en adelante.
+
+
+## 🗓️ 23-11-2026 — Corrección de diseño frontend
+- Se revisó `app.py` y se identificó la causa de la saturación de la portada: tres elementos gráficos grandes en la parte superior y una fila adicional de iconos de marca/canales al pie.
+- Se reemplazó la composición de inicio por un hero de dos columnas con texto a la izquierda y mascota original de BOT FACTORY AI a escala moderada a la derecha.
+- Se eliminó la galería independiente de iconos decorativos.
+- Se compactaron barra lateral, marca, navegación, indicadores e iconos de tarjetas.
+- Se rediseñó el resumen de conectores con iconos SVG propios, descripción y estado: Telegram MVP (pendiente de prueba real), correo pendiente y WhatsApp pendiente.
+- Se incorporaron tarjetas de canales con iconografía SVG en la sección Canales.
+- Se mantuvieron los registros temporales, la lógica de bots/agentes y la arquitectura Streamlit; no se alteró la lógica funcional.
+- Commits: `a3df17208595790a69644cb034b58abff5720b5c` y `6930d33d939a39ad4190009278e6dcc99ab83e4f`.
+- Pendiente obligatorio: revisar la aplicación desplegada en escritorio y móvil, ajustar según captura real y verificar que Streamlit compile y renderice correctamente.
