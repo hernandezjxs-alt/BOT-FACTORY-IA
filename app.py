@@ -227,6 +227,11 @@ h1,h2,h3 {{ color:#f5f8ff; }}
  .brand-bottom-sep{{height:50px}}
 }}
 
+
+.section-heading {{ display:flex;align-items:center;gap:.8rem;margin:.45rem 0 1.15rem;padding:.2rem 0 .85rem;border-bottom:1px solid rgba(30,137,255,.24); }}
+.section-hex {{ font-size:2.3rem;line-height:1;color:#2ceaff;text-shadow:0 0 8px #078bff,0 0 20px #087dff; }}
+.section-title {{ color:#f4f8ff;font-size:1.45rem;font-weight:900;letter-spacing:-.025em; }}
+.section-subtitle {{ color:#91a9d1;font-size:.82rem;margin-top:.18rem; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -240,15 +245,16 @@ def metric_card(label, value, icon, note, palette):
     )
 
 def section_heading(title, subtitle=None):
-    st.subheader(title)
-    if subtitle:
-        st.caption(subtitle)
+    st.markdown(
+        '<div class="section-heading"><span class="section-hex">⬡</span><div><div class="section-title">'
+        + title + '</div><div class="section-subtitle">' + (subtitle or '') + '</div></div></div>',
+        unsafe_allow_html=True,
+    )
 
 with st.sidebar:
-    st.markdown("## 🔷 BOT FACTORY AI")
-    st.caption("AI · AUTOMATION PLATFORM")
+    st.markdown('<div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px"><span style="font-size:25px;color:#36dfff;text-shadow:0 0 12px #087dff">⬡</span><div style="font-weight:900;letter-spacing:.04em">BOT FACTORY <span style="color:#a84cff">AI</span><div style="font-size:9px;letter-spacing:.16em;color:#78dfff">AUTOMATION INTELLIGENCE</div></div></div>', unsafe_allow_html=True)
     st.divider()
-    page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🔐  Acceso de usuario", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "💼  Planes y servicios", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
+    page = st.radio("NAVEGACIÓN", ["INICIO", "ACCESO DE USUARIO", "BOTS", "AGENTES IA", "CANALES", "PLANTILLAS", "PLANES Y SERVICIOS", "ADMINISTRACIÓN", "CONFIGURACIÓN"], label_visibility="visible")
     st.divider()
     st.markdown("**Apariencia**")
     st.radio("Tema", ["Oscuro", "Claro"], key="theme_choice", horizontal=True, label_visibility="collapsed")
@@ -269,7 +275,7 @@ whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("chan
 
 st.markdown('<div class="brandbar"><div class="brandmark"><svg viewBox="0 0 100 100" role="img" aria-label="BOT FACTORY AI"><defs><linearGradient id="bfLogo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#32e6ff"/><stop offset=".58" stop-color="#278cff"/><stop offset="1" stop-color="#b35cff"/></linearGradient></defs><path d="M29 7h42l22 43-22 43H29L7 50z" fill="none" stroke="url(#bfLogo)" stroke-width="7" stroke-linejoin="round"/><path d="M50 25v13M31 60l12-7m26 7-12-7M50 75V62" stroke="#55eaff" stroke-width="5" stroke-linecap="round"/><path d="M50 38l13 7v15l-13 8-13-8V45z" fill="#102b57" stroke="#55eaff" stroke-width="4"/><circle cx="50" cy="18" r="5" fill="#55eaff"/><circle cx="26" cy="63" r="5" fill="#55eaff"/><circle cx="74" cy="63" r="5" fill="#b66cff"/><circle cx="50" cy="81" r="5" fill="#55eaff"/></svg></div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
 
-if page.startswith("🔐"):
+if page.startswith("ACCESO"):
     st.markdown('<div class="login-shell">', unsafe_allow_html=True)
     with st.container(border=True):
         st.markdown('<div class="login-title">Bienvenido a tu espacio</div><div class="login-subtitle">Accede a tus bots, agentes y automatizaciones.</div>', unsafe_allow_html=True)
@@ -299,7 +305,7 @@ if page.startswith("🔐"):
     st.markdown('</div>', unsafe_allow_html=True)
     st.caption("BOT FACTORY AI · Acceso de usuario · Vista de demostración; todavía no autentica ni crea cuentas.")
 
-elif page.startswith("⌂"):
+elif page.startswith("INICIO"):
     st.markdown("""
     <section class="brand-showcase">
       <div class="brand-top">
@@ -379,7 +385,7 @@ elif page.startswith("⌂"):
             st.markdown("✨ **Google Gemini**")
             st.caption("Adaptador implementado. Requiere configurar el secreto para probarlo.")
 
-elif page.startswith("🤖"):
+elif page.startswith("BOTS"):
     section_heading("Gestión de bots", "Registra y organiza las soluciones que implementaremos para tus clientes.")
     with st.container(border=True):
         with st.form("create_bot_form", clear_on_submit=True):
@@ -411,7 +417,7 @@ elif page.startswith("🤖"):
             with b:
                 st.info(bot["status"])
 
-elif page.startswith("🧠"):
+elif page.startswith("AGENTES"):
     section_heading("Agent Factory", "Diseña agentes inteligentes con identidad, instrucciones y proveedor configurable.")
     with st.container(border=True):
         with st.form("create_agent_form", clear_on_submit=True):
@@ -474,7 +480,7 @@ elif page.startswith("🧠"):
         else:
             st.caption("Crea un agente con proveedor google para comenzar.")
 
-elif page.startswith("📡"):
+elif page.startswith("CANALES"):
     section_heading("Canales de comunicación", "Conectores para desplegar tus automatizaciones donde están tus usuarios.")
     channel_data = [("✈️","Telegram","MVP creado","Worker independiente y comandos /start, /help y /status. Requiere token privado de BotFather y prueba real."),("✉️","Correo electrónico","En planificación","Diseño de recepción, clasificación, respuestas y notificaciones con APIs/SMTP seguro."),("💬","WhatsApp","En planificación","Integración mediante API oficial o proveedor autorizado, con plantillas y consentimiento.")]
     for icon, title, status, desc in channel_data:
@@ -483,7 +489,7 @@ elif page.startswith("📡"):
             st.caption(status)
             st.write(desc)
 
-elif page.startswith("🧩"):
+elif page.startswith("PLANTILLAS"):
     section_heading("Biblioteca de plantillas", "Puntos de partida para acelerar cada implementación.")
     templates = [("🛍️","Agente comercial","Califica consultas, responde preguntas y deriva oportunidades."),("🎧","Agente de soporte","Resuelve preguntas frecuentes y escala casos complejos."),("📁","Agente administrativo","Clasifica documentos y organiza tareas."),("🔔","Telegram · Alertas","Envía notificaciones operativas."),("📨","Correo · Clasificador","Organiza correos por categoría y prioridad."),("💬","WhatsApp · Atención","Atiende consultas mediante integración oficial.")]
     cols = st.columns(2)
@@ -494,7 +500,7 @@ elif page.startswith("🧩"):
                 st.write(detail)
                 st.caption("Plantilla conceptual · automatización pendiente de conexión")
 
-elif page.startswith("💼"):
+elif page.startswith("PLANES"):
     section_heading("Planes y servicios", "Elige autoservicio SaaS o solicita una implementación personalizada con BOT FACTORY Studio.")
     st.info("Planes piloto de referencia en CLP. Son precios de prueba para validar con clientes; todavía no hay cobro, suscripciones ni límites automatizados.")
     plan_cols = st.columns(4)
@@ -553,7 +559,7 @@ elif page.startswith("💼"):
                 st.caption(f"Canales: {', '.join(request['channels']) or 'Por definir'} · {request['status']}")
                 st.write(request["need"])
 
-elif page.startswith("🛡️"):
+elif page.startswith("ADMINISTRACIÓN"):
     section_heading("Administración", "Centro de control de la plataforma.")
     if st.session_state.role_preview != "Administrador":
         st.warning("Esta vista está en modo Usuario. Cambia el selector de perfil en el menú lateral para ver la vista administrativa de demostración.")
