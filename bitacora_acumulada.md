@@ -349,3 +349,12 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [ ] Revisar la marca y el núcleo holográfico desde Android y escritorio.
 - [ ] Revisar modo claro y oscuro, y ajustar tamaños si la captura real lo requiere.
 - Nota: el cambio está publicado en GitHub, pero todavía no se ha confirmado visualmente en el despliegue.
+
+
+## 2026-11-22 — Corrección visual de los iconos de canales
+- El usuario reportó que la portada publicada no se parecía al prototipo aprobado y que no se veían correctamente los iconos de Telegram y WhatsApp.
+- Se reemplazaron los emojis por SVG inline reconocibles: avión de Telegram, símbolo verde de WhatsApp y sobre de correo.
+- Se reforzaron las tarjetas flotantes (fondo, borde, tamaño y distribución) alrededor del núcleo hexagonal holográfico.
+- Commit app.py: 77c825ee27a788bd45f03a1dd9bc6cc0887899eb.
+- memoria.md actualizado en commit a4a2a22b3e2292f3171e88013d9926b379e5d96c.
+- Pendiente: recargar Streamlit Cloud y revisar captura en móvil; no se ha confirmado todavía el resultado visual del despliegue.
