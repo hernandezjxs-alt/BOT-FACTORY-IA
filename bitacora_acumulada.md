@@ -389,3 +389,16 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Se reforzaron las tarjetas métricas del centro de operaciones y los contenedores de todas las secciones con fondos azules uniformes, bordes luminosos y sombras internas.
 - Ajustes responsive incluidos para móvil.
 - Pendiente: usuario debe compartir captura del nuevo despliegue para validar escalas y recortes. Para alcanzar el aspecto 3D de la lámina se requerirán ilustraciones de alta calidad, ya que los SVG/CSS actuales son aproximaciones vectoriales.
+
+
+## 2026-11-22 — Ajuste de fidelidad y dinamismo tras nueva referencia
+- El usuario volvió a compartir la lámina de identidad y pidió aplicar CSS y todos los ajustes necesarios para que la aplicación se vea igual y dinámica.
+- Se comparó la estructura real de app.py con la lámina. Se detectó barra de marca redundante sobre el hero, escala insuficiente en los tres elementos de la cabecera, panel holográfico bajo de altura, tarjetas inferiores poco definidas y exceso de estilos anteriores superpuestos.
+- Se ocultó la barra genérica únicamente en Inicio para que la composición comience directamente con logo principal, mascota y cerebro IA.
+- Se reforzaron proporciones y tamaños de cabecera, panel central 50/50, bloque de marca derecho, logotipo, slogan y botones de canales.
+- Se reconstruyó la franja inferior en siete tarjetas: Icono App, Icono Circular, Icono Simple, Telegram, WhatsApp, Email y Favicon.
+- Se agregaron efectos de partículas, rotación continua de órbitas, pulso de plataforma holográfica, hover en canales/tarjetas y brillos cian/azul eléctrico.
+- Se normalizaron métricas y paneles internos al azul profundo de la identidad, sin multicolor arbitrario.
+- Se incorporaron ajustes responsive y respeto a preferencias de movimiento reducido.
+- Commit app.py: c79100b7d4659fa4e1d9224c7b342924c1a0c926.
+- Pendiente: verificar visualmente el despliegue en Streamlit Cloud y realizar ajustes finales con captura de Android. No declarar igualdad exacta hasta validar.
