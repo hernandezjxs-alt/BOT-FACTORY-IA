@@ -269,3 +269,15 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - La franja inferior ahora presenta tarjetas individuales oscuras con bordes azul eléctrico para icono app, circular, simple, Telegram, WhatsApp, Email y favicon.
 - Se reforzaron las tarjetas KPI con fondo azul profundo, borde eléctrico, brillo cian y altura uniforme. Se extendió el mismo lenguaje de paneles a las secciones internas.
 - Sigue pendiente validar el render final real en Streamlit Cloud. Los gráficos son SVG/CSS vectoriales y no reproducciones 3D fotográficas exactas de la ilustración de referencia; para igualar ese acabado se necesitarán assets ilustrados de alta calidad integrados como imágenes.
+
+
+## 2026-11-22 — Ajuste visual basado directamente en la lámina de referencia
+- Se inspeccionó el archivo de referencia visual compartido en esta conversación (lámina cuadrada 1536×1536) y se comparó con la composición HTML/CSS vigente.
+- Se detectó que la portada tenía una barra de marca redundante por encima del showcase, la cabecera de tres elementos era demasiado pequeña, el panel central no tenía suficiente altura y la franja de iconos se distribuía como elementos sueltos en vez de tarjetas.
+- La barra superior genérica ahora se oculta en Inicio para que la portada comience con la composición de tres marcas de la lámina.
+- Se reajustó la escala de logotipo, mascota y cerebro IA; el panel central dividido; la plataforma holográfica, anillos y haz de luz; el bloque derecho de marca y los botones de canales.
+- La franja inferior se convirtió en una cuadrícula de siete tarjetas visuales (App, Circular, Simple, Telegram, WhatsApp, Email y Favicon), con bordes y fondos azul noche.
+- Se añadieron animaciones de partículas, rotación de órbitas, pulso de plataforma, elevación al pasar el cursor y efectos de iluminación; se respeta prefers-reduced-motion.
+- Las tarjetas de métricas y paneles de todas las secciones comparten azul profundo/azul eléctrico, evitando multicolor arbitrario. Los botones de canal conservan los colores oficiales de cada canal.
+- Responsive para móvil: cabecera en tres columnas compactas, panel principal apilado y tarjetas en cuadrícula.
+- Pendiente de validar en Streamlit Cloud con captura real. Las ilustraciones principales siguen siendo SVG vectoriales estilizados; la lámina se usa como guía de diseño, no se ha insertado como una captura plana.
