@@ -276,6 +276,77 @@ h1,h2,h3 {{ color:#f5f8ff; }}
  .brand-bottom-sep {{ display:none; }}
  .metric-card {{ min-height:128px; }}
 }}
+
+/* REPLICA DE PRESENTACIÓN — composición, escala y movimiento */
+.brand-showcase {{ padding:1.05rem 1.05rem .8rem; border-radius:28px; background:radial-gradient(ellipse at 50% 34%,rgba(0,83,255,.16),transparent 48%),linear-gradient(145deg,#03091b 0%,#07132c 54%,#050b1d 100%); }}
+.brand-showcase:after {{ content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background:radial-gradient(circle at 18% 20%,#168bff 0 1px,transparent 2px),radial-gradient(circle at 76% 68%,#24eaff 0 1px,transparent 2px),radial-gradient(circle at 48% 86%,#a53cff 0 1px,transparent 2px);background-size:73px 79px,91px 83px,117px 103px;animation:starDrift 18s linear infinite;}}
+@keyframes starDrift {{ to {{ background-position:73px 79px,-91px 83px,117px -103px; }} }}
+.brand-top {{ grid-template-columns:1fr 1fr 1fr; gap:1.1rem; align-items:end; padding:.25rem .7rem 1rem; }}
+.brand-top-item {{ gap:.32rem; }}
+.brand-top-item:first-child svg,.brand-top-item:nth-child(3) svg {{ width:clamp(145px,17vw,225px);height:clamp(145px,17vw,225px); }}
+.brand-top-item:nth-child(2) svg {{ width:clamp(175px,19vw,250px);height:clamp(155px,17vw,225px); }}
+.brand-top-item strong {{ font-size:clamp(1rem,1.9vw,1.55rem);font-weight:950; }}
+.brand-top-item small {{ font-size:.72rem;letter-spacing:.22em; }}
+.brand-tag {{ font-size:.88rem;padding:.42rem 1.1rem;border-color:#087dff;color:#eaf4ff;box-shadow:0 0 14px rgba(0,119,255,.12); }}
+.brand-middle {{ grid-template-columns:1fr 1fr;min-height:500px;border-radius:26px; }}
+.holo-visual {{ min-height:500px;background:radial-gradient(ellipse at 50% 76%,rgba(0,199,255,.28),transparent 48%),linear-gradient(180deg,rgba(0,21,57,.25),rgba(0,5,22,.45)); }}
+.holo-visual:before {{ content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.7%,rgba(33,130,255,.13) 50%,transparent 50.3%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(24,129,255,.08) 28px);mask-image:linear-gradient(transparent,#000 18%,#000 85%,transparent); }}
+.holo-logo {{ width:min(58%,300px);filter:drop-shadow(0 0 24px rgba(0,188,255,.8)); }}
+.holo-logo svg {{ filter:drop-shadow(0 0 10px rgba(24,222,255,.8)); }}
+.holo-orbit {{ width:86%;height:28%;border-width:3px;animation:orbitSpin 15s linear infinite,orbitGlow 4s ease-in-out infinite; }}
+.holo-orbit.second {{ width:94%;height:36%;animation:orbitSpinReverse 19s linear infinite,orbitGlow 5s ease-in-out infinite; }}
+@keyframes orbitSpin {{ from {{ transform:rotate(-8deg); }} to {{ transform:rotate(352deg); }} }}
+@keyframes orbitSpinReverse {{ from {{ transform:rotate(10deg); }} to {{ transform:rotate(-350deg); }} }}
+.holo-beam {{ width:50%;height:61%;bottom:18%;background:linear-gradient(180deg,transparent,rgba(0,230,255,.24),rgba(0,115,255,.04));filter:blur(9px); }}
+.holo-platform {{ width:78%;height:20%;bottom:7%;animation:platformPulse 3.8s ease-in-out infinite; }}
+@keyframes platformPulse {{ 0%,100% {{ filter:brightness(.9);box-shadow:0 0 18px #078bff,0 0 50px rgba(0,166,255,.7),inset 0 0 20px #31dfff; }} 50% {{ filter:brightness(1.35);box-shadow:0 0 28px #078bff,0 0 75px rgba(0,166,255,.9),inset 0 0 28px #31dfff; }} }}
+.brand-message {{ padding:2.25rem clamp(1.3rem,2.6vw,2.8rem); }}
+.brand-message-head {{ font-size:clamp(1.7rem,3.2vw,3rem);gap:1rem; }}
+.brand-message-head svg {{ width:clamp(80px,8vw,112px);height:clamp(80px,8vw,112px); }}
+.brand-slogan {{ font-size:clamp(1.1rem,2vw,1.55rem); }}
+.brand-divider {{ width:82%;margin:.6rem auto 1.8rem; }}
+.brand-description {{ font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:560px;margin-bottom:2rem; }}
+.channel-links {{ gap:.8rem;justify-content:space-between; }}
+.channel-pill {{ min-width:0;flex:1;padding:.9rem .8rem;border-radius:18px;font-size:clamp(.88rem,1.15vw,1.1rem);transition:transform .25s ease,filter .25s ease,box-shadow .25s ease; }}
+.channel-pill:hover {{ transform:translateY(-5px) scale(1.025);filter:brightness(1.17);box-shadow:0 12px 30px rgba(0,130,255,.3); }}
+.channel-pill svg {{ width:36px;height:36px; }}
+.brand-bottom {{ display:grid;grid-template-columns:repeat(3,minmax(110px,1fr)) repeat(3,minmax(90px,.9fr)) 1px minmax(110px,1fr);align-items:stretch;gap:.65rem;margin-top:1rem;padding:.7rem .2rem .2rem; }}
+.brand-bottom-item {{ min-width:0;min-height:164px;justify-content:center;border:1px solid rgba(31,123,255,.2);border-radius:21px;background:linear-gradient(155deg,rgba(9,28,63,.9),rgba(5,13,34,.97));box-shadow:inset 0 0 24px rgba(0,116,255,.07),0 10px 25px rgba(0,0,0,.2);font-size:.88rem;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }}
+.brand-bottom-item:hover {{ transform:translateY(-5px);border-color:rgba(57,213,255,.78);box-shadow:0 0 25px rgba(0,126,255,.18),inset 0 0 24px rgba(0,116,255,.1); }}
+.brand-bottom-item svg {{ width:92px;height:92px; }}
+.brand-bottom-item .app-tile {{ width:104px;height:104px;border-radius:28px; }}
+.brand-bottom-item .app-tile svg {{ width:84px;height:84px; }}
+.brand-bottom-sep {{ height:auto;min-height:135px;align-self:center; }}
+.metric-card {{ min-height:158px;background:linear-gradient(145deg,#104b89,#082653)!important;border:1px solid rgba(50,184,255,.65)!important;border-radius:21px;box-shadow:inset 0 0 25px rgba(0,155,255,.12),0 12px 32px rgba(0,0,0,.24); }}
+.metric-card:hover {{ border-color:#52eaff!important;box-shadow:0 0 26px rgba(0,139,255,.23),0 15px 35px rgba(0,0,0,.3); }}
+.section-heading {{ margin-top:1.4rem; }}
+.section-card,[data-testid="stVerticalBlockBorderWrapper"] {{ background:linear-gradient(145deg,#0b2852,#07172f)!important;border:1px solid rgba(34,139,255,.4)!important;box-shadow:inset 0 0 22px rgba(0,118,255,.055),0 12px 30px rgba(0,0,0,.18); }}
+@media(max-width:760px) {{
+ .brand-top {{ grid-template-columns:1fr 1fr 1fr;gap:.2rem; }}
+ .brand-top-item:first-child svg,.brand-top-item:nth-child(3) svg {{ width:clamp(75px,21vw,125px);height:clamp(75px,21vw,125px); }}
+ .brand-top-item:nth-child(2) svg {{ width:clamp(85px,24vw,140px);height:clamp(78px,22vw,130px); }}
+ .brand-top-item strong {{ font-size:.67rem; }}
+ .brand-top-item small {{ font-size:.43rem;letter-spacing:.08em; }}
+ .brand-tag {{ font-size:.55rem;padding:.25rem .38rem; }}
+ .brand-middle {{ grid-template-columns:1fr; }}
+ .holo-visual {{ min-height:330px; }}
+ .holo-logo {{ width:55%; }}
+ .brand-message-head {{ font-size:1.55rem;white-space:normal; }}
+ .brand-message-head svg {{ width:62px;height:62px; }}
+ .brand-description {{ font-size:.94rem; }}
+ .channel-pill {{ padding:.65rem .35rem;gap:.3rem;font-size:.68rem; }}
+ .channel-pill svg {{ width:25px;height:25px; }}
+ .brand-bottom {{ grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:.6rem 0 0; }}
+ .brand-bottom-item {{ min-height:112px;padding:.55rem .2rem;font-size:.62rem; }}
+ .brand-bottom-item svg {{ width:54px;height:54px; }}
+ .brand-bottom-item .app-tile {{ width:60px;height:60px;border-radius:18px; }}
+ .brand-bottom-item .app-tile svg {{ width:50px;height:50px; }}
+ .brand-bottom-sep {{ display:none; }}
+ .metric-card {{ min-height:132px; }}
+}}
+@media(prefers-reduced-motion:reduce) {{
+ .brand-showcase:after,.holo-orbit,.holo-platform,.holo-logo,.channel-pill,.brand-bottom-item {{ animation:none!important;transition:none!important; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -317,7 +388,8 @@ telegram_count = sum(1 for bot in st.session_state.bot_registry if bot.get("chan
 email_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Correo")
 whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "WhatsApp")
 
-st.markdown('<div class="brandbar"><div class="brandmark"><svg viewBox="0 0 100 100" role="img" aria-label="BOT FACTORY AI"><defs><linearGradient id="bfLogo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#32e6ff"/><stop offset=".58" stop-color="#278cff"/><stop offset="1" stop-color="#b35cff"/></linearGradient></defs><path d="M29 7h42l22 43-22 43H29L7 50z" fill="none" stroke="url(#bfLogo)" stroke-width="7" stroke-linejoin="round"/><path d="M50 25v13M31 60l12-7m26 7-12-7M50 75V62" stroke="#55eaff" stroke-width="5" stroke-linecap="round"/><path d="M50 38l13 7v15l-13 8-13-8V45z" fill="#102b57" stroke="#55eaff" stroke-width="4"/><circle cx="50" cy="18" r="5" fill="#55eaff"/><circle cx="26" cy="63" r="5" fill="#55eaff"/><circle cx="74" cy="63" r="5" fill="#b66cff"/><circle cx="50" cy="81" r="5" fill="#55eaff"/></svg></div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
+if not page.startswith("INICIO"):
+    st.markdown('<div class="brandbar"><div class="brandmark"><svg viewBox="0 0 100 100" role="img" aria-label="BOT FACTORY AI"><defs><linearGradient id="bfLogo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#32e6ff"/><stop offset=".58" stop-color="#278cff"/><stop offset="1" stop-color="#b35cff"/></linearGradient></defs><path d="M29 7h42l22 43-22 43H29L7 50z" fill="none" stroke="url(#bfLogo)" stroke-width="7" stroke-linejoin="round"/><path d="M50 25v13M31 60l12-7m26 7-12-7M50 75V62" stroke="#55eaff" stroke-width="5" stroke-linecap="round"/><path d="M50 38l13 7v15l-13 8-13-8V45z" fill="#102b57" stroke="#55eaff" stroke-width="4"/><circle cx="50" cy="18" r="5" fill="#55eaff"/><circle cx="26" cy="63" r="5" fill="#55eaff"/><circle cx="74" cy="63" r="5" fill="#b66cff"/><circle cx="50" cy="81" r="5" fill="#55eaff"/></svg></div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
 
 if page.startswith("ACCESO"):
     st.markdown('<div class="login-shell">', unsafe_allow_html=True)
