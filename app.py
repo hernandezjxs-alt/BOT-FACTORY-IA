@@ -505,9 +505,16 @@ st.markdown("""
 .section-title { font-size:1.05rem !important; }
 .section-subtitle { font-size:.7rem !important; }
 .bf-connector-list { display:flex;flex-direction:column;gap:.35rem; }
+.bf-channel-card { display:flex;align-items:center;gap:.8rem;min-height:66px; }
+.bf-channel-card-copy { display:flex;flex:1;min-width:0;flex-direction:column;gap:.22rem; }
+.bf-channel-card-copy strong { color:#f0f6ff;font-size:.9rem; }
+.bf-channel-card-copy span { color:#91a9cb;font-size:.72rem;line-height:1.45; }
+[data-testid="stVerticalBlockBorderWrapper"] .bf-channel-card { padding:.15rem .1rem; }
+
 .bf-connector-row { display:flex;align-items:center;gap:.65rem;padding:.62rem .1rem;border-bottom:1px solid rgba(96,151,216,.12); }
 .bf-connector-row:last-child { border-bottom:0; }
 .bf-connector-icon,.bf-provider-icon { width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;font-size:1rem;font-weight:800;color:#fff; }
+.bf-connector-icon svg { width:19px;height:19px;display:block; }
 .bf-connector-icon.telegram { background:#087bc9; }
 .bf-connector-icon.email { background:#6042c4; }
 .bf-connector-icon.whatsapp { background:#087d55; }
@@ -690,17 +697,17 @@ elif page.startswith("INICIO"):
             st.markdown("""
             <div class="bf-connector-list">
               <div class="bf-connector-row">
-                <div class="bf-connector-icon telegram">➤</div>
+                <div class="bf-connector-icon telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="white" d="M21.7 4.4 18.5 20c-.24 1.1-.88 1.36-1.78.85l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-5.01 9.12-8.24c.4-.35-.09-.55-.62-.2L6.03 13.7l-4.82-1.5c-1.05-.33-1.07-1.05.22-1.56L20.3 3.22c.87-.32 1.63.21 1.4 1.18Z"/></svg></div>
                 <div class="bf-connector-copy"><strong>Telegram</strong><small>Worker MVP creado · requiere prueba real</small></div>
                 <span class="bf-state ready">MVP</span>
               </div>
               <div class="bf-connector-row">
-                <div class="bf-connector-icon email">✉</div>
+                <div class="bf-connector-icon email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="white" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <div class="bf-connector-copy"><strong>Correo electrónico</strong><small>Conector pendiente de implementación</small></div>
                 <span class="bf-state pending">Pendiente</span>
               </div>
               <div class="bf-connector-row">
-                <div class="bf-connector-icon whatsapp">◉</div>
+                <div class="bf-connector-icon whatsapp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.3Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.2 8.1c.3-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.5-1.1-.2-2.5-.9-3.8-2.1-1.3-1.2-2.1-2.7-2.3-3.8-.1-.7.1-1.4.6-1.9Z" fill="white"/></svg></div>
                 <div class="bf-connector-copy"><strong>WhatsApp</strong><small>Integración oficial pendiente</small></div>
                 <span class="bf-state pending">Pendiente</span>
               </div>
@@ -808,12 +815,25 @@ elif page.startswith("AGENTES"):
 
 elif page.startswith("CANALES"):
     section_heading("Canales de comunicación", "Conectores para desplegar tus automatizaciones donde están tus usuarios.")
-    channel_data = [("✈️","Telegram","MVP creado","Worker independiente y comandos /start, /help y /status. Requiere token privado de BotFather y prueba real."),("✉️","Correo electrónico","En planificación","Diseño de recepción, clasificación, respuestas y notificaciones con APIs/SMTP seguro."),("💬","WhatsApp","En planificación","Integración mediante API oficial o proveedor autorizado, con plantillas y consentimiento.")]
-    for icon, title, status, desc in channel_data:
+    channel_data = [
+        ("telegram", "Telegram", "MVP creado", "Worker independiente y comandos /start, /help y /status. Requiere token privado de BotFather y prueba real.", "MVP"),
+        ("email", "Correo electrónico", "En planificación", "Recepción, clasificación, respuestas y notificaciones mediante APIs u SMTP seguro.", "Pendiente"),
+        ("whatsapp", "WhatsApp", "En planificación", "Integración mediante API oficial o proveedor autorizado, con plantillas y consentimiento.", "Pendiente"),
+    ]
+    channel_icons = {
+        "telegram": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="white" d="M21.7 4.4 18.5 20c-.24 1.1-.88 1.36-1.78.85l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-5.01 9.12-8.24c.4-.35-.09-.55-.62-.2L6.03 13.7l-4.82-1.5c-1.05-.33-1.07-1.05.22-1.56L20.3 3.22c.87-.32 1.63.21 1.4 1.18Z"/></svg>',
+        "email": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="white" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        "whatsapp": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.3Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.2 8.1c.3-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.5-1.1-.2-2.5-.9-3.8-2.1-1.3-1.2-2.1-2.7-2.3-3.8-.1-.7.1-1.4.6-1.9Z" fill="white"/></svg>',
+    }
+    for key, title, status, desc, badge in channel_data:
         with st.container(border=True):
-            st.markdown(f"### {icon} {title}")
+            st.markdown(
+                f'<div class="bf-channel-card"><div class="bf-connector-icon {key}">{channel_icons[key]}</div>'
+                f'<div class="bf-channel-card-copy"><strong>{title}</strong><span>{desc}</span></div>'
+                f'<span class="bf-state {"ready" if key == "telegram" else "pending"}">{badge}</span></div>',
+                unsafe_allow_html=True,
+            )
             st.caption(status)
-            st.write(desc)
 
 elif page.startswith("PLANTILLAS"):
     section_heading("Biblioteca de plantillas", "Puntos de partida para acelerar cada implementación.")
