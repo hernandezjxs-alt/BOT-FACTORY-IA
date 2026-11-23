@@ -144,88 +144,88 @@ hr {{ border-color: {border}; }}
 
 
 /* BOT FACTORY AI — sistema visual fiel a la presentación de marca */
-.stApp { background:
+.stApp {{ background:
  radial-gradient(ellipse at 18% 0%, rgba(0,105,255,.13), transparent 38%),
  radial-gradient(ellipse at 90% 30%, rgba(105,35,255,.09), transparent 32%),
- #050b1c; color:#f4f7ff; }
-[data-testid="stSidebar"] { background:linear-gradient(180deg,#08152d,#050b1c); border-right:1px solid rgba(30,130,255,.28); }
-.block-container { max-width:1480px; padding-top:1.25rem; }
-.brandbar { padding: .6rem .2rem 1.3rem; }
-.brandmark { width:54px;height:54px;border-radius:17px;background:linear-gradient(145deg,#00d9ff,#075dff 58%,#8c24ff);box-shadow:0 0 26px rgba(0,144,255,.4); }
-.brandname { letter-spacing:.055em; }
-.brandtag { color:#80eaff !important; }
-[data-testid="stVerticalBlockBorderWrapper"] { background:linear-gradient(145deg,rgba(10,28,61,.96),rgba(7,17,40,.98)); border:1px solid rgba(27,126,255,.35); border-radius:20px; box-shadow:0 10px 35px rgba(0,0,0,.2); }
-[data-testid="stVerticalBlockBorderWrapper"]:hover { border-color:rgba(43,190,255,.72); box-shadow:0 0 24px rgba(0,119,255,.12); }
-[data-testid="stMetric"] { background:#0d2850; border:1px solid rgba(43,157,255,.45); border-radius:17px; }
-div.stButton > button, div.stFormSubmitButton > button { background:linear-gradient(100deg,#087dff,#1454e8); color:#fff; border:1px solid #38baff; box-shadow:0 0 18px rgba(0,126,255,.18); }
-div.stButton > button:hover, div.stFormSubmitButton > button:hover { border-color:#83f5ff; color:white; box-shadow:0 0 25px rgba(0,180,255,.3); }
-div[data-testid="stTabs"] button[aria-selected="true"] { color:#5deaff !important; border-bottom-color:#168bff !important; }
-[data-testid="stRadio"] label, [data-testid="stSelectbox"] label { color:#b9d6ff; }
-h1,h2,h3 { color:#f5f8ff; }
-.brand-showcase { position:relative; overflow:hidden; border:1px solid rgba(24,115,255,.42); border-radius:26px; padding:1.1rem; background:radial-gradient(ellipse at 50% 40%,rgba(0,115,255,.14),transparent 58%),linear-gradient(145deg,#050b1d,#0a1632 58%,#080d24); box-shadow:0 18px 55px rgba(0,0,0,.36),inset 0 0 45px rgba(0,96,255,.07); }
-.brand-showcase:before { content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(50,130,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(50,130,255,.2) 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(black,transparent 92%); }
-.brand-top { position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:center;text-align:center;padding:.2rem .5rem 1rem; }
-.brand-top-item { display:flex;flex-direction:column;align-items:center;gap:.35rem;min-width:0; }
-.brand-top-item svg { width:min(100%,118px);height:110px;filter:drop-shadow(0 0 12px rgba(0,166,255,.55)); }
-.brand-top-item strong { font-size:clamp(.72rem,1.4vw,1.05rem);letter-spacing:.035em;color:#f4f8ff; }
-.brand-top-item small { color:#91a9d1;font-size:.65rem;letter-spacing:.18em; }
-.brand-top-item .ai-word { color:#bd62ff; }
-.brand-tag { border:1px solid rgba(28,132,255,.65);border-radius:99px;padding:.35rem .85rem;color:#dbeaff;font-size:.7rem;margin-top:.25rem; }
-.brand-middle { position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:390px;border:1px solid rgba(34,124,255,.35);border-radius:24px;overflow:hidden;background:linear-gradient(115deg,rgba(4,15,38,.82),rgba(9,20,48,.82)); }
-.holo-visual { position:relative;min-height:390px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,rgba(0,181,255,.3),transparent 52%),linear-gradient(180deg,rgba(0,26,68,.25),rgba(0,7,24,.35)); }
-.holo-beam { position:absolute;bottom:19%;width:42%;height:52%;background:linear-gradient(180deg,transparent,rgba(0,212,255,.22),rgba(0,132,255,.03));clip-path:polygon(39% 0,61% 0,100% 100%,0 100%);filter:blur(7px); }
-.holo-logo { position:relative;z-index:3;width:min(54%,230px);aspect-ratio:1;display:grid;place-items:center;animation:logoHover 4.5s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(0,188,255,.7)); }
-.holo-logo svg { width:100%;height:100%; }
-.holo-orbit { position:absolute;width:84%;height:25%;border:3px solid #078eff;border-radius:50%;transform:rotate(-8deg);box-shadow:0 0 18px #087dff,inset 0 0 15px #087dff;animation:orbitGlow 4s ease-in-out infinite; }
-.holo-orbit.second { width:94%;height:35%;border-color:#8d3bff;transform:rotate(10deg);opacity:.8; }
-.holo-platform { position:absolute;bottom:8%;width:72%;height:18%;border-radius:50%;border:5px solid #168bff;background:radial-gradient(ellipse,#a9fbff 0%,#078bff 18%,#061b4a 56%,#040b1e 70%);box-shadow:0 0 18px #078bff,0 0 50px rgba(0,166,255,.7),inset 0 0 20px #31dfff; }
-.holo-platform:before,.holo-platform:after { content:"";position:absolute;inset:15% 8%;border:2px solid #32dfff;border-radius:50%;box-shadow:0 0 13px #1dbdff; }
-.holo-platform:after { inset:-22% -9%;border-color:#813bff;opacity:.7; }
-@keyframes logoHover { 0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)} }
-@keyframes orbitGlow { 0%,100%{filter:brightness(.85)}50%{filter:brightness(1.5)} }
-.brand-message { display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 1.4rem; }
-.brand-message-head { display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:clamp(1.3rem,3vw,2.55rem);font-weight:950;letter-spacing:-.04em;white-space:nowrap; }
-.brand-message-head svg { width:76px;height:76px;flex:none;filter:drop-shadow(0 0 12px #087dff); }
-.brand-message-head em { font-style:normal;background:linear-gradient(90deg,#168bff,#b54cff);color:transparent;background-clip:text; }
-.brand-slogan { color:#72eaff;font-size:clamp(.9rem,2vw,1.4rem);font-weight:750;margin:.2rem 0 1rem; }
-.brand-divider { height:3px;width:70%;background:linear-gradient(90deg,transparent,#9b36ff,#078bff,#20eaff,transparent);box-shadow:0 0 15px #168bff;margin:.4rem auto 1.5rem; }
-.brand-description { color:#e4ecff;font-size:clamp(.9rem,1.4vw,1.12rem);line-height:1.55;max-width:480px;margin-bottom:1.6rem; }
-.channel-links { display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;width:100%; }
-.channel-pill { display:flex;align-items:center;justify-content:center;gap:.55rem;border-radius:17px;padding:.75rem .9rem;min-width:135px;color:white;font-weight:800;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.25); }
-.channel-pill svg { width:30px;height:30px; }
-.channel-pill.tg { background:linear-gradient(135deg,#087de0,#0752b5); }
-.channel-pill.wa { background:linear-gradient(135deg,#08bd62,#087b4c); }
-.channel-pill.mail { background:linear-gradient(135deg,#7428d9,#4106a6); }
-.brand-bottom { position:relative;display:flex;align-items:center;justify-content:space-around;gap:1rem;flex-wrap:wrap;margin-top:1rem;padding:1rem .6rem .2rem; }
-.brand-bottom-item { display:flex;flex-direction:column;align-items:center;gap:.45rem;color:#dce8ff;font-size:.72rem;font-weight:750;min-width:85px; }
-.brand-bottom-item svg { width:62px;height:62px;filter:drop-shadow(0 0 12px rgba(0,137,255,.48)); }
-.brand-bottom-item .app-tile { width:68px;height:68px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#00dfff,#075dff 58%,#8d24ff);box-shadow:0 0 25px rgba(0,130,255,.4); }
-.brand-bottom-item .app-tile svg { width:54px;height:54px; }
-.brand-bottom-sep { height:75px;width:1px;background:rgba(145,180,255,.45); }
-.metric-card { background:#102e58 !important;border:1px solid rgba(45,157,255,.48) !important; }
-@media(max-width:760px) {
- .brand-showcase{padding:.55rem;border-radius:18px}
- .brand-top{gap:.25rem;padding:.2rem .1rem .65rem}
- .brand-top-item svg{height:68px;width:80px}
- .brand-top-item strong{font-size:.62rem}
- .brand-top-item small{font-size:.48rem;letter-spacing:.08em}
- .brand-tag{font-size:.55rem;padding:.25rem .5rem}
- .brand-middle{grid-template-columns:1fr;min-height:unset}
- .holo-visual{min-height:290px}
- .brand-message{padding:1.3rem .7rem 1.5rem}
- .brand-message-head{font-size:1.5rem}
- .brand-message-head svg{width:55px;height:55px}
- .brand-description{font-size:.9rem}
- .channel-links{gap:.45rem}
- .channel-pill{min-width:0;flex:1;padding:.6rem .45rem;font-size:.72rem;border-radius:12px}
- .channel-pill svg{width:24px;height:24px}
- .brand-bottom{gap:.65rem}
- .brand-bottom-item{min-width:65px;font-size:.62rem}
- .brand-bottom-item svg{width:48px;height:48px}
- .brand-bottom-item .app-tile{width:54px;height:54px}
- .brand-bottom-item .app-tile svg{width:44px;height:44px}
- .brand-bottom-sep{height:50px}
-}
+ #050b1c; color:#f4f7ff; }}
+[data-testid="stSidebar"] {{ background:linear-gradient(180deg,#08152d,#050b1c); border-right:1px solid rgba(30,130,255,.28); }}
+.block-container {{ max-width:1480px; padding-top:1.25rem; }}
+.brandbar {{ padding: .6rem .2rem 1.3rem; }}
+.brandmark {{ width:54px;height:54px;border-radius:17px;background:linear-gradient(145deg,#00d9ff,#075dff 58%,#8c24ff);box-shadow:0 0 26px rgba(0,144,255,.4); }}
+.brandname {{ letter-spacing:.055em; }}
+.brandtag {{ color:#80eaff !important; }}
+[data-testid="stVerticalBlockBorderWrapper"] {{ background:linear-gradient(145deg,rgba(10,28,61,.96),rgba(7,17,40,.98)); border:1px solid rgba(27,126,255,.35); border-radius:20px; box-shadow:0 10px 35px rgba(0,0,0,.2); }}
+[data-testid="stVerticalBlockBorderWrapper"]:hover {{ border-color:rgba(43,190,255,.72); box-shadow:0 0 24px rgba(0,119,255,.12); }}
+[data-testid="stMetric"] {{ background:#0d2850; border:1px solid rgba(43,157,255,.45); border-radius:17px; }}
+div.stButton > button, div.stFormSubmitButton > button {{ background:linear-gradient(100deg,#087dff,#1454e8); color:#fff; border:1px solid #38baff; box-shadow:0 0 18px rgba(0,126,255,.18); }}
+div.stButton > button:hover, div.stFormSubmitButton > button:hover {{ border-color:#83f5ff; color:white; box-shadow:0 0 25px rgba(0,180,255,.3); }}
+div[data-testid="stTabs"] button[aria-selected="true"] {{ color:#5deaff !important; border-bottom-color:#168bff !important; }}
+[data-testid="stRadio"] label, [data-testid="stSelectbox"] label {{ color:#b9d6ff; }}
+h1,h2,h3 {{ color:#f5f8ff; }}
+.brand-showcase {{ position:relative; overflow:hidden; border:1px solid rgba(24,115,255,.42); border-radius:26px; padding:1.1rem; background:radial-gradient(ellipse at 50% 40%,rgba(0,115,255,.14),transparent 58%),linear-gradient(145deg,#050b1d,#0a1632 58%,#080d24); box-shadow:0 18px 55px rgba(0,0,0,.36),inset 0 0 45px rgba(0,96,255,.07); }}
+.brand-showcase:before {{ content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(50,130,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(50,130,255,.2) 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(black,transparent 92%); }}
+.brand-top {{ position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:center;text-align:center;padding:.2rem .5rem 1rem; }}
+.brand-top-item {{ display:flex;flex-direction:column;align-items:center;gap:.35rem;min-width:0; }}
+.brand-top-item svg {{ width:min(100%,118px);height:110px;filter:drop-shadow(0 0 12px rgba(0,166,255,.55)); }}
+.brand-top-item strong {{ font-size:clamp(.72rem,1.4vw,1.05rem);letter-spacing:.035em;color:#f4f8ff; }}
+.brand-top-item small {{ color:#91a9d1;font-size:.65rem;letter-spacing:.18em; }}
+.brand-top-item .ai-word {{ color:#bd62ff; }}
+.brand-tag {{ border:1px solid rgba(28,132,255,.65);border-radius:99px;padding:.35rem .85rem;color:#dbeaff;font-size:.7rem;margin-top:.25rem; }}
+.brand-middle {{ position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:390px;border:1px solid rgba(34,124,255,.35);border-radius:24px;overflow:hidden;background:linear-gradient(115deg,rgba(4,15,38,.82),rgba(9,20,48,.82)); }}
+.holo-visual {{ position:relative;min-height:390px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,rgba(0,181,255,.3),transparent 52%),linear-gradient(180deg,rgba(0,26,68,.25),rgba(0,7,24,.35)); }}
+.holo-beam {{ position:absolute;bottom:19%;width:42%;height:52%;background:linear-gradient(180deg,transparent,rgba(0,212,255,.22),rgba(0,132,255,.03));clip-path:polygon(39% 0,61% 0,100% 100%,0 100%);filter:blur(7px); }}
+.holo-logo {{ position:relative;z-index:3;width:min(54%,230px);aspect-ratio:1;display:grid;place-items:center;animation:logoHover 4.5s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(0,188,255,.7)); }}
+.holo-logo svg {{ width:100%;height:100%; }}
+.holo-orbit {{ position:absolute;width:84%;height:25%;border:3px solid #078eff;border-radius:50%;transform:rotate(-8deg);box-shadow:0 0 18px #087dff,inset 0 0 15px #087dff;animation:orbitGlow 4s ease-in-out infinite; }}
+.holo-orbit.second {{ width:94%;height:35%;border-color:#8d3bff;transform:rotate(10deg);opacity:.8; }}
+.holo-platform {{ position:absolute;bottom:8%;width:72%;height:18%;border-radius:50%;border:5px solid #168bff;background:radial-gradient(ellipse,#a9fbff 0%,#078bff 18%,#061b4a 56%,#040b1e 70%);box-shadow:0 0 18px #078bff,0 0 50px rgba(0,166,255,.7),inset 0 0 20px #31dfff; }}
+.holo-platform:before,.holo-platform:after {{ content:"";position:absolute;inset:15% 8%;border:2px solid #32dfff;border-radius:50%;box-shadow:0 0 13px #1dbdff; }}
+.holo-platform:after {{ inset:-22% -9%;border-color:#813bff;opacity:.7; }}
+@keyframes logoHover {{ 0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-13px)}} }}
+@keyframes orbitGlow {{ 0%,100%{{filter:brightness(.85)}}50%{{filter:brightness(1.5)}} }}
+.brand-message {{ display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 1.4rem; }}
+.brand-message-head {{ display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:clamp(1.3rem,3vw,2.55rem);font-weight:950;letter-spacing:-.04em;white-space:nowrap; }}
+.brand-message-head svg {{ width:76px;height:76px;flex:none;filter:drop-shadow(0 0 12px #087dff); }}
+.brand-message-head em {{ font-style:normal;background:linear-gradient(90deg,#168bff,#b54cff);color:transparent;background-clip:text; }}
+.brand-slogan {{ color:#72eaff;font-size:clamp(.9rem,2vw,1.4rem);font-weight:750;margin:.2rem 0 1rem; }}
+.brand-divider {{ height:3px;width:70%;background:linear-gradient(90deg,transparent,#9b36ff,#078bff,#20eaff,transparent);box-shadow:0 0 15px #168bff;margin:.4rem auto 1.5rem; }}
+.brand-description {{ color:#e4ecff;font-size:clamp(.9rem,1.4vw,1.12rem);line-height:1.55;max-width:480px;margin-bottom:1.6rem; }}
+.channel-links {{ display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;width:100%; }}
+.channel-pill {{ display:flex;align-items:center;justify-content:center;gap:.55rem;border-radius:17px;padding:.75rem .9rem;min-width:135px;color:white;font-weight:800;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.25); }}
+.channel-pill svg {{ width:30px;height:30px; }}
+.channel-pill.tg {{ background:linear-gradient(135deg,#087de0,#0752b5); }}
+.channel-pill.wa {{ background:linear-gradient(135deg,#08bd62,#087b4c); }}
+.channel-pill.mail {{ background:linear-gradient(135deg,#7428d9,#4106a6); }}
+.brand-bottom {{ position:relative;display:flex;align-items:center;justify-content:space-around;gap:1rem;flex-wrap:wrap;margin-top:1rem;padding:1rem .6rem .2rem; }}
+.brand-bottom-item {{ display:flex;flex-direction:column;align-items:center;gap:.45rem;color:#dce8ff;font-size:.72rem;font-weight:750;min-width:85px; }}
+.brand-bottom-item svg {{ width:62px;height:62px;filter:drop-shadow(0 0 12px rgba(0,137,255,.48)); }}
+.brand-bottom-item .app-tile {{ width:68px;height:68px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#00dfff,#075dff 58%,#8d24ff);box-shadow:0 0 25px rgba(0,130,255,.4); }}
+.brand-bottom-item .app-tile svg {{ width:54px;height:54px; }}
+.brand-bottom-sep {{ height:75px;width:1px;background:rgba(145,180,255,.45); }}
+.metric-card {{ background:#102e58 !important;border:1px solid rgba(45,157,255,.48) !important; }}
+@media(max-width:760px) {{
+ .brand-showcase{{padding:.55rem;border-radius:18px}}
+ .brand-top{{gap:.25rem;padding:.2rem .1rem .65rem}}
+ .brand-top-item svg{{height:68px;width:80px}}
+ .brand-top-item strong{{font-size:.62rem}}
+ .brand-top-item small{{font-size:.48rem;letter-spacing:.08em}}
+ .brand-tag{{font-size:.55rem;padding:.25rem .5rem}}
+ .brand-middle{{grid-template-columns:1fr;min-height:unset}}
+ .holo-visual{{min-height:290px}}
+ .brand-message{{padding:1.3rem .7rem 1.5rem}}
+ .brand-message-head{{font-size:1.5rem}}
+ .brand-message-head svg{{width:55px;height:55px}}
+ .brand-description{{font-size:.9rem}}
+ .channel-links{{gap:.45rem}}
+ .channel-pill{{min-width:0;flex:1;padding:.6rem .45rem;font-size:.72rem;border-radius:12px}}
+ .channel-pill svg{{width:24px;height:24px}}
+ .brand-bottom{{gap:.65rem}}
+ .brand-bottom-item{{min-width:65px;font-size:.62rem}}
+ .brand-bottom-item svg{{width:48px;height:48px}}
+ .brand-bottom-item .app-tile{{width:54px;height:54px}}
+ .brand-bottom-item .app-tile svg{{width:44px;height:44px}}
+ .brand-bottom-sep{{height:50px}}
+}}
 
 </style>
 """, unsafe_allow_html=True)
