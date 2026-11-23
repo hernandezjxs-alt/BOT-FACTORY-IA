@@ -376,3 +376,5 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Se amplió el sistema visual a todas las secciones internas con fondos azul noche, bordes eléctricos, paneles sólidos azul profundo, botones azules y tipografía clara. Se evita usar tarjetas multicolores genéricas; los tres botones de canal conservan sus colores identificativos.
 - Se mantiene responsive para móvil y escritorio. La apariencia final debe validarse en el despliegue real después del redeploy de Streamlit Cloud.
 - Los cambios visuales no modifican el estado de integración funcional: Supabase Auth/RLS, persistencia, correo y WhatsApp siguen pendientes.
+
+- Refinamiento adicional aplicado a la navegación lateral y encabezados de todas las secciones: se eliminan emojis genéricos de la navegación y se utiliza el lenguaje visual hexagonal/azul eléctrico de la marca.
