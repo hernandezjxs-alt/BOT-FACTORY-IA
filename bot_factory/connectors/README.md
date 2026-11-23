@@ -1,4 +1,4 @@
-# Conectores
+# 🔌 Conectores
 
 Cada canal debe implementarse como un módulo independiente.
 
