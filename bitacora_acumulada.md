@@ -402,3 +402,27 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Se incorporaron ajustes responsive y respeto a preferencias de movimiento reducido.
 - Commit app.py: c79100b7d4659fa4e1d9224c7b342924c1a0c926.
 - Pendiente: verificar visualmente el despliegue en Streamlit Cloud y realizar ajustes finales con captura de Android. No declarar igualdad exacta hasta validar.
+
+
+## 2026-11-22 — Modernización integral de navegación y sistema visual
+
+### Diagnóstico
+- Se revisó la versión vigente de app.py y se confirmó que la barra lateral seguía usando una navegación Streamlit estándar con radio sin tratamiento de marca.
+- El CSS acumulaba varias redefiniciones de los mismos selectores, lo que hacía que los estilos fueran difíciles de mantener y provocaba inconsistencias visuales.
+- La portada ya tenía composición holográfica y tarjetas inferiores, pero los elementos internos necesitaban una jerarquía más consistente.
+
+### Cambios publicados
+- Se rediseñó la cabecera de la barra lateral con símbolo hexagonal SVG, nombre de marca y descriptor.
+- Se mejoró la navegación con etiquetas visuales por sección, estado activo azul eléctrico, hover, espaciado y agrupación.
+- Se organizaron preferencias, selector de vista demostrativa y estado de conectores en paneles compactos.
+- Se incorporó un pie de barra lateral de marca.
+- Se añadió una capa final de CSS unificado para normalizar paneles, métricas, encabezados, botones y estados.
+- Se mantuvo el azul eléctrico/cian como paleta principal y el fondo azul noche; las tarjetas métricas se mantienen uniformes.
+- Se conservaron Streamlit/Python y las funciones actuales; no se migró a React ni se cambió la arquitectura.
+
+### Estado y límites
+- Commit app.py: 585ddd42d3a0537512f36da62189a11cb955f445.
+- Publicado en la rama main.
+- El CSS de Streamlit depende de selectores del DOM de Streamlit; el aspecto final debe validarse en el despliegue real.
+- No se ha confirmado visualmente el render en Streamlit Cloud. No afirmar que la interfaz coincide exactamente con la lámina hasta recibir captura de la aplicación.
+- El rediseño es visual: no convierte login/registro, roles ni conectores pendientes en funciones productivas.
