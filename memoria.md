@@ -230,3 +230,11 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Implementación publicada en app.py, rama main, commit: 61ccc9df922f54868050a406751100c60940c926.
 - La identidad se dibuja con SVG/CSS propio; no depende del paquete Lottie de pago ni de imágenes premium externas.
 - Estado de validación: código publicado; pendiente recargar y verificar el render real en Streamlit Cloud, especialmente Android, escritorio y tema claro. No afirmar validación visual hasta recibir confirmación/captura.
+
+
+## Corrección de presentación de canales en portada — 2026-11-22
+- El usuario indicó que el render publicado no se parecía suficientemente a la propuesta aprobada y que los iconos de Telegram y WhatsApp no aparecían con su identidad reconocible.
+- Se reemplazaron los emojis de Telegram, WhatsApp y correo en los nodos flotantes por logotipos SVG inline (Telegram azul, WhatsApp verde y sobre de correo).
+- Se reforzó el estilo de las tarjetas flotantes, sus fondos, bordes y ubicación alrededor del núcleo holográfico para mejorar legibilidad y semejanza con la composición de referencia.
+- Commit app.py: 77c825ee27a788bd45f03a1dd9bc6cc0887899eb.
+- Pendiente: recargar Streamlit Cloud y validar con captura real; el código publicado aún no equivale a validación visual en el navegador.
