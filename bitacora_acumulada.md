@@ -367,3 +367,12 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Se reforzó el fondo azul profundo de la portada y el núcleo hexagonal con iluminación cian/azul.
 - Los iconos de Telegram, WhatsApp y correo están implementados como SVG inline reconocibles; se requiere validación visual en Streamlit Cloud y captura Android para ajustar escala/visibilidad.
 - No afirmar que la interfaz ya coincide con la presentación hasta revisar el despliegue real.
+
+
+## 2026-11-22 — Rediseño integral conforme a la presentación enviada
+- El usuario compartió la lámina visual que considera la propuesta oficial de BOT FACTORY AI y pidió que toda la aplicación, incluidas sus secciones, se parezca a ella.
+- Se identificaron los elementos a reproducir: logo hexagonal, mascota robot, cerebro IA, holograma hexagonal sobre plataforma orbital, frase “Crea. Conecta. Automatiza.”, botones de Telegram/WhatsApp/Email y franja de iconos de aplicación.
+- Se reemplazó la portada genérica por una composición de marca con SVG propios y efectos CSS de iluminación, órbitas y flotación.
+- Se amplió el sistema visual a todas las secciones internas con fondos azul noche, bordes eléctricos, paneles sólidos azul profundo, botones azules y tipografía clara. Se evita usar tarjetas multicolores genéricas; los tres botones de canal conservan sus colores identificativos.
+- Se mantiene responsive para móvil y escritorio. La apariencia final debe validarse en el despliegue real después del redeploy de Streamlit Cloud.
+- Los cambios visuales no modifican el estado de integración funcional: Supabase Auth/RLS, persistencia, correo y WhatsApp siguen pendientes.
