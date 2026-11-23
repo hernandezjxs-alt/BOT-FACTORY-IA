@@ -378,3 +378,14 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - Los cambios visuales no modifican el estado de integración funcional: Supabase Auth/RLS, persistencia, correo y WhatsApp siguen pendientes.
 
 - Refinamiento adicional aplicado a la navegación lateral y encabezados de todas las secciones: se eliminan emojis genéricos de la navegación y se utiliza el lenguaje visual hexagonal/azul eléctrico de la marca.
+
+
+## 2026-11-22 — Segunda revisión visual completa tras feedback del usuario
+- El usuario volvió a señalar diferencias con la lámina: logotipo principal, bloque derecho, robot y tarjetas.
+- Se inspeccionó app.py y se detectó que la mascota era una figura SVG simplificada y que la franja de iconos inferior no tenía tarjetas visuales independientes.
+- Se redibujó la mascota SVG con casco metálico, visor, ojos cian, torso, brazos y emblema hexagonal.
+- Se ampliaron y equilibraron las tres ilustraciones de la cabecera; se mejoró el tamaño y la jerarquía del logo de la zona derecha, la composición del holograma y los botones de Telegram/WhatsApp/Email.
+- Se añadieron tarjetas oscuras individuales a la franja inferior de iconos, con borde azul eléctrico y resplandor cian.
+- Se reforzaron las tarjetas métricas del centro de operaciones y los contenedores de todas las secciones con fondos azules uniformes, bordes luminosos y sombras internas.
+- Ajustes responsive incluidos para móvil.
+- Pendiente: usuario debe compartir captura del nuevo despliegue para validar escalas y recortes. Para alcanzar el aspecto 3D de la lámina se requerirán ilustraciones de alta calidad, ya que los SVG/CSS actuales son aproximaciones vectoriales.
