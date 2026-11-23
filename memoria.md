@@ -246,3 +246,14 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se ajusta app.py para usar azul eléctrico en acentos, portada, núcleo holográfico y tarjetas de métricas uniformes.
 - Los canales se mantienen representados con SVG vectoriales inline para Telegram, WhatsApp y correo; queda pendiente comprobar su apariencia en la captura real de Streamlit Cloud.
 - No se considera validado el resultado hasta que el usuario recargue y comparta una captura.
+
+
+## 2026-11-22 — Rediseño integral basado en la lámina oficial de marca
+- La imagen de referencia enviada por el usuario queda establecida como guía visual principal de BOT FACTORY AI.
+- Elementos de identidad que deben mantenerse: logotipo hexagonal, mascota/asistente robot, cerebro IA, núcleo holográfico sobre plataforma con órbitas, iconos reconocibles de Telegram/WhatsApp/Email, iconos de app/circular/simple/favicon.
+- Paleta: azul eléctrico y cian luminoso dominantes; violeta como acento; fondos azul noche; botones de canales con colores de marca diferenciados (Telegram azul, WhatsApp verde, Email violeta). Las tarjetas funcionales internas deben conservar una base azul uniforme y no usar una paleta multicolor arbitraria.
+- Se reemplazó la portada anterior por una composición de marca con cabecera de tres elementos, panel central dividido entre holograma y mensaje de marca, botones de canales y franja de iconografía.
+- Se añadieron estilos globales de marca para paneles, formularios, botones, métricas y contenedores de las secciones internas.
+- La mascota, el cerebro, el hexágono y los iconos de canales se dibujan como SVG inline; el holograma se anima con CSS. No se trata de una imagen de referencia pegada como captura, sino de componentes web escalables.
+- Pendiente: validar visualmente el despliegue en Streamlit Cloud, especialmente en Android, y corregir recortes/espaciados según captura real.
+- Estado funcional sigue siendo MVP: autenticación, persistencia Supabase y conectores productivos de correo/WhatsApp aún no se consideran implementados por este cambio visual.
