@@ -142,6 +142,91 @@ hr {{ border-color: {border}; }}
   .metric-card, [data-testid="stVerticalBlockBorderWrapper"] {{ transition: none !important; }}
 }}
 
+
+/* BOT FACTORY AI — sistema visual fiel a la presentación de marca */
+.stApp { background:
+ radial-gradient(ellipse at 18% 0%, rgba(0,105,255,.13), transparent 38%),
+ radial-gradient(ellipse at 90% 30%, rgba(105,35,255,.09), transparent 32%),
+ #050b1c; color:#f4f7ff; }
+[data-testid="stSidebar"] { background:linear-gradient(180deg,#08152d,#050b1c); border-right:1px solid rgba(30,130,255,.28); }
+.block-container { max-width:1480px; padding-top:1.25rem; }
+.brandbar { padding: .6rem .2rem 1.3rem; }
+.brandmark { width:54px;height:54px;border-radius:17px;background:linear-gradient(145deg,#00d9ff,#075dff 58%,#8c24ff);box-shadow:0 0 26px rgba(0,144,255,.4); }
+.brandname { letter-spacing:.055em; }
+.brandtag { color:#80eaff !important; }
+[data-testid="stVerticalBlockBorderWrapper"] { background:linear-gradient(145deg,rgba(10,28,61,.96),rgba(7,17,40,.98)); border:1px solid rgba(27,126,255,.35); border-radius:20px; box-shadow:0 10px 35px rgba(0,0,0,.2); }
+[data-testid="stVerticalBlockBorderWrapper"]:hover { border-color:rgba(43,190,255,.72); box-shadow:0 0 24px rgba(0,119,255,.12); }
+[data-testid="stMetric"] { background:#0d2850; border:1px solid rgba(43,157,255,.45); border-radius:17px; }
+div.stButton > button, div.stFormSubmitButton > button { background:linear-gradient(100deg,#087dff,#1454e8); color:#fff; border:1px solid #38baff; box-shadow:0 0 18px rgba(0,126,255,.18); }
+div.stButton > button:hover, div.stFormSubmitButton > button:hover { border-color:#83f5ff; color:white; box-shadow:0 0 25px rgba(0,180,255,.3); }
+div[data-testid="stTabs"] button[aria-selected="true"] { color:#5deaff !important; border-bottom-color:#168bff !important; }
+[data-testid="stRadio"] label, [data-testid="stSelectbox"] label { color:#b9d6ff; }
+h1,h2,h3 { color:#f5f8ff; }
+.brand-showcase { position:relative; overflow:hidden; border:1px solid rgba(24,115,255,.42); border-radius:26px; padding:1.1rem; background:radial-gradient(ellipse at 50% 40%,rgba(0,115,255,.14),transparent 58%),linear-gradient(145deg,#050b1d,#0a1632 58%,#080d24); box-shadow:0 18px 55px rgba(0,0,0,.36),inset 0 0 45px rgba(0,96,255,.07); }
+.brand-showcase:before { content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(50,130,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(50,130,255,.2) 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(black,transparent 92%); }
+.brand-top { position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:center;text-align:center;padding:.2rem .5rem 1rem; }
+.brand-top-item { display:flex;flex-direction:column;align-items:center;gap:.35rem;min-width:0; }
+.brand-top-item svg { width:min(100%,118px);height:110px;filter:drop-shadow(0 0 12px rgba(0,166,255,.55)); }
+.brand-top-item strong { font-size:clamp(.72rem,1.4vw,1.05rem);letter-spacing:.035em;color:#f4f8ff; }
+.brand-top-item small { color:#91a9d1;font-size:.65rem;letter-spacing:.18em; }
+.brand-top-item .ai-word { color:#bd62ff; }
+.brand-tag { border:1px solid rgba(28,132,255,.65);border-radius:99px;padding:.35rem .85rem;color:#dbeaff;font-size:.7rem;margin-top:.25rem; }
+.brand-middle { position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:390px;border:1px solid rgba(34,124,255,.35);border-radius:24px;overflow:hidden;background:linear-gradient(115deg,rgba(4,15,38,.82),rgba(9,20,48,.82)); }
+.holo-visual { position:relative;min-height:390px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,rgba(0,181,255,.3),transparent 52%),linear-gradient(180deg,rgba(0,26,68,.25),rgba(0,7,24,.35)); }
+.holo-beam { position:absolute;bottom:19%;width:42%;height:52%;background:linear-gradient(180deg,transparent,rgba(0,212,255,.22),rgba(0,132,255,.03));clip-path:polygon(39% 0,61% 0,100% 100%,0 100%);filter:blur(7px); }
+.holo-logo { position:relative;z-index:3;width:min(54%,230px);aspect-ratio:1;display:grid;place-items:center;animation:logoHover 4.5s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(0,188,255,.7)); }
+.holo-logo svg { width:100%;height:100%; }
+.holo-orbit { position:absolute;width:84%;height:25%;border:3px solid #078eff;border-radius:50%;transform:rotate(-8deg);box-shadow:0 0 18px #087dff,inset 0 0 15px #087dff;animation:orbitGlow 4s ease-in-out infinite; }
+.holo-orbit.second { width:94%;height:35%;border-color:#8d3bff;transform:rotate(10deg);opacity:.8; }
+.holo-platform { position:absolute;bottom:8%;width:72%;height:18%;border-radius:50%;border:5px solid #168bff;background:radial-gradient(ellipse,#a9fbff 0%,#078bff 18%,#061b4a 56%,#040b1e 70%);box-shadow:0 0 18px #078bff,0 0 50px rgba(0,166,255,.7),inset 0 0 20px #31dfff; }
+.holo-platform:before,.holo-platform:after { content:"";position:absolute;inset:15% 8%;border:2px solid #32dfff;border-radius:50%;box-shadow:0 0 13px #1dbdff; }
+.holo-platform:after { inset:-22% -9%;border-color:#813bff;opacity:.7; }
+@keyframes logoHover { 0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)} }
+@keyframes orbitGlow { 0%,100%{filter:brightness(.85)}50%{filter:brightness(1.5)} }
+.brand-message { display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 1.4rem; }
+.brand-message-head { display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:clamp(1.3rem,3vw,2.55rem);font-weight:950;letter-spacing:-.04em;white-space:nowrap; }
+.brand-message-head svg { width:76px;height:76px;flex:none;filter:drop-shadow(0 0 12px #087dff); }
+.brand-message-head em { font-style:normal;background:linear-gradient(90deg,#168bff,#b54cff);color:transparent;background-clip:text; }
+.brand-slogan { color:#72eaff;font-size:clamp(.9rem,2vw,1.4rem);font-weight:750;margin:.2rem 0 1rem; }
+.brand-divider { height:3px;width:70%;background:linear-gradient(90deg,transparent,#9b36ff,#078bff,#20eaff,transparent);box-shadow:0 0 15px #168bff;margin:.4rem auto 1.5rem; }
+.brand-description { color:#e4ecff;font-size:clamp(.9rem,1.4vw,1.12rem);line-height:1.55;max-width:480px;margin-bottom:1.6rem; }
+.channel-links { display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;width:100%; }
+.channel-pill { display:flex;align-items:center;justify-content:center;gap:.55rem;border-radius:17px;padding:.75rem .9rem;min-width:135px;color:white;font-weight:800;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.25); }
+.channel-pill svg { width:30px;height:30px; }
+.channel-pill.tg { background:linear-gradient(135deg,#087de0,#0752b5); }
+.channel-pill.wa { background:linear-gradient(135deg,#08bd62,#087b4c); }
+.channel-pill.mail { background:linear-gradient(135deg,#7428d9,#4106a6); }
+.brand-bottom { position:relative;display:flex;align-items:center;justify-content:space-around;gap:1rem;flex-wrap:wrap;margin-top:1rem;padding:1rem .6rem .2rem; }
+.brand-bottom-item { display:flex;flex-direction:column;align-items:center;gap:.45rem;color:#dce8ff;font-size:.72rem;font-weight:750;min-width:85px; }
+.brand-bottom-item svg { width:62px;height:62px;filter:drop-shadow(0 0 12px rgba(0,137,255,.48)); }
+.brand-bottom-item .app-tile { width:68px;height:68px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#00dfff,#075dff 58%,#8d24ff);box-shadow:0 0 25px rgba(0,130,255,.4); }
+.brand-bottom-item .app-tile svg { width:54px;height:54px; }
+.brand-bottom-sep { height:75px;width:1px;background:rgba(145,180,255,.45); }
+.metric-card { background:#102e58 !important;border:1px solid rgba(45,157,255,.48) !important; }
+@media(max-width:760px) {
+ .brand-showcase{padding:.55rem;border-radius:18px}
+ .brand-top{gap:.25rem;padding:.2rem .1rem .65rem}
+ .brand-top-item svg{height:68px;width:80px}
+ .brand-top-item strong{font-size:.62rem}
+ .brand-top-item small{font-size:.48rem;letter-spacing:.08em}
+ .brand-tag{font-size:.55rem;padding:.25rem .5rem}
+ .brand-middle{grid-template-columns:1fr;min-height:unset}
+ .holo-visual{min-height:290px}
+ .brand-message{padding:1.3rem .7rem 1.5rem}
+ .brand-message-head{font-size:1.5rem}
+ .brand-message-head svg{width:55px;height:55px}
+ .brand-description{font-size:.9rem}
+ .channel-links{gap:.45rem}
+ .channel-pill{min-width:0;flex:1;padding:.6rem .45rem;font-size:.72rem;border-radius:12px}
+ .channel-pill svg{width:24px;height:24px}
+ .brand-bottom{gap:.65rem}
+ .brand-bottom-item{min-width:65px;font-size:.62rem}
+ .brand-bottom-item svg{width:48px;height:48px}
+ .brand-bottom-item .app-tile{width:54px;height:54px}
+ .brand-bottom-item .app-tile svg{width:44px;height:44px}
+ .brand-bottom-sep{height:50px}
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -215,7 +300,51 @@ if page.startswith("🔐"):
     st.caption("BOT FACTORY AI · Acceso de usuario · Vista de demostración; todavía no autentica ni crea cuentas.")
 
 elif page.startswith("⌂"):
-    st.markdown('<section class="landing"><div class="landing-grid"><div class="landing-copy"><div class="landing-eyebrow"><i class="live-dot"></i> TU CENTRO DE AUTOMATIZACIÓN IA</div><div class="landing-title">Dale vida a tus ideas.<br><span>Automatiza el futuro.</span></div><div class="landing-desc">Diseña bots y agentes inteligentes que conectan conversaciones, procesos y clientes desde una sola plataforma.</div><div class="landing-chips"><span class="landing-chip">✦ Agentes IA</span><span class="landing-chip">↗ Flujos inteligentes</span><span class="landing-chip">⌘ Multi-canal</span></div></div><div class="ai-stage"><div class="orbit"></div><div class="orbit two"></div><div class="holo-ring"></div><div class="holo-ring two"></div><div class="holo-pulse"></div><div class="ai-core"><svg class="holo-svg" viewBox="0 0 220 220" aria-hidden="true"><defs><linearGradient id="hexStroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#42f5ff"/><stop offset=".55" stop-color="#258cff"/><stop offset="1" stop-color="#c36aff"/></linearGradient></defs><path d="M55 18h110l48 92-48 92H55L7 110z" fill="none" stroke="url(#hexStroke)" stroke-width="7" stroke-linejoin="round"/><path d="M110 48v27M61 139l25-15m73 15-25-15M110 172v-27" stroke="#61eaff" stroke-width="7" stroke-linecap="round"/><path d="M110 75l34 20v40l-34 20-34-20V95z" fill="#102b59" stroke="#5cecff" stroke-width="6"/><path d="M110 88l22 13v27l-22 13-22-13v-27z" fill="#20bde8" opacity=".78"/><circle cx="110" cy="38" r="9" fill="#65f4ff"/><circle cx="49" cy="146" r="9" fill="#65f4ff"/><circle cx="171" cy="146" r="9" fill="#bb75ff"/></svg></div><div class="orbit-node node-telegram"><span class="channel-icon"><svg viewBox="0 0 24 24" aria-label="Telegram"><path fill="#35BDF5" d="M21.7 4.4 18.5 20c-.24 1.1-.88 1.36-1.78.85l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-5.01 9.12-8.24c.4-.35-.09-.55-.62-.2L6.03 13.7l-4.82-1.5c-1.05-.33-1.07-1.05.22-1.56L20.3 3.22c.87-.32 1.63.21 1.4 1.18Z"/></svg></span><span class="channel-name">Telegram</span></div><div class="orbit-node node-email"><span class="channel-icon"><svg viewBox="0 0 24 24" aria-label="Correo"><rect x="2.5" y="4.5" width="19" height="15" rx="3" fill="none" stroke="#AFCBFF" stroke-width="1.8"/><path d="m4 6 8 6.5L20 6" fill="none" stroke="#AFCBFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="channel-name">Email</span></div><div class="orbit-node node-whatsapp"><span class="channel-icon"><svg viewBox="0 0 24 24" aria-label="WhatsApp"><path fill="#25D366" d="M12.04 2a9.8 9.8 0 0 0-8.42 14.82L2.3 22l5.3-1.39A9.98 9.98 0 1 0 12.04 2Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.15.83.84-3.07-.2-.32A8.12 8.12 0 1 1 12.04 20.1Zm4.46-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.15 1.51.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg></span><span class="channel-name">WhatsApp</span></div></div></div><div class="landing-foot"><span><strong>01</strong> · Diseña</span><span><strong>02</strong> · Conecta</span><span><strong>03</strong> · Automatiza</span><span>Una fábrica. Infinitas posibilidades.</span></div></section>', unsafe_allow_html=True)
+    st.markdown("""
+    <section class="brand-showcase">
+      <div class="brand-top">
+        <div class="brand-top-item">
+          <svg viewBox="0 0 120 120" aria-label="Logotipo BOT FACTORY AI"><defs><linearGradient id="brandHex" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31f5ff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#a52cff"/></linearGradient></defs><path d="M35 5h50l30 55-30 55H35L5 60z" fill="none" stroke="url(#brandHex)" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/><path d="M60 50l11 7v13L60 77 49 70V57z" fill="#16cfff"/></svg>
+          <strong>BOT FACTORY <span class="ai-word">AI</span></strong><small>AUTOMATION INTELLIGENCE</small><span class="brand-tag">Logo principal</span>
+        </div>
+        <div class="brand-top-item">
+          <svg viewBox="0 0 140 120" aria-label="Mascota asistente IA"><defs><linearGradient id="botMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#7ccfff"/><stop offset="1" stop-color="#1557b7"/></linearGradient></defs><ellipse cx="70" cy="111" rx="47" ry="7" fill="#078bff" opacity=".5"/><path d="M25 51Q18 5 70 5t45 46" fill="none" stroke="#28dfff" stroke-width="5"/><rect x="19" y="27" width="18" height="38" rx="8" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><rect x="103" y="27" width="18" height="38" rx="8" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><rect x="31" y="12" width="78" height="67" rx="25" fill="url(#botMetal)" stroke="#2bdcff" stroke-width="3"/><rect x="39" y="22" width="62" height="43" rx="19" fill="#020b22" stroke="#0b5cb8" stroke-width="2"/><path d="M51 43q7-12 14 0M77 43q7-12 14 0" fill="none" stroke="#00eaff" stroke-width="5" stroke-linecap="round"/><path d="M47 78q23-12 46 0l12 35H35z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><path d="M70 82l13 8v15l-13 8-13-8V90z" fill="#07316a" stroke="#27eaff" stroke-width="3"/><path d="M19 82q-8 0-8 10v13q0 8 9 8h17V93q0-11-10-11z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><path d="M110 82q8 0 8 10v13q0 8-9 8H92V93q0-11 10-11z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/></svg>
+          <strong>ASISTENTE IA</strong><small>CREA · CONECTA · AUTOMATIZA</small><span class="brand-tag">Mascota / Asistente</span>
+        </div>
+        <div class="brand-top-item">
+          <svg viewBox="0 0 120 120" aria-label="Cerebro IA"><defs><linearGradient id="brainStroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19efff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#bc39ff"/></linearGradient></defs><path d="M59 18C42 2 22 15 25 33 7 34 8 57 20 63 8 80 24 99 42 91c7 17 24 12 18-4V18zm2 0c17-16 37-3 34 15 18 1 17 24 5 30 12 17-4 36-22 28-7 17-24 12-18-4V18z" fill="none" stroke="url(#brainStroke)" stroke-width="5"/><path d="M60 15v88M34 29l15 13m-28 19 26 2M37 83l15-14m34-40L71 42m28 19-26 2m14 20L71 69" stroke="#36dcff" stroke-width="3" fill="none"/><g fill="#d6fbff" stroke="#16bfff" stroke-width="2"><circle cx="34" cy="29" r="5"/><circle cx="21" cy="61" r="5"/><circle cx="37" cy="83" r="5"/><circle cx="86" cy="29" r="5"/><circle cx="99" cy="61" r="5"/><circle cx="86" cy="83" r="5"/></g></svg>
+          <strong>BOT FACTORY <span class="ai-word">AI</span></strong><small>INTELIGENCIA ARTIFICIAL</small><span class="brand-tag">Cerebro IA</span>
+        </div>
+      </div>
+      <div class="brand-middle">
+        <div class="holo-visual">
+          <div class="holo-beam"></div><div class="holo-orbit"></div><div class="holo-orbit second"></div>
+          <div class="holo-logo"><svg viewBox="0 0 120 120" aria-label="Símbolo holográfico BOT FACTORY"><defs><linearGradient id="holoHex" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27f4ff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#ad2cff"/></linearGradient></defs><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="url(#holoHex)" stroke-width="9"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/><path d="M60 50l11 7v13L60 77 49 70V57z" fill="#16cfff"/></svg></div>
+          <div class="holo-platform"></div>
+        </div>
+        <div class="brand-message">
+          <div class="brand-message-head"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#08234e" stroke="#168bff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg><span>BOT FACTORY <em>AI</em></span></div>
+          <div class="brand-slogan">Crea. Conecta. Automatiza.</div><div class="brand-divider"></div>
+          <div class="brand-description">Una plataforma para crear agentes inteligentes y conectar todos tus canales.</div>
+          <div class="channel-links">
+            <div class="channel-pill tg"><svg viewBox="0 0 24 24" aria-label="Telegram"><path fill="white" d="M21.7 4.4 18.5 20c-.24 1.1-.88 1.36-1.78.85l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-5.01 9.12-8.24c.4-.35-.09-.55-.62-.2L6.03 13.7l-4.82-1.5c-1.05-.33-1.07-1.05.22-1.56L20.3 3.22c.87-.32 1.63.21 1.4 1.18Z"/></svg>Telegram</div>
+            <div class="channel-pill wa"><svg viewBox="0 0 24 24" aria-label="WhatsApp"><path fill="white" d="M12.04 2a9.8 9.8 0 0 0-8.42 14.82L2.3 22l5.3-1.39A9.98 9.98 0 1 0 12.04 2Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.15.83.84-3.07-.2-.32A8.12 8.12 0 1 1 12.04 20.1Zm4.46-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.15 1.51.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>WhatsApp</div>
+            <div class="channel-pill mail"><svg viewBox="0 0 24 24" aria-label="Email"><path fill="white" d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2 .1v.2l8 6.2 8-6.2v-.2H4Zm16 2.7-7.4 5.7a1 1 0 0 1-1.2 0L4 8.3v10.2c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5V8.3Z"/></svg>Email</div>
+          </div>
+        </div>
+      </div>
+      <div class="brand-bottom">
+        <div class="brand-bottom-item"><div class="app-tile"><svg viewBox="0 0 120 120"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="#8ceeff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg></div>Icono App</div>
+        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#071b3e" stroke="#19dfff" stroke-width="6"/><path d="M50 17 78 33v34L50 83 22 67V33z" fill="#0a2c62" stroke="#168bff" stroke-width="5"/><path d="M50 28v14M32 62l12-7m24 7-12-7M50 76V62" stroke="#5cecff" stroke-width="4"/><path d="M50 42l13 8v15L50 73l-13-8V50z" fill="#087dff" stroke="#6ef6ff" stroke-width="3"/></svg>Icono Circular</div>
+        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><path d="M28 5h44l23 45-23 45H28L5 50z" fill="#071b3e" stroke="#22dfff" stroke-width="6"/><path d="M50 22v13M31 60l12-7m26 7-12-7M50 78V63" stroke="#5cecff" stroke-width="4"/><path d="M50 35l14 8v16L50 67l-14-8V43z" fill="#087dff" stroke="#6ef6ff" stroke-width="3"/></svg>Icono Simple</div>
+        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#087fe4"/><path fill="white" d="M79 25 67 77c-.8 3.5-2.8 4.3-5.7 2.7L46.5 68.9l-7.6 7.3c-.8.8-1.5 1.5-3.1 1.5l1.1-16 29.2-26.4c1.3-1.1-.3-1.8-2-.6L33 54.8l-15.4-4.8c-3.4-1.1-3.4-3.4.7-5L74.5 20.9c2.8-1 5.2.7 4.5 4.1Z"/></svg>Telegram</div>
+        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#08b85c"/><path d="M72 69 61 64c-10 8-26-7-19-18l-5-10-9 3c-5 24 30 53 51 34z" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/><path d="M50 12a38 38 0 0 0-33 57l-5 18 18-5A38 38 0 1 0 50 12z" fill="none" stroke="white" stroke-width="5"/></svg>WhatsApp</div>
+        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#651be7"/><rect x="20" y="30" width="60" height="42" rx="5" fill="none" stroke="white" stroke-width="6"/><path d="m22 33 28 22 28-22" fill="none" stroke="white" stroke-width="6"/></svg>Email</div>
+        <div class="brand-bottom-sep"></div>
+        <div class="brand-bottom-item"><div class="app-tile"><svg viewBox="0 0 120 120"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="#8ceeff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg></div>Favicon</div>
+      </div>
+    </section>
+    """, unsafe_allow_html=True)
     st.markdown("### Tu centro de operaciones")
     st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
     cols = st.columns(4)
