@@ -430,6 +430,120 @@ div.stButton > button:hover,div.stFormSubmitButton > button:hover { transform:tr
 """, unsafe_allow_html=True)
 
 
+st.markdown("""
+<style>
+/* BOT FACTORY AI — corrección de jerarquía visual y navegación */
+[data-testid="stSidebar"] {
+  width: 258px !important;
+  background: #071329 !important;
+  border-right: 1px solid rgba(55,145,255,.2) !important;
+}
+[data-testid="stSidebar"] > div { padding: 1rem .72rem !important; }
+.sidebar-brand { gap:.58rem !important; padding:.35rem .15rem 1rem !important; }
+.sidebar-brand-mark { width:38px !important; height:38px !important; border-radius:12px !important; }
+.sidebar-brand-mark svg { width:29px !important; height:29px !important; }
+.sidebar-brand-name { font-size:.78rem !important; letter-spacing:.025em !important; }
+.sidebar-brand-caption { font-size:.47rem !important; letter-spacing:.11em !important; }
+.sidebar-kicker { font-size:.56rem !important; padding:.72rem .38rem .34rem !important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] { gap:.2rem !important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label {
+  min-height:37px !important; padding:.42rem .58rem !important; border-radius:9px !important;
+  margin:0 !important; transform:none !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label p {
+  font-size:.76rem !important; font-weight:650 !important; letter-spacing:0 !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label:has(input:checked) {
+  background:rgba(13,119,255,.17) !important; border-color:rgba(44,160,255,.34) !important;
+  box-shadow:inset 2px 0 0 #168bff !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label:hover {
+  transform:none !important; background:rgba(18,86,158,.18) !important;
+}
+.sidebar-status { padding:.65rem .68rem !important; margin-top:.8rem !important; border-radius:11px !important; }
+.sidebar-status-row { font-size:.66rem !important; }
+.sidebar-footer { margin-top:.7rem !important; padding:.65rem .25rem .1rem !important; }
+.sidebar-footer-mark { font-size:1.1rem !important; }
+
+/* Portada: composición equilibrada, sin la fila decorativa de iconos */
+.bf-hero {
+  position:relative; display:grid; grid-template-columns:1.08fr .92fr; align-items:center;
+  gap:1rem; min-height:370px; padding:clamp(1.4rem,3vw,2.8rem);
+  overflow:hidden; border-radius:24px; border:1px solid rgba(35,137,255,.34);
+  background:radial-gradient(ellipse at 76% 50%,rgba(0,130,255,.16),transparent 38%),linear-gradient(125deg,#07152d,#0a1d3b 58%,#08152c);
+  box-shadow:0 18px 46px rgba(0,0,0,.22);
+}
+.bf-hero:before { content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+  background-image:linear-gradient(rgba(125,169,230,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(125,169,230,.1) 1px,transparent 1px);background-size:32px 32px; }
+.bf-hero-copy { position:relative;z-index:2;max-width:620px; }
+.bf-eyebrow { display:inline-flex;align-items:center;gap:.48rem;color:#9bcfff;font-size:.63rem;font-weight:850;letter-spacing:.12em; }
+.bf-eyebrow span,.bf-robot-caption span { width:7px;height:7px;border-radius:50%;background:#42dfb6;box-shadow:0 0 10px #42dfb6; }
+.bf-hero h1 { margin:.9rem 0 .75rem;font-size:clamp(2.2rem,4vw,3.65rem);line-height:1.02;letter-spacing:-.055em;font-weight:900;color:#f5f8ff; }
+.bf-hero h1 em { font-style:normal;color:#42cfff; }
+.bf-hero-copy p { max-width:520px;color:#b6c8e3;font-size:.96rem;line-height:1.65; }
+.bf-hero-actions { display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem; }
+.bf-hero-chip { padding:.48rem .65rem;border:1px solid rgba(127,172,231,.2);border-radius:9px;background:rgba(255,255,255,.045);color:#dceaff;font-size:.7rem;font-weight:650; }
+.bf-hero-chip b { color:#45d9ff;margin-right:.35rem;font-size:.64rem; }
+.bf-hero-visual { position:relative;min-height:300px;display:grid;place-items:center;overflow:hidden; }
+.bf-robot-glow { position:absolute;width:210px;height:210px;border-radius:50%;background:rgba(0,152,255,.2);filter:blur(36px); }
+.bf-robot { position:relative;z-index:2;width:min(64%,205px);filter:drop-shadow(0 12px 25px rgba(0,130,255,.32));animation:bfRobotFloat 5s ease-in-out infinite; }
+.bf-robot svg { width:100%;height:auto;display:block; }
+.bf-robot-orbit { position:absolute;width:88%;height:34%;border:1px solid rgba(42,201,255,.42);border-radius:50%;transform:rotate(-18deg);box-shadow:0 0 17px rgba(0,146,255,.18); }
+.bf-robot-orbit.second { width:96%;height:42%;transform:rotate(24deg);border-color:rgba(126,83,255,.38); }
+.bf-robot-caption { position:absolute;bottom:2%;z-index:3;display:flex;align-items:center;gap:.45rem;padding:.4rem .7rem;border:1px solid rgba(80,164,255,.25);border-radius:99px;background:rgba(5,18,40,.86);color:#b9d5f7;font-size:.58rem;font-weight:800;letter-spacing:.1em; }
+@keyframes bfRobotFloat { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+.bf-section-intro { display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1.45rem 0 .85rem; }
+.bf-section-intro h2 { margin:0;color:#f3f7ff;font-size:1.25rem;font-weight:850; }
+.bf-section-intro p { margin:.18rem 0 0;color:#8fa9cc;font-size:.75rem; }
+.bf-session-tag { color:#8eb9e9;border:1px solid rgba(54,145,255,.24);border-radius:99px;padding:.34rem .58rem;font-size:.55rem;font-weight:800;letter-spacing:.09em; }
+.metric-card { min-height:122px !important;padding:.82rem .92rem !important;border-radius:15px !important;background:linear-gradient(145deg,#10396b,#0a2347) !important; }
+.metric-icon { font-size:1rem !important;line-height:1.1 !important;margin-bottom:.35rem !important;color:#64ddff !important; }
+.metric-label { font-size:.72rem !important; }
+.metric-value { font-size:1.72rem !important;margin-top:.16rem !important; }
+.section-heading { gap:.62rem !important;margin:.25rem 0 .85rem !important;padding-bottom:.65rem !important; }
+.section-hex { width:32px !important;height:32px !important;border-radius:9px !important;font-size:1.25rem !important; }
+.section-title { font-size:1.05rem !important; }
+.section-subtitle { font-size:.7rem !important; }
+.bf-connector-list { display:flex;flex-direction:column;gap:.35rem; }
+.bf-connector-row { display:flex;align-items:center;gap:.65rem;padding:.62rem .1rem;border-bottom:1px solid rgba(96,151,216,.12); }
+.bf-connector-row:last-child { border-bottom:0; }
+.bf-connector-icon,.bf-provider-icon { width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;font-size:1rem;font-weight:800;color:#fff; }
+.bf-connector-icon.telegram { background:#087bc9; }
+.bf-connector-icon.email { background:#6042c4; }
+.bf-connector-icon.whatsapp { background:#087d55; }
+.bf-connector-copy { min-width:0;display:flex;flex-direction:column;gap:.13rem; }
+.bf-connector-copy strong,.bf-provider-row strong { color:#eef5ff;font-size:.77rem; }
+.bf-connector-copy small,.bf-provider-row small { color:#8fa9cc;font-size:.64rem;line-height:1.35; }
+.bf-state { margin-left:auto;white-space:nowrap;border-radius:99px;padding:.24rem .43rem;font-size:.55rem;font-weight:800; }
+.bf-state.ready { color:#71e4c0;background:rgba(40,194,143,.1);border:1px solid rgba(40,194,143,.22); }
+.bf-state.pending { color:#e6c27c;background:rgba(210,158,55,.1);border:1px solid rgba(210,158,55,.2); }
+.bf-provider-row { display:flex;align-items:center;gap:.65rem; }
+.bf-provider-icon { background:#173d77;color:#65dfff;font-size:1.15rem; }
+.bf-provider-row > div:last-child { display:flex;flex-direction:column;gap:.16rem; }
+@media(max-width:900px) {
+  .bf-hero { grid-template-columns:1fr .72fr;min-height:330px;padding:1.25rem; }
+  .bf-robot { width:min(75%,180px); }
+}
+@media(max-width:680px) {
+  [data-testid="stSidebar"] { width:100% !important; }
+  .bf-hero { grid-template-columns:1fr;gap:.2rem;min-height:unset;padding:1.25rem 1.1rem 1rem; }
+  .bf-hero-copy { text-align:center;margin:auto; }
+  .bf-eyebrow { justify-content:center;font-size:.54rem; }
+  .bf-hero h1 { font-size:2.15rem; }
+  .bf-hero-copy p { font-size:.84rem;margin:.5rem auto; }
+  .bf-hero-actions { justify-content:center; }
+  .bf-hero-visual { min-height:210px; }
+  .bf-robot { width:135px; }
+  .bf-robot-caption { bottom:0; }
+  .bf-section-intro { align-items:flex-start; }
+  .metric-card { min-height:112px !important; }
+  .bf-connector-copy small { font-size:.6rem; }
+}
+@media(prefers-reduced-motion:reduce) { .bf-robot { animation:none !important; } }
+</style>
+""", unsafe_allow_html=True)
+
+
 def metric_card(label, value, icon, note, palette):
     # Todas las tarjetas comparten el azul eléctrico de la marca.
     st.markdown(
@@ -464,14 +578,14 @@ with st.sidebar:
     nav_options = ["INICIO", "ACCESO DE USUARIO", "BOTS", "AGENTES IA", "CANALES", "PLANTILLAS", "PLANES Y SERVICIOS", "ADMINISTRACIÓN", "CONFIGURACIÓN"]
     nav_labels = {
         "INICIO": "⌂   Inicio",
-        "ACCESO DE USUARIO": "◉   Acceso de usuario",
-        "BOTS": "▣   Mis bots",
-        "AGENTES IA": "✧   Agentes IA",
-        "CANALES": "⇄   Canales",
-        "PLANTILLAS": "▤   Plantillas",
-        "PLANES Y SERVICIOS": "◇   Planes y servicios",
+        "ACCESO DE USUARIO": "◎   Acceso de usuario",
+        "BOTS": "▦   Mis bots",
+        "AGENTES IA": "✳   Agentes IA",
+        "CANALES": "↔   Canales",
+        "PLANTILLAS": "▧   Plantillas",
+        "PLANES Y SERVICIOS": "◈   Planes y servicios",
         "ADMINISTRACIÓN": "⚙   Administración",
-        "CONFIGURACIÓN": "☷   Configuración",
+        "CONFIGURACIÓN": "☰   Configuración",
     }
     page = st.radio("NAVEGACIÓN", nav_options, format_func=lambda item: nav_labels[item], label_visibility="collapsed", key="main_navigation")
     st.markdown('<div class="sidebar-divider"></div><div class="sidebar-kicker">PREFERENCIAS</div>', unsafe_allow_html=True)
@@ -530,83 +644,72 @@ if page.startswith("ACCESO"):
 
 elif page.startswith("INICIO"):
     st.markdown("""
-    <section class="brand-showcase">
-      <div class="brand-top">
-        <div class="brand-top-item">
-          <svg viewBox="0 0 120 120" aria-label="Logotipo BOT FACTORY AI"><defs><linearGradient id="brandHex" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31f5ff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#a52cff"/></linearGradient></defs><path d="M35 5h50l30 55-30 55H35L5 60z" fill="none" stroke="url(#brandHex)" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/><path d="M60 50l11 7v13L60 77 49 70V57z" fill="#16cfff"/></svg>
-          <strong>BOT FACTORY <span class="ai-word">AI</span></strong><small>AUTOMATION INTELLIGENCE</small><span class="brand-tag">Logo principal</span>
-        </div>
-        <div class="brand-top-item">
-          <svg viewBox="0 0 180 160" aria-label="Mascota robot BOT FACTORY AI"><defs><linearGradient id="botShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".28" stop-color="#c9f2ff"/><stop offset=".62" stop-color="#5ba9ed"/><stop offset="1" stop-color="#123e91"/></linearGradient><linearGradient id="botFace" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#07142f"/><stop offset="1" stop-color="#020817"/></linearGradient><linearGradient id="botBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#50f7ff"/><stop offset=".5" stop-color="#078bff"/><stop offset="1" stop-color="#722bff"/></linearGradient><filter id="botGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><ellipse cx="91" cy="151" rx="56" ry="7" fill="#087dff" opacity=".45"/><path d="M44 50C35 8 63 3 91 3s55 8 47 48" fill="none" stroke="url(#botBlue)" stroke-width="7" stroke-linecap="round"/><circle cx="91" cy="5" r="5" fill="#6efaff" filter="url(#botGlow)"/><path d="M44 33Q28 32 28 53v23q0 13 15 13h8V33zM138 33q15-1 15 20v23q0 13-15 13h-8V33z" fill="url(#botShell)" stroke="#178fff" stroke-width="3"/><circle cx="36" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><circle cx="146" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><rect x="43" y="14" width="96" height="82" rx="34" fill="url(#botShell)" stroke="#56eaff" stroke-width="3"/><rect x="52" y="25" width="78" height="58" rx="26" fill="url(#botFace)" stroke="#267dcb" stroke-width="2"/><path d="M68 54q8-16 17 0M99 54q8-16 17 0" fill="none" stroke="#00edff" stroke-width="7" stroke-linecap="round" filter="url(#botGlow)"/><path d="M55 94q35-17 71 0l21 57H35z" fill="url(#botShell)" stroke="#258fff" stroke-width="3"/><path d="M91 101l20 12v24l-20 12-20-12v-24z" fill="#08285c" stroke="#35edff" stroke-width="4"/><path d="M91 109l12 7v14l-12 7-12-7v-14z" fill="#087dff" stroke="#a6faff" stroke-width="2"/><path d="M40 102q-17-8-21 8l-5 17q-2 11 9 15l24 6 12-25q5-13-8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M136 103q17-8 21 8l5 17q2 11-9 15l-24 6-12-25q-5-13 8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M15 123q-3 8 4 13l20 8 7-14-19-13q-8-4-12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/><path d="M164 123q3 8-4 13l-20 8-7-14 19-13q8-4 12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/></svg>
-          <strong>ASISTENTE IA</strong><small>CREA · CONECTA · AUTOMATIZA</small><span class="brand-tag">Mascota / Asistente</span>
-        </div>
-        <div class="brand-top-item">
-          <svg viewBox="0 0 120 120" aria-label="Cerebro IA"><defs><linearGradient id="brainStroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19efff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#bc39ff"/></linearGradient></defs><path d="M59 18C42 2 22 15 25 33 7 34 8 57 20 63 8 80 24 99 42 91c7 17 24 12 18-4V18zm2 0c17-16 37-3 34 15 18 1 17 24 5 30 12 17-4 36-22 28-7 17-24 12-18-4V18z" fill="none" stroke="url(#brainStroke)" stroke-width="5"/><path d="M60 15v88M34 29l15 13m-28 19 26 2M37 83l15-14m34-40L71 42m28 19-26 2m14 20L71 69" stroke="#36dcff" stroke-width="3" fill="none"/><g fill="#d6fbff" stroke="#16bfff" stroke-width="2"><circle cx="34" cy="29" r="5"/><circle cx="21" cy="61" r="5"/><circle cx="37" cy="83" r="5"/><circle cx="86" cy="29" r="5"/><circle cx="99" cy="61" r="5"/><circle cx="86" cy="83" r="5"/></g></svg>
-          <strong>BOT FACTORY <span class="ai-word">AI</span></strong><small>INTELIGENCIA ARTIFICIAL</small><span class="brand-tag">Cerebro IA</span>
+    <section class="bf-hero">
+      <div class="bf-hero-copy">
+        <div class="bf-eyebrow"><span></span> PLATAFORMA DE AUTOMATIZACIÓN INTELIGENTE</div>
+        <h1>Tu fábrica de<br><em>bots inteligentes.</em></h1>
+        <p>Crea, conecta y administra asistentes de IA para Telegram, correo electrónico y WhatsApp desde un solo espacio de trabajo.</p>
+        <div class="bf-hero-actions">
+          <div class="bf-hero-chip"><b>01</b> Diseña agentes</div>
+          <div class="bf-hero-chip"><b>02</b> Conecta canales</div>
+          <div class="bf-hero-chip"><b>03</b> Automatiza tareas</div>
         </div>
       </div>
-      <div class="brand-middle">
-        <div class="holo-visual">
-          <div class="holo-beam"></div><div class="holo-orbit"></div><div class="holo-orbit second"></div>
-          <div class="holo-logo"><svg viewBox="0 0 120 120" aria-label="Símbolo holográfico BOT FACTORY"><defs><linearGradient id="holoHex" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27f4ff"/><stop offset=".55" stop-color="#087dff"/><stop offset="1" stop-color="#ad2cff"/></linearGradient></defs><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="url(#holoHex)" stroke-width="9"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/><path d="M60 50l11 7v13L60 77 49 70V57z" fill="#16cfff"/></svg></div>
-          <div class="holo-platform"></div>
-        </div>
-        <div class="brand-message">
-          <div class="brand-message-head"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#08234e" stroke="#168bff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg><span>BOT FACTORY <em>AI</em></span></div>
-          <div class="brand-slogan">Crea. Conecta. Automatiza.</div><div class="brand-divider"></div>
-          <div class="brand-description">Una plataforma para crear agentes inteligentes y conectar todos tus canales.</div>
-          <div class="channel-links">
-            <div class="channel-pill tg"><svg viewBox="0 0 24 24" aria-label="Telegram"><path fill="white" d="M21.7 4.4 18.5 20c-.24 1.1-.88 1.36-1.78.85l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.98.48l.35-5.01 9.12-8.24c.4-.35-.09-.55-.62-.2L6.03 13.7l-4.82-1.5c-1.05-.33-1.07-1.05.22-1.56L20.3 3.22c.87-.32 1.63.21 1.4 1.18Z"/></svg>Telegram</div>
-            <div class="channel-pill wa"><svg viewBox="0 0 24 24" aria-label="WhatsApp"><path fill="white" d="M12.04 2a9.8 9.8 0 0 0-8.42 14.82L2.3 22l5.3-1.39A9.98 9.98 0 1 0 12.04 2Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.15.83.84-3.07-.2-.32A8.12 8.12 0 1 1 12.04 20.1Zm4.46-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.15 1.51.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>WhatsApp</div>
-            <div class="channel-pill mail"><svg viewBox="0 0 24 24" aria-label="Email"><path fill="white" d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2 .1v.2l8 6.2 8-6.2v-.2H4Zm16 2.7-7.4 5.7a1 1 0 0 1-1.2 0L4 8.3v10.2c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5V8.3Z"/></svg>Email</div>
-          </div>
-        </div>
-      </div>
-      <div class="brand-bottom">
-        <div class="brand-bottom-item"><div class="app-tile"><svg viewBox="0 0 120 120"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="#8ceeff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg></div>Icono App</div>
-        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#071b3e" stroke="#19dfff" stroke-width="6"/><path d="M50 17 78 33v34L50 83 22 67V33z" fill="#0a2c62" stroke="#168bff" stroke-width="5"/><path d="M50 28v14M32 62l12-7m24 7-12-7M50 76V62" stroke="#5cecff" stroke-width="4"/><path d="M50 42l13 8v15L50 73l-13-8V50z" fill="#087dff" stroke="#6ef6ff" stroke-width="3"/></svg>Icono Circular</div>
-        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><path d="M28 5h44l23 45-23 45H28L5 50z" fill="#071b3e" stroke="#22dfff" stroke-width="6"/><path d="M50 22v13M31 60l12-7m26 7-12-7M50 78V63" stroke="#5cecff" stroke-width="4"/><path d="M50 35l14 8v16L50 67l-14-8V43z" fill="#087dff" stroke="#6ef6ff" stroke-width="3"/></svg>Icono Simple</div>
-        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#087fe4"/><path fill="white" d="M79 25 67 77c-.8 3.5-2.8 4.3-5.7 2.7L46.5 68.9l-7.6 7.3c-.8.8-1.5 1.5-3.1 1.5l1.1-16 29.2-26.4c1.3-1.1-.3-1.8-2-.6L33 54.8l-15.4-4.8c-3.4-1.1-3.4-3.4.7-5L74.5 20.9c2.8-1 5.2.7 4.5 4.1Z"/></svg>Telegram</div>
-        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#08b85c"/><path d="M72 69 61 64c-10 8-26-7-19-18l-5-10-9 3c-5 24 30 53 51 34z" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/><path d="M50 12a38 38 0 0 0-33 57l-5 18 18-5A38 38 0 1 0 50 12z" fill="none" stroke="white" stroke-width="5"/></svg>WhatsApp</div>
-        <div class="brand-bottom-item"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#651be7"/><rect x="20" y="30" width="60" height="42" rx="5" fill="none" stroke="white" stroke-width="6"/><path d="m22 33 28 22 28-22" fill="none" stroke="white" stroke-width="6"/></svg>Email</div>
-        <div class="brand-bottom-sep"></div>
-        <div class="brand-bottom-item"><div class="app-tile"><svg viewBox="0 0 120 120"><path d="M35 5h50l30 55-30 55H35L5 60z" fill="#071d4a" stroke="#8ceeff" stroke-width="8"/><path d="M60 25v17M34 72l15-9m37 9-15-9M60 95V78" stroke="#65f5ff" stroke-width="6" stroke-linecap="round"/><path d="M60 42l19 11v22L60 86 41 75V53z" fill="#092d64" stroke="#52eaff" stroke-width="5"/></svg></div>Favicon</div>
+      <div class="bf-hero-visual">
+        <div class="bf-robot-orbit"></div><div class="bf-robot-orbit second"></div>
+        <div class="bf-robot-glow"></div>
+        <div class="bf-robot"><svg viewBox="0 0 180 160" aria-label="Mascota robot BOT FACTORY AI"><defs><linearGradient id="botShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".28" stop-color="#c9f2ff"/><stop offset=".62" stop-color="#5ba9ed"/><stop offset="1" stop-color="#123e91"/></linearGradient><linearGradient id="botFace" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#07142f"/><stop offset="1" stop-color="#020817"/></linearGradient><linearGradient id="botBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#50f7ff"/><stop offset=".5" stop-color="#078bff"/><stop offset="1" stop-color="#722bff"/></linearGradient><filter id="botGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><ellipse cx="91" cy="151" rx="56" ry="7" fill="#087dff" opacity=".45"/><path d="M44 50C35 8 63 3 91 3s55 8 47 48" fill="none" stroke="url(#botBlue)" stroke-width="7" stroke-linecap="round"/><circle cx="91" cy="5" r="5" fill="#6efaff" filter="url(#botGlow)"/><path d="M44 33Q28 32 28 53v23q0 13 15 13h8V33zM138 33q15-1 15 20v23q0 13-15 13h-8V33z" fill="url(#botShell)" stroke="#178fff" stroke-width="3"/><circle cx="36" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><circle cx="146" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><rect x="43" y="14" width="96" height="82" rx="34" fill="url(#botShell)" stroke="#56eaff" stroke-width="3"/><rect x="52" y="25" width="78" height="58" rx="26" fill="url(#botFace)" stroke="#267dcb" stroke-width="2"/><path d="M68 54q8-16 17 0M99 54q8-16 17 0" fill="none" stroke="#00edff" stroke-width="7" stroke-linecap="round" filter="url(#botGlow)"/><path d="M55 94q35-17 71 0l21 57H35z" fill="url(#botShell)" stroke="#258fff" stroke-width="3"/><path d="M91 101l20 12v24l-20 12-20-12v-24z" fill="#08285c" stroke="#35edff" stroke-width="4"/><path d="M91 109l12 7v14l-12 7-12-7v-14z" fill="#087dff" stroke="#a6faff" stroke-width="2"/><path d="M40 102q-17-8-21 8l-5 17q-2 11 9 15l24 6 12-25q5-13-8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M136 103q17-8 21 8l5 17q2 11-9 15l-24 6-12-25q-5-13 8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M15 123q-3 8 4 13l20 8 7-14-19-13q-8-4-12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/><path d="M164 123q3 8-4 13l-20 8-7-14 19-13q8-4 12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/></svg></div>
+        <div class="bf-robot-caption"><span></span> ASISTENTE BOT FACTORY AI</div>
       </div>
     </section>
     """, unsafe_allow_html=True)
-    st.markdown("### Tu centro de operaciones")
-    st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
+
+    st.markdown('<div class="bf-section-intro"><div><h2>Centro de operaciones</h2><p>Resumen de tu espacio de trabajo y actividad reciente.</p></div><span class="bf-session-tag">SESIÓN ACTUAL</span></div>', unsafe_allow_html=True)
     cols = st.columns(4)
-    with cols[0]: metric_card("Bots registrados", total_bots, "🤖", "En tu espacio de trabajo", "violet")
-    with cols[1]: metric_card("Agentes IA", total_agents, "🧠", "Definiciones creadas", "cyan")
-    with cols[2]: metric_card("Telegram", telegram_count, "✈️", "Bots asociados", "green")
-    with cols[3]: metric_card("Canales", 3, "🔗", "Telegram · Correo · WhatsApp", "orange")
-    st.write("")
-    left, right = st.columns([1.2, 1])
+    with cols[0]: metric_card("Bots registrados", total_bots, "▣", "En tu espacio de trabajo", "blue")
+    with cols[1]: metric_card("Agentes IA", total_agents, "✧", "Definiciones creadas", "blue")
+    with cols[2]: metric_card("Telegram", telegram_count, "➤", "Bots asociados", "blue")
+    with cols[3]: metric_card("Canales", 3, "⇄", "Telegram · Correo · WhatsApp", "blue")
+
+    left, right = st.columns([1.15, 1])
     with left:
         with st.container(border=True):
-            section_heading("Actividad de tu espacio", "Resumen de los elementos creados")
+            section_heading("Actividad reciente", "Bots y agentes creados en esta sesión")
             if not st.session_state.bot_registry and not st.session_state.agent_registry:
                 st.info("Tu espacio está listo. Crea tu primer bot o agente para comenzar.")
             for bot in st.session_state.bot_registry[-5:]:
-                st.markdown(f"**🤖 {bot['name']}** · {bot['channel']}  ")
+                st.markdown(f"**▣ {bot['name']}** · {bot['channel']}")
                 st.caption(f"{bot['status']} · {bot['client'] or 'Espacio interno'}")
             for agent in st.session_state.agent_registry[-5:]:
-                st.markdown(f"**🧠 {agent['name']}** · {agent['provider']}")
+                st.markdown(f"**✧ {agent['name']}** · {agent['provider']}")
                 st.caption(f"{agent['status']} · {agent['channel']}")
+
     with right:
         with st.container(border=True):
-            section_heading("Conectores", "Estado real del desarrollo")
-            st.markdown("🟢 **Telegram**")
-            st.caption("Worker MVP creado; falta validar con token real.")
-            st.markdown("🟡 **Correo electrónico**")
-            st.caption("Conector pendiente de implementación.")
-            st.markdown("🟡 **WhatsApp**")
-            st.caption("Integración oficial pendiente.")
+            section_heading("Conectores", "Disponibilidad de los canales de comunicación")
+            st.markdown("""
+            <div class="bf-connector-list">
+              <div class="bf-connector-row">
+                <div class="bf-connector-icon telegram">➤</div>
+                <div class="bf-connector-copy"><strong>Telegram</strong><small>Worker MVP creado · requiere prueba real</small></div>
+                <span class="bf-state ready">MVP</span>
+              </div>
+              <div class="bf-connector-row">
+                <div class="bf-connector-icon email">✉</div>
+                <div class="bf-connector-copy"><strong>Correo electrónico</strong><small>Conector pendiente de implementación</small></div>
+                <span class="bf-state pending">Pendiente</span>
+              </div>
+              <div class="bf-connector-row">
+                <div class="bf-connector-icon whatsapp">◉</div>
+                <div class="bf-connector-copy"><strong>WhatsApp</strong><small>Integración oficial pendiente</small></div>
+                <span class="bf-state pending">Pendiente</span>
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
         with st.container(border=True):
-            section_heading("Motor de inteligencia artificial")
-            st.markdown("✨ **Google Gemini**")
-            st.caption("Adaptador implementado. Requiere configurar el secreto para probarlo.")
+            section_heading("Motor de inteligencia artificial", "Proveedor disponible en el MVP")
+            st.markdown('<div class="bf-provider-row"><div class="bf-provider-icon">✦</div><div><strong>Google Gemini</strong><small>Adaptador implementado · requiere configurar API key</small></div></div>', unsafe_allow_html=True)
+
 
 elif page.startswith("BOTS"):
     section_heading("Gestión de bots", "Registra y organiza las soluciones que implementaremos para tus clientes.")
