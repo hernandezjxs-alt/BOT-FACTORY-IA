@@ -312,3 +312,13 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Los encabezados de memoria incorporan iconografía temática para facilitar lectura y navegación, sin eliminar decisiones ni contenido histórico.
 - El README principal enlaza esta memoria, la bitácora, el modelo comercial y las guías técnicas.
 - El estado de las funciones debe seguir diferenciando prototipo, implementación parcial, validación y planificación.
+
+
+## 🎨 Rediseño de interfaz — 23-11-2026
+- Se detectó que la portada anterior repetía elementos de marca en dos filas: logotipo/mascota/cerebro y una segunda fila de iconos de aplicaciones. Esto generaba saturación visual y tamaños desproporcionados.
+- Decisión: la portada debe priorizar el mensaje del producto y una sola mascota visual de tamaño moderado; eliminar la galería decorativa de iconos.
+- Barra lateral: compacta, navegación más sobria, iconos discretos, espaciado y estados activos consistentes.
+- Tarjetas de indicadores: iconos pequeños, jerarquía tipográfica contenida y tarjetas uniformes.
+- Conectores: tarjetas/filas con iconos SVG reconocibles para Telegram, correo y WhatsApp, descripción y estado real del desarrollo.
+- Se conserva Streamlit, Python y la arquitectura vigente. No se declara validación visual final hasta revisar el despliegue real en navegador.
+- Commits de interfaz: `a3df172` (portada, navegación y tarjetas) y `6930d33` (iconografía SVG de conectores y tarjetas de canales).
