@@ -257,3 +257,5 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - La mascota, el cerebro, el hexágono y los iconos de canales se dibujan como SVG inline; el holograma se anima con CSS. No se trata de una imagen de referencia pegada como captura, sino de componentes web escalables.
 - Pendiente: validar visualmente el despliegue en Streamlit Cloud, especialmente en Android, y corregir recortes/espaciados según captura real.
 - Estado funcional sigue siendo MVP: autenticación, persistencia Supabase y conectores productivos de correo/WhatsApp aún no se consideran implementados por este cambio visual.
+
+- Refinamiento adicional: navegación sin emojis genéricos, marca compacta en sidebar y encabezados de sección con símbolo hexagonal luminoso y jerarquía tipográfica consistente.
