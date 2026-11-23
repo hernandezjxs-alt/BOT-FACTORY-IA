@@ -12,7 +12,7 @@ from bot_factory.agents.models import AgentSpec
 from bot_factory.agents.providers.gemini import GeminiProvider
 
 load_dotenv()
-st.set_page_config(page_title="BOT FACTORY AI", page_icon="🤖", layout="wide", initial_sidebar_state="auto")
+st.set_page_config(page_title="BOT FACTORY AI", page_icon="🔷", layout="wide", initial_sidebar_state="auto")
 
 for key, default in (("bot_registry", []), ("agent_registry", [])):
     if key not in st.session_state:
@@ -40,7 +40,8 @@ st.markdown(f"""
 h1,h2,h3,h4,p,span,label {{ color: {fg}; }}
 small,.muted {{ color: {muted}; }}
 .brandbar {{ display:flex; align-items:center; gap:.85rem; padding:.35rem .15rem 1.15rem; }}
-.brandmark {{ width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:15px; color:#fff; font-size:1.75rem; font-weight:900; background:linear-gradient(135deg,#6258e8,#24c6d7); box-shadow:0 8px 24px rgba(99,91,219,.28); }}
+.brandmark {{ width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:15px; background:linear-gradient(145deg,#071a3a,#17245a); border:1px solid rgba(75,211,255,.45); box-shadow:0 8px 26px rgba(18,173,255,.22),inset 0 0 18px rgba(83,91,255,.2); }}
+.brandmark svg {{ width:39px; height:39px; filter:drop-shadow(0 0 5px rgba(34,211,238,.55)); }}
 .brandname {{ font-size:1.15rem; font-weight:900; letter-spacing:.045em; line-height:1.15; }}
 .brandtag {{ color:{muted}; font-size:.66rem; letter-spacing:.15em; font-weight:750; margin-top:.2rem; }}
 .brand-spacer {{ flex:1; }}
@@ -60,10 +61,14 @@ small,.muted {{ color: {muted}; }}
 .landing-chips {{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.5rem; }}
 .landing-chip {{ color:#dce5ff; border:1px solid rgba(172,187,226,.2); background:rgba(255,255,255,.055); border-radius:12px; padding:.55rem .75rem; font-size:.78rem; }}
 .ai-stage {{ min-height:340px; position:relative; display:flex; align-items:center; justify-content:center; }}
-.ai-core {{ position:relative; width:190px; height:190px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:radial-gradient(circle at 35% 30%,#a99dff 0%,#6658e8 28%,#282a71 65%,#141c3d 100%); box-shadow:0 0 45px rgba(120,105,255,.45), inset -12px -14px 30px rgba(4,10,35,.5), inset 8px 8px 22px rgba(255,255,255,.24); animation:coreFloat 5s ease-in-out infinite; z-index:2; }}
-.ai-core:before {{ content:""; position:absolute; inset:-17px; border:1px solid rgba(154,146,255,.55); border-radius:50%; box-shadow:0 0 25px rgba(116,103,255,.2); }}
-.ai-core:after {{ content:""; position:absolute; inset:-43px; border:1px dashed rgba(89,210,226,.48); border-radius:50%; animation:orbitSpin 24s linear infinite; }}
-.core-symbol {{ color:white; font-size:4.2rem; text-shadow:0 5px 22px rgba(255,255,255,.35); }}
+.ai-core {{ position:relative; width:230px; height:230px; display:flex; align-items:center; justify-content:center; z-index:2; animation:coreFloat 5s ease-in-out infinite; }}
+.ai-core:before {{ content:""; position:absolute; inset:4px; clip-path:polygon(25% 4%,75% 4%,99% 50%,75% 96%,25% 96%,1% 50%); background:linear-gradient(145deg,#35e5ff 0%,#167dff 42%,#8b5cf6 78%,#e879f9 100%); filter:drop-shadow(0 0 20px rgba(37,196,255,.8)); }}
+.ai-core:after {{ content:""; position:absolute; inset:12px; clip-path:polygon(25% 4%,75% 4%,99% 50%,75% 96%,25% 96%,1% 50%); background:linear-gradient(145deg,#07172f,#101c48 58%,#21134d); }}
+.holo-svg {{ position:relative; z-index:3; width:74%; height:74%; overflow:visible; filter:drop-shadow(0 0 9px rgba(34,211,238,.8)); }}
+.holo-ring {{ position:absolute; width:310px; height:120px; border:2px solid rgba(48,213,255,.65); border-radius:50%; transform:rotate(-25deg); box-shadow:0 0 18px rgba(48,213,255,.35),inset 0 0 14px rgba(48,213,255,.2); animation:orbitSpin 12s linear infinite; }}
+.holo-ring.two {{ width:350px; height:145px; border-color:rgba(167,110,255,.62); transform:rotate(42deg); animation-direction:reverse; }}
+.holo-pulse {{ position:absolute; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(33,202,255,.2),transparent 68%); filter:blur(9px); animation:pulseGlow 3s ease-in-out infinite; }}
+@keyframes pulseGlow {{ 0%,100% {{ transform:scale(.8); opacity:.55; }} 50% {{ transform:scale(1.25); opacity:1; }} }}
 .orbit {{ position:absolute; width:300px; height:300px; border:1px solid rgba(112,203,225,.24); border-radius:50%; transform:rotate(-24deg) scaleY(.43); }}
 .orbit.two {{ width:390px; height:390px; border-color:rgba(151,130,255,.28); transform:rotate(52deg) scaleY(.42); }}
 .orbit-node {{ position:absolute; z-index:3; display:flex; align-items:center; gap:.5rem; padding:.65rem .85rem; border:1px solid rgba(180,194,230,.22); border-radius:15px; color:#edf2ff; background:rgba(18,29,57,.82); backdrop-filter:blur(12px); box-shadow:0 10px 30px rgba(0,0,0,.24); font-size:.8rem; font-weight:750; animation:nodeFloat 5s ease-in-out infinite; }}
@@ -127,7 +132,7 @@ hr {{ border-color: {border}; }}
   [data-testid="stMetric"] {{ padding: .75rem; }}
 }}
 @media (prefers-reduced-motion: reduce) {{
-  .ai-core, .ai-core:after, .orbit-node {{ animation: none !important; }}
+  .ai-core, .holo-ring, .holo-pulse, .orbit-node {{ animation: none !important; }}
   .metric-card, [data-testid="stVerticalBlockBorderWrapper"] {{ transition: none !important; }}
 }}
 
@@ -155,7 +160,7 @@ def section_heading(title, subtitle=None):
         st.caption(subtitle)
 
 with st.sidebar:
-    st.markdown("## 🤖 BOT FACTORY")
+    st.markdown("## 🔷 BOT FACTORY AI")
     st.caption("AI · AUTOMATION PLATFORM")
     st.divider()
     page = st.radio("NAVEGACIÓN", ["⌂  Inicio", "🔐  Acceso de usuario", "🤖  Bots", "🧠  Agentes IA", "📡  Canales", "🧩  Plantillas", "💼  Planes y servicios", "🛡️  Administración", "⚙️  Configuración"], label_visibility="visible")
@@ -177,7 +182,7 @@ telegram_count = sum(1 for bot in st.session_state.bot_registry if bot.get("chan
 email_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "Correo")
 whatsapp_count = sum(1 for bot in st.session_state.bot_registry if bot.get("channel") == "WhatsApp")
 
-st.markdown('<div class="brandbar"><div class="brandmark">✦</div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="brandbar"><div class="brandmark"><svg viewBox="0 0 100 100" role="img" aria-label="BOT FACTORY AI"><defs><linearGradient id="bfLogo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#32e6ff"/><stop offset=".58" stop-color="#278cff"/><stop offset="1" stop-color="#b35cff"/></linearGradient></defs><path d="M29 7h42l22 43-22 43H29L7 50z" fill="none" stroke="url(#bfLogo)" stroke-width="7" stroke-linejoin="round"/><path d="M50 25v13M31 60l12-7m26 7-12-7M50 75V62" stroke="#55eaff" stroke-width="5" stroke-linecap="round"/><path d="M50 38l13 7v15l-13 8-13-8V45z" fill="#102b57" stroke="#55eaff" stroke-width="4"/><circle cx="50" cy="18" r="5" fill="#55eaff"/><circle cx="26" cy="63" r="5" fill="#55eaff"/><circle cx="74" cy="63" r="5" fill="#b66cff"/><circle cx="50" cy="81" r="5" fill="#55eaff"/></svg></div><div><div class="brandname">BOT FACTORY AI</div><div class="brandtag">INTELLIGENT AUTOMATION PLATFORM</div></div><div class="brand-spacer"></div><div class="brand-pill">AI WORKSPACE</div></div>', unsafe_allow_html=True)
 
 if page.startswith("🔐"):
     st.markdown('<div class="login-shell">', unsafe_allow_html=True)
@@ -210,7 +215,7 @@ if page.startswith("🔐"):
     st.caption("BOT FACTORY AI · Acceso de usuario · Vista de demostración; todavía no autentica ni crea cuentas.")
 
 elif page.startswith("⌂"):
-    st.markdown('<section class="landing"><div class="landing-grid"><div class="landing-copy"><div class="landing-eyebrow"><i class="live-dot"></i> TU CENTRO DE AUTOMATIZACIÓN IA</div><div class="landing-title">Dale vida a tus ideas.<br><span>Automatiza el futuro.</span></div><div class="landing-desc">Diseña bots y agentes inteligentes que conectan conversaciones, procesos y clientes desde una sola plataforma.</div><div class="landing-chips"><span class="landing-chip">✦ Agentes IA</span><span class="landing-chip">↗ Flujos inteligentes</span><span class="landing-chip">⌘ Multi-canal</span></div></div><div class="ai-stage"><div class="orbit"></div><div class="orbit two"></div><div class="ai-core"><div class="core-symbol">🌐</div></div><div class="orbit-node node-telegram"><b>✈️</b> Telegram</div><div class="orbit-node node-email"><b>✉️</b> Email</div><div class="orbit-node node-whatsapp"><b>◉</b> WhatsApp</div></div></div><div class="landing-foot"><span><strong>01</strong> · Diseña</span><span><strong>02</strong> · Conecta</span><span><strong>03</strong> · Automatiza</span><span>Una fábrica. Infinitas posibilidades.</span></div></section>', unsafe_allow_html=True)
+    st.markdown('<section class="landing"><div class="landing-grid"><div class="landing-copy"><div class="landing-eyebrow"><i class="live-dot"></i> TU CENTRO DE AUTOMATIZACIÓN IA</div><div class="landing-title">Dale vida a tus ideas.<br><span>Automatiza el futuro.</span></div><div class="landing-desc">Diseña bots y agentes inteligentes que conectan conversaciones, procesos y clientes desde una sola plataforma.</div><div class="landing-chips"><span class="landing-chip">✦ Agentes IA</span><span class="landing-chip">↗ Flujos inteligentes</span><span class="landing-chip">⌘ Multi-canal</span></div></div><div class="ai-stage"><div class="orbit"></div><div class="orbit two"></div><div class="holo-ring"></div><div class="holo-ring two"></div><div class="holo-pulse"></div><div class="ai-core"><svg class="holo-svg" viewBox="0 0 220 220" aria-hidden="true"><defs><linearGradient id="hexStroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#42f5ff"/><stop offset=".55" stop-color="#258cff"/><stop offset="1" stop-color="#c36aff"/></linearGradient></defs><path d="M55 18h110l48 92-48 92H55L7 110z" fill="none" stroke="url(#hexStroke)" stroke-width="7" stroke-linejoin="round"/><path d="M110 48v27M61 139l25-15m73 15-25-15M110 172v-27" stroke="#61eaff" stroke-width="7" stroke-linecap="round"/><path d="M110 75l34 20v40l-34 20-34-20V95z" fill="#102b59" stroke="#5cecff" stroke-width="6"/><path d="M110 88l22 13v27l-22 13-22-13v-27z" fill="#20bde8" opacity=".78"/><circle cx="110" cy="38" r="9" fill="#65f4ff"/><circle cx="49" cy="146" r="9" fill="#65f4ff"/><circle cx="171" cy="146" r="9" fill="#bb75ff"/></svg></div><div class="orbit-node node-telegram"><b>✈️</b> Telegram</div><div class="orbit-node node-email"><b>✉️</b> Email</div><div class="orbit-node node-whatsapp"><b>◉</b> WhatsApp</div></div></div><div class="landing-foot"><span><strong>01</strong> · Diseña</span><span><strong>02</strong> · Conecta</span><span><strong>03</strong> · Automatiza</span><span>Una fábrica. Infinitas posibilidades.</span></div></section>', unsafe_allow_html=True)
     st.markdown("### Tu centro de operaciones")
     st.caption("Visión general de tu fábrica digital. Los indicadores reflejan los registros de esta sesión.")
     cols = st.columns(4)
