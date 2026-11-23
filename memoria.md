@@ -219,3 +219,14 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se reemplazó el asterisco/símbolo ✳ del núcleo visual de la portada por el globo 🌐 para reforzar la identidad global de BOT FACTORY AI.
 - Commit app.py: 9b736ad9479bbdc30b2ff24a4c8596b97f71158a.
 - Pendiente: comprobar visualmente los cambios en Streamlit Cloud.
+
+
+## Identidad visual aprobada e integrada — 2026-11-22
+- El usuario aprobó la propuesta visual con hexágono tecnológico como símbolo distintivo de BOT FACTORY AI.
+- Se actualizó la marca superior: logotipo hexagonal vectorial inline SVG junto al nombre BOT FACTORY AI y su descriptor.
+- Se reemplazó el núcleo circular de la portada por un emblema hexagonal holográfico, con trazos de circuito, anillos orbitales cian/violeta y pulso luminoso animado mediante CSS/SVG.
+- Se actualizó el icono de la pestaña del navegador a un rombo azul y el encabezado de la barra lateral a BOT FACTORY AI.
+- Se conserva el fondo tecnológico, los nodos Telegram/Email/WhatsApp, el diseño responsive y las tarjetas de métricas de color sólido.
+- Implementación publicada en app.py, rama main, commit: 61ccc9df922f54868050a406751100c60940c926.
+- La identidad se dibuja con SVG/CSS propio; no depende del paquete Lottie de pago ni de imágenes premium externas.
+- Estado de validación: código publicado; pendiente recargar y verificar el render real en Streamlit Cloud, especialmente Android, escritorio y tema claro. No afirmar validación visual hasta recibir confirmación/captura.
