@@ -259,3 +259,13 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Estado funcional sigue siendo MVP: autenticación, persistencia Supabase y conectores productivos de correo/WhatsApp aún no se consideran implementados por este cambio visual.
 
 - Refinamiento adicional: navegación sin emojis genéricos, marca compacta en sidebar y encabezados de sección con símbolo hexagonal luminoso y jerarquía tipográfica consistente.
+
+
+## 2026-11-22 — Segunda revisión de fidelidad visual
+- El usuario señaló que la versión previa seguía sin parecerse a la lámina en el logo principal, composición derecha, robot y tarjetas.
+- Se revisó nuevamente app.py: la portada anterior usaba una mascota SVG muy esquemática y los iconos inferiores no tenían contenedores visuales de tarjeta; las métricas tenían estilo demasiado simple.
+- Se amplió la mascota robot con casco, rostro oscuro, ojos luminosos, cuerpo metálico, brazos y emblema hexagonal.
+- Se ajustó el tamaño de los tres elementos de cabecera, la proporción de los dos paneles principales, la escala del holograma y la distribución del mensaje de marca y los tres botones de canales.
+- La franja inferior ahora presenta tarjetas individuales oscuras con bordes azul eléctrico para icono app, circular, simple, Telegram, WhatsApp, Email y favicon.
+- Se reforzaron las tarjetas KPI con fondo azul profundo, borde eléctrico, brillo cian y altura uniforme. Se extendió el mismo lenguaje de paneles a las secciones internas.
+- Sigue pendiente validar el render final real en Streamlit Cloud. Los gráficos son SVG/CSS vectoriales y no reproducciones 3D fotográficas exactas de la ilustración de referencia; para igualar ese acabado se necesitarán assets ilustrados de alta calidad integrados como imágenes.
