@@ -350,6 +350,86 @@ h1,h2,h3 {{ color:#f5f8ff; }}
 </style>
 """, unsafe_allow_html=True)
 
+
+st.markdown("""
+<style>
+/* Sistema visual unificado: overrides finales para evitar estilos heredados */
+:root { --bf-blue:#087dff; --bf-electric:#168bff; --bf-cyan:#35e5ff; --bf-ink:#050d20; --bf-panel:#0a1b38; --bf-panel-2:#0d2850; }
+[data-testid="stSidebar"] {
+  background: linear-gradient(180deg,#07152d 0%,#061127 55%,#040b1b 100%) !important;
+  border-right:1px solid rgba(22,139,255,.32) !important;
+  box-shadow:12px 0 38px rgba(0,0,0,.16);
+}
+[data-testid="stSidebar"] > div { padding:1.1rem .9rem 1rem !important; }
+.sidebar-brand { display:flex;align-items:center;gap:.78rem;padding:.45rem .25rem 1.35rem;border-bottom:1px solid rgba(66,155,255,.17); }
+.sidebar-brand-mark { width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#0c2d5d,#07152e);border:1px solid rgba(53,229,255,.5);box-shadow:0 0 22px rgba(0,132,255,.2),inset 0 0 15px rgba(0,132,255,.12); }
+.sidebar-brand-mark svg { width:39px;height:39px;filter:drop-shadow(0 0 7px rgba(53,229,255,.7)); }
+.sidebar-brand-name { color:#f3f8ff;font-size:.91rem;font-weight:950;letter-spacing:.035em;white-space:nowrap; }
+.sidebar-brand-name span { color:#36dfff; }
+.sidebar-brand-caption { color:#76a9dc;font-size:.53rem;letter-spacing:.15em;font-weight:800;margin-top:.2rem;white-space:nowrap; }
+.sidebar-kicker { color:#5f8fca;font-size:.62rem;font-weight:900;letter-spacing:.16em;padding:.95rem .45rem .42rem; }
+.sidebar-divider { height:1px;background:rgba(66,155,255,.16);margin:.75rem .2rem .15rem; }
+[data-testid="stSidebar"] [data-testid="stRadio"] > label { display:none; }
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] { gap:.32rem; }
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label {
+  min-height:43px;padding:.55rem .72rem;margin:0;border:1px solid transparent;border-radius:12px;
+  background:transparent;transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label:hover {
+  background:rgba(15,89,166,.2);border-color:rgba(47,162,255,.25);transform:translateX(2px);
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label:has(input:checked) {
+  background:linear-gradient(100deg,rgba(0,125,255,.25),rgba(0,125,255,.08));
+  border-color:rgba(53,211,255,.48);box-shadow:inset 3px 0 0 #168bff,0 5px 18px rgba(0,89,255,.1);
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label p {
+  color:#c5d9f5!important;font-size:.82rem;font-weight:700;margin:0;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] > label:has(input:checked) p { color:#f4fbff!important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] input { accent-color:#168bff; }
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"] > div {
+  background:#0b2144;border:1px solid rgba(44,147,255,.3);border-radius:11px;color:#eaf4ff;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"]:has(input[value="Oscuro"]) [role="radiogroup"] { display:flex;flex-direction:row; }
+.sidebar-status { margin-top:1.15rem;padding:.85rem .8rem;border:1px solid rgba(35,139,255,.24);border-radius:15px;background:linear-gradient(145deg,rgba(10,36,75,.82),rgba(5,17,39,.94)); }
+.sidebar-status-title { color:#70a8e5;font-size:.61rem;font-weight:900;letter-spacing:.15em;margin-bottom:.6rem; }
+.sidebar-status-row { display:flex;align-items:center;gap:.48rem;color:#d6e6fa;font-size:.72rem;padding:.28rem 0; }
+.sidebar-status-row small { margin-left:auto;color:#7898bd;font-size:.61rem; }
+.status-dot { width:7px;height:7px;border-radius:50%;display:inline-block; }
+.status-ready { background:#39d6ae;box-shadow:0 0 9px rgba(57,214,174,.8); }
+.status-pending { background:#f3b84b;box-shadow:0 0 8px rgba(243,184,75,.5); }
+.sidebar-footer { display:flex;align-items:center;gap:.65rem;margin-top:1rem;padding:.85rem .35rem .25rem;border-top:1px solid rgba(66,155,255,.16); }
+.sidebar-footer-mark { color:#35e5ff;font-size:1.5rem;text-shadow:0 0 12px #087dff; }
+.sidebar-footer strong { display:block;color:#cfe4ff;font-size:.67rem;letter-spacing:.05em; }
+.sidebar-footer small { display:block;color:#668bb7;font-size:.58rem;margin-top:.12rem; }
+.metric-card { background:linear-gradient(145deg,#104b89,#082653)!important;border:1px solid rgba(50,184,255,.58)!important; }
+.metric-card:hover { transform:translateY(-4px);border-color:#52eaff!important;box-shadow:0 0 26px rgba(0,139,255,.22),0 15px 35px rgba(0,0,0,.3); }
+.section-heading { display:flex;align-items:center;gap:.85rem;margin:.6rem 0 1.15rem;padding:.3rem 0 .9rem;border-bottom:1px solid rgba(30,137,255,.24); }
+.section-hex { width:43px;height:43px;display:grid;place-items:center;border:1px solid rgba(53,229,255,.4);border-radius:13px;background:rgba(0,113,255,.12);font-size:1.75rem;color:#35e5ff;text-shadow:0 0 12px #087dff; }
+.section-title { color:#f4f8ff;font-size:1.42rem;font-weight:900;letter-spacing:-.025em; }
+.section-subtitle { color:#91a9d1;font-size:.82rem;margin-top:.18rem; }
+[data-testid="stVerticalBlockBorderWrapper"] { border-color:rgba(36,139,255,.34)!important;box-shadow:inset 0 0 20px rgba(0,118,255,.045),0 10px 28px rgba(0,0,0,.16)!important; }
+[data-testid="stVerticalBlockBorderWrapper"]:hover { border-color:rgba(53,229,255,.65)!important;box-shadow:0 0 22px rgba(0,119,255,.12)!important; }
+div.stButton > button,div.stFormSubmitButton > button { border-radius:12px!important;font-weight:800!important;transition:transform .18s ease,box-shadow .18s ease!important; }
+div.stButton > button:hover,div.stFormSubmitButton > button:hover { transform:translateY(-2px); }
+@media(max-width:760px) {
+  [data-testid="stSidebar"] > div { padding:.8rem .65rem !important; }
+  .sidebar-brand { gap:.55rem;padding-bottom:1rem; }
+  .sidebar-brand-mark { width:42px;height:42px; }
+  .sidebar-brand-name { font-size:.82rem; }
+  .sidebar-brand-caption { font-size:.47rem; }
+  .sidebar-status { padding:.7rem; }
+  .brand-top { gap:.1rem!important; }
+  .brand-middle { border-radius:19px!important; }
+  .brand-bottom-item { border-color:rgba(31,123,255,.35)!important; }
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-testid="stSidebar"] *, .metric-card, div.stButton > button { transition:none!important; }
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 def metric_card(label, value, icon, note, palette):
     # Todas las tarjetas comparten el azul eléctrico de la marca.
     st.markdown(
@@ -367,20 +447,47 @@ def section_heading(title, subtitle=None):
     )
 
 with st.sidebar:
-    st.markdown('<div style="display:flex;align-items:center;gap:10px;margin:4px 0 12px"><span style="font-size:25px;color:#36dfff;text-shadow:0 0 12px #087dff">⬡</span><div style="font-weight:900;letter-spacing:.04em">BOT FACTORY <span style="color:#a84cff">AI</span><div style="font-size:9px;letter-spacing:.16em;color:#78dfff">AUTOMATION INTELLIGENCE</div></div></div>', unsafe_allow_html=True)
-    st.divider()
-    page = st.radio("NAVEGACIÓN", ["INICIO", "ACCESO DE USUARIO", "BOTS", "AGENTES IA", "CANALES", "PLANTILLAS", "PLANES Y SERVICIOS", "ADMINISTRACIÓN", "CONFIGURACIÓN"], label_visibility="visible")
-    st.divider()
-    st.markdown("**Apariencia**")
+    st.markdown("""
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">
+        <svg viewBox="0 0 100 100" role="img" aria-label="BOT FACTORY AI">
+          <path d="M28 7h44l21 43-21 43H28L7 50z" fill="none" stroke="#36dfff" stroke-width="6"/>
+          <path d="M50 25v13M31 60l12-7m26 7-12-7M50 75V62" stroke="#36dfff" stroke-width="5" stroke-linecap="round"/>
+          <path d="M50 38l13 7v15l-13 8-13-8V45z" fill="#0b2852" stroke="#168bff" stroke-width="4"/>
+        </svg>
+      </div>
+      <div><div class="sidebar-brand-name">BOT FACTORY <span>AI</span></div>
+      <div class="sidebar-brand-caption">AUTOMATION WORKSPACE</div></div>
+    </div>
+    <div class="sidebar-kicker">PLATAFORMA</div>
+    """, unsafe_allow_html=True)
+    nav_options = ["INICIO", "ACCESO DE USUARIO", "BOTS", "AGENTES IA", "CANALES", "PLANTILLAS", "PLANES Y SERVICIOS", "ADMINISTRACIÓN", "CONFIGURACIÓN"]
+    nav_labels = {
+        "INICIO": "⌂   Inicio",
+        "ACCESO DE USUARIO": "◉   Acceso de usuario",
+        "BOTS": "▣   Mis bots",
+        "AGENTES IA": "✧   Agentes IA",
+        "CANALES": "⇄   Canales",
+        "PLANTILLAS": "▤   Plantillas",
+        "PLANES Y SERVICIOS": "◇   Planes y servicios",
+        "ADMINISTRACIÓN": "⚙   Administración",
+        "CONFIGURACIÓN": "☷   Configuración",
+    }
+    page = st.radio("NAVEGACIÓN", nav_options, format_func=lambda item: nav_labels[item], label_visibility="collapsed", key="main_navigation")
+    st.markdown('<div class="sidebar-divider"></div><div class="sidebar-kicker">PREFERENCIAS</div>', unsafe_allow_html=True)
     st.radio("Tema", ["Oscuro", "Claro"], key="theme_choice", horizontal=True, label_visibility="collapsed")
-    st.markdown("**Vista de perfil (demo)**")
+    st.markdown('<div class="sidebar-kicker">VISTA DE TRABAJO</div>', unsafe_allow_html=True)
     st.selectbox("Rol de vista", ["Administrador", "Usuario"], key="role_preview", label_visibility="collapsed")
-    st.caption("El perfil es solo visual. El control real de acceso se implementará con Supabase Auth y RLS.")
-    st.divider()
-    st.markdown("🟢 Telegram · MVP de conector")
-    st.markdown("🟡 Correo · En desarrollo")
-    st.markdown("🟡 WhatsApp · En desarrollo")
-    st.caption("BOT FACTORY AI · MVP")
+    st.caption("Selector demostrativo. Los permisos reales se aplicarán con Supabase Auth y RLS.")
+    st.markdown("""
+    <div class="sidebar-status">
+      <div class="sidebar-status-title">CANALES</div>
+      <div class="sidebar-status-row"><span class="status-dot status-ready"></span><span>Telegram</span><small>MVP</small></div>
+      <div class="sidebar-status-row"><span class="status-dot status-pending"></span><span>Correo</span><small>En desarrollo</small></div>
+      <div class="sidebar-status-row"><span class="status-dot status-pending"></span><span>WhatsApp</span><small>En desarrollo</small></div>
+    </div>
+    <div class="sidebar-footer"><span class="sidebar-footer-mark">⬡</span><div><strong>BOT FACTORY AI</strong><small>Intelligent automation</small></div></div>
+    """, unsafe_allow_html=True)
 
 total_bots = len(st.session_state.bot_registry)
 total_agents = len(st.session_state.agent_registry)
