@@ -281,3 +281,27 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Las tarjetas de métricas y paneles de todas las secciones comparten azul profundo/azul eléctrico, evitando multicolor arbitrario. Los botones de canal conservan los colores oficiales de cada canal.
 - Responsive para móvil: cabecera en tres columnas compactas, panel principal apilado y tarjetas en cuadrícula.
 - Pendiente de validar en Streamlit Cloud con captura real. Las ilustraciones principales siguen siendo SVG vectoriales estilizados; la lámina se usa como guía de diseño, no se ha insertado como una captura plana.
+
+
+## 2026-11-22 — Modernización integral de navegación y sistema visual
+
+### Diagnóstico
+- Se revisó la versión vigente de app.py y se confirmó que la barra lateral seguía usando una navegación Streamlit estándar con radio sin tratamiento de marca.
+- El CSS acumulaba varias redefiniciones de los mismos selectores, lo que hacía que los estilos fueran difíciles de mantener y provocaba inconsistencias visuales.
+- La portada ya tenía composición holográfica y tarjetas inferiores, pero los elementos internos necesitaban una jerarquía más consistente.
+
+### Cambios publicados
+- Se rediseñó la cabecera de la barra lateral con símbolo hexagonal SVG, nombre de marca y descriptor.
+- Se mejoró la navegación con etiquetas visuales por sección, estado activo azul eléctrico, hover, espaciado y agrupación.
+- Se organizaron preferencias, selector de vista demostrativa y estado de conectores en paneles compactos.
+- Se incorporó un pie de barra lateral de marca.
+- Se añadió una capa final de CSS unificado para normalizar paneles, métricas, encabezados, botones y estados.
+- Se mantuvo el azul eléctrico/cian como paleta principal y el fondo azul noche; las tarjetas métricas se mantienen uniformes.
+- Se conservaron Streamlit/Python y las funciones actuales; no se migró a React ni se cambió la arquitectura.
+
+### Estado y límites
+- Commit app.py: 585ddd42d3a0537512f36da62189a11cb955f445.
+- Publicado en la rama main.
+- El CSS de Streamlit depende de selectores del DOM de Streamlit; el aspecto final debe validarse en el despliegue real.
+- No se ha confirmado visualmente el render en Streamlit Cloud. No afirmar que la interfaz coincide exactamente con la lámina hasta recibir captura de la aplicación.
+- El rediseño es visual: no convierte login/registro, roles ni conectores pendientes en funciones productivas.
