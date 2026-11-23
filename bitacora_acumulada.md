@@ -324,3 +324,28 @@ El diseño comercial está documentado; las funciones anteriores siguen pendient
 - [x] Se actualizó memoria.md.
 - Commit app.py: 9b736ad9479bbdc30b2ff24a4c8596b97f71158a.
 - [ ] Revisar el resultado en Streamlit Cloud desde móvil y escritorio.
+
+
+## 2026-11-22 — Identidad visual hexagonal aprobada e integrada
+
+### Decisión del usuario
+- El usuario aprobó la propuesta visual con hexágono tecnológico, núcleo holográfico animado y marca BOT FACTORY AI.
+
+### Cambios publicados
+- [x] Se reemplazó el símbolo genérico del encabezado por un logotipo hexagonal vectorial SVG con núcleo y nodos conectados.
+- [x] Se sustituyó la esfera circular de la portada por un núcleo hexagonal holográfico construido con SVG y CSS.
+- [x] Se agregaron dos anillos orbitales animados y un pulso luminoso cian/violeta.
+- [x] Se actualizó el icono de pestaña del navegador y el título de marca de la barra lateral.
+- [x] Se conservó el diseño responsive y la preferencia de movimiento reducido.
+- [x] No se incorporaron recursos premium ni dependencias de pago; la identidad visual se dibuja en el propio código.
+- [x] Se actualizaron memoria.md y esta bitácora acumulativa.
+
+### Commit
+- app.py: 61ccc9df922f54868050a406751100c60940c926.
+- memoria.md: 9fdc8f2d9b63a3f9629458bfe1c25c64707775b2.
+
+### Pendiente de validación
+- [ ] Recargar Streamlit Community Cloud y comprobar que el despliegue complete el reinicio.
+- [ ] Revisar la marca y el núcleo holográfico desde Android y escritorio.
+- [ ] Revisar modo claro y oscuro, y ajustar tamaños si la captura real lo requiere.
+- Nota: el cambio está publicado en GitHub, pero todavía no se ha confirmado visualmente en el despliegue.
