@@ -238,3 +238,11 @@ Actualizar ambos en cada sesión y conservar el historial de la bitácora.
 - Se reforzó el estilo de las tarjetas flotantes, sus fondos, bordes y ubicación alrededor del núcleo holográfico para mejorar legibilidad y semejanza con la composición de referencia.
 - Commit app.py: 77c825ee27a788bd45f03a1dd9bc6cc0887899eb.
 - Pendiente: recargar Streamlit Cloud y validar con captura real; el código publicado aún no equivale a validación visual en el navegador.
+
+
+## 2026-11-22 — Corrección de identidad visual solicitada por el usuario
+- El usuario indicó que la aplicación publicada no representa la presentación aprobada: solicita recuperar el azul eléctrico protagonista, iconos reconocibles de los canales y tarjetas uniformes, no multicolores.
+- Se establece como criterio visual: azul eléctrico dominante, cian luminoso como acento y violeta solo de apoyo; tarjetas de color sólido uniforme; fondo tecnológico azul oscuro; iluminación y profundidad sin arcoíris.
+- Se ajusta app.py para usar azul eléctrico en acentos, portada, núcleo holográfico y tarjetas de métricas uniformes.
+- Los canales se mantienen representados con SVG vectoriales inline para Telegram, WhatsApp y correo; queda pendiente comprobar su apariencia en la captura real de Streamlit Cloud.
+- No se considera validado el resultado hasta que el usuario recargue y comparta una captura.
