@@ -232,13 +232,57 @@ h1,h2,h3 {{ color:#f5f8ff; }}
 .section-hex {{ font-size:2.3rem;line-height:1;color:#2ceaff;text-shadow:0 0 8px #078bff,0 0 20px #087dff; }}
 .section-title {{ color:#f4f8ff;font-size:1.45rem;font-weight:900;letter-spacing:-.025em; }}
 .section-subtitle {{ color:#91a9d1;font-size:.82rem;margin-top:.18rem; }}
+
+/* Ajustes de fidelidad visual: tarjetas, holograma y composición */
+.brand-top-item:first-child svg {{ width:clamp(110px,14vw,190px);height:clamp(110px,14vw,190px); }}
+.brand-top-item:nth-child(2) svg {{ width:clamp(130px,17vw,220px);height:clamp(115px,15vw,190px); }}
+.brand-top-item:nth-child(3) svg {{ width:clamp(110px,14vw,190px);height:clamp(110px,14vw,190px); }}
+.brand-top {{ align-items:end; padding-bottom:1.15rem; }}
+.brand-middle {{ grid-template-columns:1fr 1fr; min-height:510px; }}
+.holo-visual {{ min-height:510px; }}
+.holo-logo {{ width:min(58%,285px); }}
+.holo-platform {{ bottom:8%; width:76%; height:20%; }}
+.holo-beam {{ bottom:18%; width:48%; height:59%; }}
+.brand-message {{ align-items:stretch; text-align:center; padding:2.2rem clamp(1rem,2.5vw,2.5rem); }}
+.brand-message-head {{ justify-content:center; font-size:clamp(1.25rem,2.65vw,2.7rem); }}
+.brand-message-head svg {{ width:clamp(58px,7vw,90px);height:clamp(58px,7vw,90px); }}
+.brand-description {{ max-width:520px; margin-left:auto;margin-right:auto; }}
+.channel-links {{ justify-content:space-between; gap:.55rem; }}
+.channel-pill {{ min-width:0; flex:1; padding:.8rem .65rem; font-size:clamp(.72rem,1vw,.95rem); }}
+.brand-bottom {{ justify-content:space-between; gap:.5rem; padding:1.25rem .9rem .8rem; }}
+.brand-bottom-item {{ flex:1 1 10%; min-width:82px; min-height:138px; padding:.8rem .35rem; border:1px solid rgba(31,123,255,.22); border-radius:20px; background:linear-gradient(155deg,rgba(9,28,63,.96),rgba(5,13,34,.98)); box-shadow:inset 0 0 24px rgba(0,116,255,.08),0 10px 25px rgba(0,0,0,.2); }}
+.brand-bottom-item svg {{ width:72px;height:72px; }}
+.brand-bottom-item .app-tile {{ width:82px;height:82px; }}
+.brand-bottom-item .app-tile svg {{ width:68px;height:68px; }}
+.brand-bottom-sep {{ flex:0 0 1px; }}
+.metric-card {{ background:linear-gradient(145deg,#10396e,#0a2450) !important; border:1px solid rgba(43,171,255,.58) !important; border-radius:19px; min-height:155px; padding:1.1rem 1.15rem; box-shadow:inset 0 0 25px rgba(0,143,255,.1),0 10px 28px rgba(0,0,0,.25); }}
+.metric-card:before {{ background:radial-gradient(circle,rgba(49,220,255,.2),transparent 70%); }}
+.metric-icon {{ color:#5ceaff;filter:drop-shadow(0 0 8px #078bff); }}
+.metric-value {{ color:#f8fbff; text-shadow:0 0 18px rgba(0,140,255,.25); }}
+.section-card,[data-testid="stVerticalBlockBorderWrapper"] {{ background:linear-gradient(145deg,rgba(10,28,61,.96),rgba(7,17,40,.98)) !important; border:1px solid rgba(27,126,255,.35) !important; border-radius:20px !important; box-shadow:0 10px 35px rgba(0,0,0,.2); }}
+[data-testid="stVerticalBlockBorderWrapper"]:hover {{ border-color:rgba(43,190,255,.72) !important; box-shadow:0 0 24px rgba(0,119,255,.12) !important; }}
+@media(max-width:760px) {{
+ .brand-top-item:first-child svg,.brand-top-item:nth-child(3) svg {{ width:76px;height:76px; }}
+ .brand-top-item:nth-child(2) svg {{ width:92px;height:84px; }}
+ .brand-middle {{ grid-template-columns:1fr;min-height:unset; }}
+ .holo-visual {{ min-height:310px; }}
+ .holo-logo {{ width:54%; }}
+ .brand-message {{ padding:1.25rem .8rem 1.5rem; }}
+ .brand-message-head {{ white-space:normal;font-size:1.5rem; }}
+ .brand-bottom-item {{ flex:1 1 28%;min-height:112px; }}
+ .brand-bottom-item svg {{ width:54px;height:54px; }}
+ .brand-bottom-item .app-tile {{ width:60px;height:60px; }}
+ .brand-bottom-item .app-tile svg {{ width:50px;height:50px; }}
+ .brand-bottom-sep {{ display:none; }}
+ .metric-card {{ min-height:128px; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
 def metric_card(label, value, icon, note, palette):
     # Todas las tarjetas comparten el azul eléctrico de la marca.
     st.markdown(
-        f'<div class="metric-card" style="--card-a:#102E58;--card-b:#102E58;--card-text:#F3F8FF;--card-border:rgba(45,157,255,.48)">'
+        f'<div class="metric-card" style="--card-a:#10396e;--card-b:#0a2450;--card-text:#F3F8FF;--card-border:rgba(45,157,255,.58)">'
         f'<div class="metric-icon">{icon}</div><div class="metric-label">{label}</div>'
         f'<div class="metric-value">{value}</div><div class="metric-label">{note}</div></div>',
         unsafe_allow_html=True,
@@ -314,7 +358,7 @@ elif page.startswith("INICIO"):
           <strong>BOT FACTORY <span class="ai-word">AI</span></strong><small>AUTOMATION INTELLIGENCE</small><span class="brand-tag">Logo principal</span>
         </div>
         <div class="brand-top-item">
-          <svg viewBox="0 0 140 120" aria-label="Mascota asistente IA"><defs><linearGradient id="botMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#7ccfff"/><stop offset="1" stop-color="#1557b7"/></linearGradient></defs><ellipse cx="70" cy="111" rx="47" ry="7" fill="#078bff" opacity=".5"/><path d="M25 51Q18 5 70 5t45 46" fill="none" stroke="#28dfff" stroke-width="5"/><rect x="19" y="27" width="18" height="38" rx="8" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><rect x="103" y="27" width="18" height="38" rx="8" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><rect x="31" y="12" width="78" height="67" rx="25" fill="url(#botMetal)" stroke="#2bdcff" stroke-width="3"/><rect x="39" y="22" width="62" height="43" rx="19" fill="#020b22" stroke="#0b5cb8" stroke-width="2"/><path d="M51 43q7-12 14 0M77 43q7-12 14 0" fill="none" stroke="#00eaff" stroke-width="5" stroke-linecap="round"/><path d="M47 78q23-12 46 0l12 35H35z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><path d="M70 82l13 8v15l-13 8-13-8V90z" fill="#07316a" stroke="#27eaff" stroke-width="3"/><path d="M19 82q-8 0-8 10v13q0 8 9 8h17V93q0-11-10-11z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/><path d="M110 82q8 0 8 10v13q0 8-9 8H92V93q0-11 10-11z" fill="url(#botMetal)" stroke="#168bff" stroke-width="3"/></svg>
+          <svg viewBox="0 0 180 160" aria-label="Mascota robot BOT FACTORY AI"><defs><linearGradient id="botShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".28" stop-color="#c9f2ff"/><stop offset=".62" stop-color="#5ba9ed"/><stop offset="1" stop-color="#123e91"/></linearGradient><linearGradient id="botFace" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#07142f"/><stop offset="1" stop-color="#020817"/></linearGradient><linearGradient id="botBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#50f7ff"/><stop offset=".5" stop-color="#078bff"/><stop offset="1" stop-color="#722bff"/></linearGradient><filter id="botGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><ellipse cx="91" cy="151" rx="56" ry="7" fill="#087dff" opacity=".45"/><path d="M44 50C35 8 63 3 91 3s55 8 47 48" fill="none" stroke="url(#botBlue)" stroke-width="7" stroke-linecap="round"/><circle cx="91" cy="5" r="5" fill="#6efaff" filter="url(#botGlow)"/><path d="M44 33Q28 32 28 53v23q0 13 15 13h8V33zM138 33q15-1 15 20v23q0 13-15 13h-8V33z" fill="url(#botShell)" stroke="#178fff" stroke-width="3"/><circle cx="36" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><circle cx="146" cy="63" r="10" fill="#0b2c66" stroke="#50eaff" stroke-width="3"/><rect x="43" y="14" width="96" height="82" rx="34" fill="url(#botShell)" stroke="#56eaff" stroke-width="3"/><rect x="52" y="25" width="78" height="58" rx="26" fill="url(#botFace)" stroke="#267dcb" stroke-width="2"/><path d="M68 54q8-16 17 0M99 54q8-16 17 0" fill="none" stroke="#00edff" stroke-width="7" stroke-linecap="round" filter="url(#botGlow)"/><path d="M55 94q35-17 71 0l21 57H35z" fill="url(#botShell)" stroke="#258fff" stroke-width="3"/><path d="M91 101l20 12v24l-20 12-20-12v-24z" fill="#08285c" stroke="#35edff" stroke-width="4"/><path d="M91 109l12 7v14l-12 7-12-7v-14z" fill="#087dff" stroke="#a6faff" stroke-width="2"/><path d="M40 102q-17-8-21 8l-5 17q-2 11 9 15l24 6 12-25q5-13-8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M136 103q17-8 21 8l5 17q2 11-9 15l-24 6-12-25q-5-13 8-18z" fill="url(#botShell)" stroke="#168bff" stroke-width="3"/><path d="M15 123q-3 8 4 13l20 8 7-14-19-13q-8-4-12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/><path d="M164 123q3 8-4 13l-20 8-7-14 19-13q8-4 12 6z" fill="#dffaff" stroke="#168bff" stroke-width="2"/></svg>
           <strong>ASISTENTE IA</strong><small>CREA · CONECTA · AUTOMATIZA</small><span class="brand-tag">Mascota / Asistente</span>
         </div>
         <div class="brand-top-item">
